@@ -1,0 +1,174 @@
+.assignment-message-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(4px);
+}
+
+.assignment-message-dialog {
+  width: min(440px, 100%);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+  padding: 28px;
+  text-align: center;
+  animation: assignment-message-in 0.18s ease-out;
+}
+
+.assignment-message-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.assignment-message-dialog--error .assignment-message-icon {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.assignment-message-dialog--warning .assignment-message-icon {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.assignment-message-dialog--success .assignment-message-icon {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.assignment-message-icon .material-symbols-outlined {
+  font-size: 30px;
+}
+
+.assignment-message-body h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.assignment-message-body p {
+  margin: 10px 0 0;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.assignment-message-detail {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+  word-break: break-word;
+}
+
+.assignment-message-actions {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+.assignment-message-button {
+  min-width: 120px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 11px 18px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.assignment-message-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .assignment-message-backdrop {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+html[data-theme="dark"] .assignment-message-dialog {
+  background: var(--surface-elevated);
+  border-color: var(--border-color);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .assignment-message-body h2 {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .assignment-message-body p {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .assignment-message-detail {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .assignment-message-icon {
+  background: rgba(88, 166, 255, 0.14);
+  border: 1px solid rgba(88, 166, 255, 0.34);
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .assignment-message-dialog--error .assignment-message-icon {
+  background: rgba(248, 113, 113, 0.16);
+  border-color: rgba(248, 113, 113, 0.38);
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] .assignment-message-dialog--warning .assignment-message-icon {
+  background: rgba(245, 158, 11, 0.16);
+  border-color: rgba(245, 158, 11, 0.36);
+  color: #fcd34d;
+}
+
+html[data-theme="dark"] .assignment-message-dialog--success .assignment-message-icon {
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.36);
+  color: #6ee7b7;
+}
+
+html[data-theme="dark"] .assignment-message-button {
+  background: var(--primary);
+  color: #07111f;
+}
+
+html[data-theme="dark"] .assignment-message-button:hover {
+  background: var(--primary-hover);
+}
+
+@keyframes assignment-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

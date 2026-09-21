@@ -1,0 +1,113 @@
+server:
+  port: ${CHATBOT_SERVICE_PORT:8085}
+  servlet:
+    context-path: /chatbot
+
+spring:
+  application:
+    name: chatbot-service
+  main:
+    web-application-type: servlet
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: ${FEIGN_CONNECT_TIMEOUT_MS:10000}
+            readTimeout: ${FEIGN_READ_TIMEOUT_MS:30000}
+  data:
+    mongodb:
+      uri: ${CHATBOT_MONGO_URI:mongodb://mongoadmin:mongoadmin123@localhost:27017/chatbot_db?authSource=admin}
+    redis:
+      host: ${CHATBOT_REDIS_HOST:localhost}
+      port: ${CHATBOT_REDIS_PORT:6379}
+      password: ${CHATBOT_REDIS_PASSWORD:redisadmin123}
+      timeout: ${CHATBOT_REDIS_TIMEOUT:5s}
+      connect-timeout: ${CHATBOT_REDIS_CONNECT_TIMEOUT:3s}
+      lettuce:
+        pool:
+          max-active: ${CHATBOT_REDIS_POOL_MAX_ACTIVE:30}
+          max-idle: ${CHATBOT_REDIS_POOL_MAX_IDLE:5}
+          min-idle: ${CHATBOT_REDIS_POOL_MIN_IDLE:0}
+          max-wait: ${CHATBOT_REDIS_POOL_MAX_WAIT:5000ms}
+          time-between-eviction-runs: ${CHATBOT_REDIS_POOL_EVICTION_INTERVAL:30s}
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd HH:mm:ss
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+gemini:
+  provider: ${LLM_PROVIDER:opencode}
+  api-key: ${LLM_API_KEY:your-llm-api-key}
+  model: ${LLM_MODEL:deepseek-v4-flash-free}
+  base-url: ${LLM_BASE_URL:https://opencode.ai/zen/v1}
+
+  thinking:
+    type: ${LLM_THINKING_TYPE:disabled}
+  max-tokens: ${LLM_MAX_TOKENS:8192}
+  temperature-chat: ${LLM_TEMPERATURE_CHAT:0.7}
+  temperature-generate: ${LLM_TEMPERATURE_GENERATE:0.3}
+  max-retry: ${LLM_MAX_RETRY:3}
+  retry-backoff: ${LLM_RETRY_BACKOFF:5s}
+  stream-timeout: ${LLM_STREAM_TIMEOUT:30s}
+  generate-timeout: ${LLM_GENERATE_TIMEOUT:120s}
+  rate-limit:
+    student: ${LLM_RATE_LIMIT_STUDENT:50}
+    instructor: ${LLM_RATE_LIMIT_INSTRUCTOR:100}
+
+chatbot:
+  web-client:
+    max-in-memory-size-bytes: ${CHATBOT_WEBCLIENT_MAX_IN_MEMORY_SIZE_BYTES:2097152}
+  cache:
+    redis:
+      ttl-hours: ${CHATBOT_CACHE_TTL_HOURS:24}
+      max-messages: ${CHATBOT_CACHE_MAX_MESSAGES:20}
+  history:
+    recent-limit: ${CHATBOT_HISTORY_RECENT_LIMIT:20}
+    response-limit: ${CHATBOT_HISTORY_RESPONSE_LIMIT:20}
+  prompt:
+    max-history-tokens: ${CHATBOT_PROMPT_MAX_HISTORY_TOKENS:3000}
+    existing-test-cases-limit: ${CHATBOT_PROMPT_EXISTING_TEST_CASES_LIMIT:20}
+  generate:
+    json-parse-max-retry: ${CHATBOT_GENERATE_JSON_PARSE_MAX_RETRY:2}
+  session:
+    archive-cron: "${CHATBOT_SESSION_ARCHIVE_CRON:0 0 0 * * *}"
+    archive-after-days: ${CHATBOT_SESSION_ARCHIVE_AFTER_DAYS:30}
+    title-max-length: ${CHATBOT_SESSION_TITLE_MAX_LENGTH:50}
+
+services:
+  assignment-service:
+    url: ${ASSIGNMENT_SERVICE_URL:http://localhost:8083/assignment}
+  course-service:
+    url: ${COURSE_SERVICE_URL:http://localhost:8082/course}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      group:
+        liveness:
+          include: ping
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      cors:
+        allowed-origins:
+          - "${FRONTEND_URL:http://localhost:5173}"
+        allowed-methods:
+          - GET
+
+logging:
+  level:
+    com.lms.chatbotservice: ${CHATBOT_LOG_LEVEL:INFO}

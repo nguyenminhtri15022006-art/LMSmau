@@ -1,0 +1,409 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Image tag to deploy (default: commit SHA)'
+        required: false
+        type: string
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_TAG: ${{ inputs.tag || github.sha }}
+
+jobs:
+  build-backend:
+    name: Build backend ${{ matrix.service }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - service-registry
+          - api-gateway
+          - identity-service
+          - course-service
+          - assignment-service
+          - blog-service
+          - chatbot-service
+      fail-fast: false
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lowercase image prefix
+        id: repo
+        run: echo "prefix=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ steps.repo.outputs.prefix }}/${{ matrix.service }}
+          tags: |
+            type=raw,value=${{ env.IMAGE_TAG }}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend/${{ matrix.service }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.service }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.service }}
+
+  build-frontend:
+    name: Build frontend
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lowercase image prefix
+        id: repo
+        run: echo "prefix=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ steps.repo.outputs.prefix }}/frontend
+          tags: |
+            type=raw,value=${{ env.IMAGE_TAG }}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
+            VITE_API_TIMEOUT_MS=${{ vars.VITE_API_TIMEOUT_MS || '15000' }}
+            VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+            VITE_GOOGLE_REDIRECT_URI=${{ vars.VITE_GOOGLE_REDIRECT_URI }}
+            VITE_GOOGLE_AUTH_URI=${{ vars.VITE_GOOGLE_AUTH_URI || 'https://accounts.google.com/o/oauth2/v2/auth' }}
+            VITE_PUBLIC_IP_API_URL=${{ vars.VITE_PUBLIC_IP_API_URL || 'https://api.ipify.org?format=json' }}
+            VITE_PUBLIC_IP_TIMEOUT_MS=${{ vars.VITE_PUBLIC_IP_TIMEOUT_MS || '3000' }}
+            VITE_GATEWAY_HEALTH_URL=${{ vars.VITE_GATEWAY_HEALTH_URL }}
+            VITE_IDENTITY_HEALTH_URL=${{ vars.VITE_IDENTITY_HEALTH_URL }}
+            VITE_COURSE_HEALTH_URL=${{ vars.VITE_COURSE_HEALTH_URL }}
+            VITE_ASSIGNMENT_HEALTH_URL=${{ vars.VITE_ASSIGNMENT_HEALTH_URL }}
+            VITE_BLOG_HEALTH_URL=${{ vars.VITE_BLOG_HEALTH_URL }}
+            VITE_CHATBOT_HEALTH_URL=${{ vars.VITE_CHATBOT_HEALTH_URL }}
+            VITE_ADMIN_HEALTH_TIMEOUT_MS=${{ vars.VITE_ADMIN_HEALTH_TIMEOUT_MS || '5000' }}
+            VITE_ADMIN_HEALTH_IDENTITY_TIMEOUT_MS=${{ vars.VITE_ADMIN_HEALTH_IDENTITY_TIMEOUT_MS || '12000' }}
+            VITE_ADMIN_HEALTH_REFRESH_INTERVAL_MS=${{ vars.VITE_ADMIN_HEALTH_REFRESH_INTERVAL_MS || '30000' }}
+
+  deploy:
+    name: Deploy to server
+    runs-on: ubuntu-latest
+    needs: [ build-backend, build-frontend ]
+    if: github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+      - name: Lowercase image prefix
+        id: repo
+        run: echo "prefix=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate deploy configuration
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          ENV_PROD_FILE: ${{ secrets.ENV_PROD_FILE }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN || secrets.GITHUB_TOKEN }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          set -Eeuo pipefail
+          test -n "$DEPLOY_HOST" || { echo "::error::Missing DEPLOY_HOST secret"; exit 1; }
+          test -n "$DEPLOY_USER" || { echo "::error::Missing DEPLOY_USER secret"; exit 1; }
+          test -n "$ENV_PROD_FILE" || { echo "::error::Missing ENV_PROD_FILE secret"; exit 1; }
+          test -n "$GHCR_TOKEN" || { echo "::error::Missing GHCR_TOKEN secret or GITHUB_TOKEN"; exit 1; }
+          test -n "$GOOGLE_SERVICE_ACCOUNT_JSON" || { echo "::error::Missing GOOGLE_SERVICE_ACCOUNT_JSON secret"; exit 1; }
+
+      - name: Copy config files to server
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          ENV_PROD_FILE: ${{ secrets.ENV_PROD_FILE }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN || secrets.GITHUB_TOKEN }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          set -Eeuo pipefail
+          trap 'rm -f .env.prod .ghcr_token google-service-account.json' EXIT
+
+          printf '%s\n' "$ENV_PROD_FILE" > .env.prod
+          printf '%s\n' "$GHCR_TOKEN" > .ghcr_token
+          printf '%s\n' "$GOOGLE_SERVICE_ACCOUNT_JSON" > google-service-account.json
+          chmod 600 .env.prod .ghcr_token google-service-account.json
+
+          ssh -o StrictHostKeyChecking=accept-new -p "$DEPLOY_PORT" \
+            "$DEPLOY_USER@$DEPLOY_HOST" 'mkdir -p /opt/lms'
+
+          scp -o StrictHostKeyChecking=accept-new -P "$DEPLOY_PORT" \
+            docker-compose.prod.yml nginx.vps.conf .env.prod .ghcr_token google-service-account.json \
+            "$DEPLOY_USER@$DEPLOY_HOST:/opt/lms/"
+
+      - name: Deploy via SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          GHCR_USERNAME: ${{ vars.GHCR_USERNAME || github.actor }}
+          IMAGE_PREFIX: ${{ env.REGISTRY }}/${{ steps.repo.outputs.prefix }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          NGINX_DOMAIN: ${{ vars.NGINX_DOMAIN || 'lmsystem.cloud' }}
+          CERTBOT_EMAIL: ${{ vars.CERTBOT_EMAIL || 'admin@lmsystem.cloud' }}
+          SERVICE_START_ATTEMPTS: ${{ vars.SERVICE_START_ATTEMPTS || '60' }}
+        run: |
+          set -Eeuo pipefail
+
+          printf -v ghcr_username_q '%q' "$GHCR_USERNAME"
+          printf -v image_prefix_q '%q' "$IMAGE_PREFIX"
+          printf -v image_tag_q '%q' "$IMAGE_TAG"
+          printf -v nginx_domain_q '%q' "$NGINX_DOMAIN"
+          printf -v certbot_email_q '%q' "$CERTBOT_EMAIL"
+          printf -v service_start_attempts_q '%q' "$SERVICE_START_ATTEMPTS"
+
+          ssh -o StrictHostKeyChecking=accept-new -p "$DEPLOY_PORT" \
+            "$DEPLOY_USER@$DEPLOY_HOST" \
+            "cd /opt/lms && GHCR_USERNAME=$ghcr_username_q IMAGE_PREFIX=$image_prefix_q IMAGE_TAG=$image_tag_q NGINX_DOMAIN=$nginx_domain_q CERTBOT_EMAIL=$certbot_email_q SERVICE_START_ATTEMPTS=$service_start_attempts_q bash -se" << 'SSHEOF'
+          set -Eeuo pipefail
+
+          sed 's/\$/$$/g' .env.prod > .env.compose
+          chmod 600 .env.compose
+
+          export COMPOSE_ENV_FILE=.env.compose
+          compose=(docker compose --env-file .env.compose -f docker-compose.prod.yml)
+
+          chmod 600 .env.prod .env.compose .ghcr_token
+          GHCR_TOKEN="$(cat .ghcr_token)"
+          rm -f .ghcr_token
+
+          printf '%s\n' "$GHCR_TOKEN" | docker login ghcr.io --username "$GHCR_USERNAME" --password-stdin
+          unset GHCR_TOKEN
+
+          export IMAGE_TAG IMAGE_PREFIX
+
+          wait_for_services() {
+            local services=("$@")
+            local max_attempts="${SERVICE_START_ATTEMPTS:-60}"
+
+            for attempt in $(seq 1 "$max_attempts"); do
+              local not_ready=''
+
+              for service in "${services[@]}"; do
+                local container_id state health
+                container_id="$("${compose[@]}" ps -q "$service")"
+                if [ -z "$container_id" ]; then
+                  not_ready="$not_ready $service(missing)"
+                  continue
+                fi
+
+                state="$(docker inspect -f '{{.State.Status}}' "$container_id")"
+                health="$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$container_id")"
+
+                if [ "$state" != 'running' ]; then
+                  not_ready="$not_ready $service($state)"
+                elif [ "$health" = 'starting' ] || [ "$health" = 'unhealthy' ]; then
+                  not_ready="$not_ready $service($health)"
+                fi
+              done
+
+              if [ -z "$not_ready" ]; then
+                echo "Ready:${services[*]}"
+                return 0
+              fi
+
+              echo "Attempt $attempt/$max_attempts waiting for:$not_ready"
+              sleep 10
+            done
+
+            echo "Timed out waiting for:${services[*]}"
+            "${compose[@]}" ps
+            for service in "${services[@]}"; do
+              echo "Recent logs for $service:"
+              "${compose[@]}" logs --tail=200 "$service" || true
+            done
+            return 1
+          }
+
+          deploy_service() {
+            local service="$1"
+            echo "Deploying $service"
+            "${compose[@]}" pull "$service"
+            if ! "${compose[@]}" up -d --no-deps "$service"; then
+              echo "Docker Compose failed while starting $service"
+              "${compose[@]}" ps
+              "${compose[@]}" logs --tail=200 "$service" || true
+              exit 1
+            fi
+            wait_for_services "$service"
+          }
+
+          deploy_service service-registry
+          deploy_service identity-service
+          deploy_service course-service
+          deploy_service assignment-service
+          deploy_service blog-service
+          deploy_service chatbot-service
+          deploy_service api-gateway
+          deploy_service frontend
+
+          "${compose[@]}" up -d --remove-orphans --no-deps \
+            service-registry identity-service course-service assignment-service \
+            blog-service chatbot-service api-gateway frontend
+
+          docker image prune -f
+
+          if command -v nginx >/dev/null 2>&1 && command -v certbot >/dev/null 2>&1; then
+            nginx_target=''
+            if [ -d /etc/nginx/sites-available ]; then
+              nginx_target=/etc/nginx/sites-available/default
+            elif [ -d /etc/nginx/conf.d ]; then
+              nginx_target=/etc/nginx/conf.d/lms.conf
+            fi
+
+            if [ -z "$nginx_target" ]; then
+              echo "::warning::Nginx exists, but no supported config directory was found. Skipping nginx setup."
+            else
+              mapfile -t conf_domains < <(grep -E '^\s*server_name\s' /opt/lms/nginx.vps.conf \
+                | sed -E 's/^\s*server_name\s+//; s/;\s*$//' \
+                | tr -s ' ' '\n' | sed '/^_$/d' | sort -u)
+
+              if [ "${#conf_domains[@]}" -eq 0 ]; then
+                echo "::error::Không tìm thấy server_name nào trong nginx.vps.conf"
+                exit 1
+              fi
+
+              primary_domain="${conf_domains[0]}"
+              cert_args=()
+              for d in "${conf_domains[@]}"; do
+                cert_args+=(-d "$d")
+              done
+              echo "Domains phát hiện từ nginx.vps.conf: ${conf_domains[*]}"
+
+              cert_ok=0
+              if sudo certbot certificates --cert-name "$primary_domain" 2>/dev/null \
+                   | grep -q "Domains:.*$primary_domain"; then
+                missing=0
+                for d in "${conf_domains[@]}"; do
+                  sudo certbot certificates --cert-name "$primary_domain" 2>/dev/null \
+                    | grep -q "Domains:.*\b$d\b" || missing=1
+                done
+                [ "$missing" -eq 0 ] && cert_ok=1
+              fi
+
+              # Áp dụng nginx.vps.conf TRƯỚC để certbot --nginx có config đúng để parse/sửa.
+              sudo cp /opt/lms/nginx.vps.conf "$nginx_target"
+
+              if [ "$cert_ok" -eq 1 ]; then
+                echo "Cert hợp lệ cho cert-name=$primary_domain (khớp đủ domain), chỉ reload."
+                sudo nginx -t
+                sudo systemctl reload nginx || sudo service nginx reload
+              else
+                echo "Cert thiếu hoặc lệch domain. Xin/cập nhật cert cho: ${conf_domains[*]}"
+
+                # nginx.vps.conf đã có sẵn block "listen 443 ssl" trỏ tới cert chưa tồn tại
+                if ! sudo nginx -t 2>/tmp/nginx_test.err; then
+                  if grep -qi 'ssl_certificate\|SSL_CTX\|cert' /tmp/nginx_test.err; then
+                    echo "nginx -t fail do thiếu cert (như dự kiến). Dùng config HTTP tạm thời để xin cert mới."
+                    tmp_http_conf="$(mktemp)"
+                    awk '
+                      /server[[:space:]]*\{/ { depth=1; inserver=1; buf=$0 "\n"; has443=0; next }
+                      inserver {
+                        buf = buf $0 "\n"
+                        if ($0 ~ /listen[[:space:]]+443/) has443=1
+                        n = gsub(/\{/, "{", $0); depth += n
+                        n = gsub(/\}/, "}", $0); depth -= n
+                        if (depth == 0) {
+                          if (!has443) printf "%s", buf
+                          inserver=0
+                        }
+                        next
+                      }
+                      { print }
+                    ' /opt/lms/nginx.vps.conf > "$tmp_http_conf"
+                    sudo cp "$tmp_http_conf" "$nginx_target"
+                    rm -f "$tmp_http_conf"
+                    sudo nginx -t
+                    sudo systemctl reload nginx || sudo service nginx reload
+                  else
+                    echo "::error::nginx -t fail vì lý do khác cert, không tự sửa được:"
+                    cat /tmp/nginx_test.err
+                    exit 1
+                  fi
+                fi
+
+                sudo certbot --nginx --cert-name "$primary_domain" "${cert_args[@]}" \
+                  --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect --expand
+
+                # Sau khi certbot xin cert + tự chèn block 443 thành công, áp lại đúng bản
+                sudo cp /opt/lms/nginx.vps.conf "$nginx_target"
+                sudo nginx -t
+                sudo systemctl reload nginx || sudo service nginx reload
+              fi
+            fi
+          else
+            echo "::warning::nginx or certbot is not installed on the server. Skipping nginx setup."
+          fi
+
+          echo "Final health check"
+          wait_for_services \
+            service-registry identity-service course-service assignment-service \
+            blog-service chatbot-service api-gateway frontend
+          echo "All containers are running and healthy"
+          "${compose[@]}" ps
+          SSHEOF

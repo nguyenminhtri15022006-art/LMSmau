@@ -1,0 +1,239 @@
+/* My Blog Posts Management Styles */
+
+.manage-posts-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.08), transparent 30%),
+    #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .instructor-layout .manage-posts-container {
+  border-color: transparent !important;
+}
+
+.manage-posts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.manage-posts-header h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #1e293b;
+}
+
+/* Management Table */
+.blog-manage-table-container {
+  overflow-x: auto;
+}
+
+.blog-manage-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.blog-manage-table th {
+  padding: 16px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.blog-manage-table td {
+  padding: 20px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.blog-manage-table tbody tr {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-manage-table tbody tr:hover {
+  background: #f8fafc;
+  box-shadow: inset 3px 0 0 #2563eb;
+}
+
+.manage-post-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.manage-post-thumb {
+  width: 60px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.blog-manage-table tbody tr:hover .manage-post-thumb {
+  transform: scale(1.05);
+}
+
+.manage-post-title {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.manage-post-title:hover {
+  color: #2563eb;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.status-published {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-draft {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.manage-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+}
+
+.action-btn.edit:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.action-btn.delete:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Sidebar Button Style */
+.manage-posts-btn {
+  width: 100%;
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.manage-posts-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.manage-posts-btn .material-symbols-outlined {
+  color: #2563eb;
+}
+
+/* Helpers to replace inline styles */
+.ch-breadcrumb { margin-bottom: 32px; }
+.ch-breadcrumb a { color: #1c74e9; font-weight: 600; text-decoration: none; }
+.ch-breadcrumb a:hover { color: #1558b8; text-decoration: underline; }
+.ch-breadcrumb-separator { margin: 0 8px; display: inline-flex; align-items: center; color: #cbd5e1; }
+.ch-breadcrumb-separator .material-symbols-outlined { font-size: 16px; }
+.breadcrumb-title { color: #94a3b8; font-weight: 500; }
+.add-icon { vertical-align: middle; margin-right: 8px; }
+.empty-state-td { text-align: center; padding: 48px; color: #64748b; }
+.trending-cat { margin: 0; }
+.action-icon-sm { font-size: 18px; }
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .manage-posts-container {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(88, 166, 255, 0.12), transparent 30%),
+    var(--surface) !important;
+  border-color: rgba(96, 165, 250, 0.32) !important;
+  color: var(--text-body);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(147, 197, 253, 0.12);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .manage-posts-header,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-manage-table-container,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .manage-post-info,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .manage-actions {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .manage-posts-header h1,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .manage-post-title {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-manage-table th {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-manage-table td {
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-manage-table tbody tr:hover {
+  background: rgba(88, 166, 255, 0.08);
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .action-btn {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .status-draft {
+  background: rgba(148, 163, 184, 0.14);
+  color: #cbd5e1;
+}

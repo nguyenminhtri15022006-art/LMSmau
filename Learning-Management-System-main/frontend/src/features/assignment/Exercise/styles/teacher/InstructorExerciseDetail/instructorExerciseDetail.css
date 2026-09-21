@@ -1,0 +1,314 @@
+/* Instructor Exercise Detail Styles */
+.exercise-detail-page {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: exerciseDetailEnter 0.34s ease-out both;
+}
+
+.exercise-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.header-left h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.highlight-text {
+    color: #2563eb;
+}
+
+.exercise-detail-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    padding: 56px 24px;
+    border: 1px solid #dbe3ef;
+    border-radius: 16px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.94)),
+        #ffffff;
+    color: #64748b;
+    box-shadow: 0 16px 42px rgba(15, 23, 42, 0.07);
+    animation: exerciseDetailContentSettle 0.28s ease-out both;
+}
+
+.exercise-detail-loading p {
+    margin: 16px 0 0;
+    color: #64748b;
+    font-weight: 650;
+}
+
+.header-left p {
+    color: #64748b;
+    font-size: 16px;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.create-exercise-button {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+    min-height: 88px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: #1d4ed8;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.create-exercise-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(37, 99, 235, 0.26);
+    filter: saturate(1.05);
+}
+
+.create-exercise-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 26px;
+    flex-shrink: 0;
+}
+
+.create-exercise-button__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+    text-align: left;
+}
+
+.create-exercise-button__label {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.create-exercise-button__hint {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.35;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    .exercise-detail-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .create-exercise-button {
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: 46px minmax(0, 1fr);
+        justify-content: flex-start;
+    }
+}
+
+.exercise-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 32px;
+}
+
+.exercise-right-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.exercise-tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 32px;
+}
+
+.exercise-tab {
+    background: none;
+    border: none;
+    padding: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.exercise-tab.active {
+    color: #2563eb;
+}
+
+.exercise-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #2563eb;
+}
+
+.tab-badge {
+    background: #f1f5f9;
+    color: #64748b;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.exercise-tab.active .tab-badge {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-detail-loading,
+html[data-theme="dark"] .instructor-layout .exercise-detail-loading:hover {
+    background:
+        linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.9)),
+        var(--surface) !important;
+    border-color: rgba(148, 163, 184, 0.18) !important;
+    box-shadow: 0 22px 52px rgba(0, 0, 0, 0.28) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-detail-loading p {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-content-area {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .header-left h1 {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .header-left p {
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-tabs {
+    border-bottom-color: var(--border-color);
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-tab {
+    color: var(--text-body);
+    background: transparent !important;
+    background-color: transparent !important;
+    appearance: none;
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-tab.active,
+html[data-theme="dark"] .instructor-layout .exercise-tab.active:hover,
+html[data-theme="dark"] .instructor-layout .exercise-tab.active:focus,
+html[data-theme="dark"] .instructor-layout .exercise-tab.active:focus-visible,
+html[data-theme="dark"] .instructor-layout .exercise-tab.active:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    color: var(--primary) !important;
+    outline: none;
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-tab.active::after {
+    background: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .tab-badge {
+    background: var(--surface-muted);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .exercise-tab.active .tab-badge {
+    background: rgba(88, 166, 255, 0.15);
+    border-color: rgba(88, 166, 255, 0.34);
+    color: var(--primary);
+}
+
+
+@media (max-width: 1024px) {
+    .exercise-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes exerciseDetailEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes exerciseDetailContentSettle {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .exercise-detail-page,
+    .exercise-detail-loading {
+        animation: none;
+    }
+}

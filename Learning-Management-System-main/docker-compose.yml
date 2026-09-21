@@ -1,0 +1,362 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: lms-mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      MYSQL_ROOT_USERNAME: ${MYSQL_ROOT_USERNAME:-root}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqladmin123}
+      MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST:-%}
+      MYSQL_HOST: ${MYSQL_HOST:-mysql}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD} --silent" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - lms
+
+  mongodb:
+    image: mongo:7
+    container_name: lms-mongodb
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      MONGODB_HOST: ${MONGODB_HOST:-mongodb}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-mongoadmin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-mongoadmin123}
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - lms
+
+  redis:
+    image: redis:7-alpine
+    container_name: lms-redis
+    command: [ "redis-server", "--appendonly", "yes" ]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redisadmin123}
+      REDIS_HOST: ${REDIS_HOST:-redis}
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - lms
+
+  minio:
+    image: minio/minio:latest
+    container_name: lms-minio
+    command: [ "server", "/data", "--console-address", ":9001" ]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      MINIO_PUBLISH_URL: ${MINIO_PUBLIC_URL:-http://localhost:9000}
+      MINIO_URL: ${MINIO_URL:-http://minio:9000}
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-minioadmin123}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - lms
+
+  service-registry:
+    build:
+      context: ./backend/service-registry
+    image: lms/service-registry:local
+    container_name: lms-service-registry
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${SERVICE_REGISTRY_PORT:-8761}
+      SERVICE_REGISTRY_PORT: ${SERVICE_REGISTRY_PORT:-8761}
+    ports:
+      - "${SERVICE_REGISTRY_PORT:-8761}:${SERVICE_REGISTRY_PORT:-8761}"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q --spider http://localhost:$${SERVICE_REGISTRY_PORT:-8761}/ || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - lms
+
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+    image: lms/api-gateway:local
+    container_name: lms-api-gateway
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${SERVER_PORT:-8080}
+      API_GATEWAY_PORT: ${API_GATEWAY_PORT:-8080}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+    ports:
+      - "${SERVER_PORT:-8080}:${SERVER_PORT:-8080}"
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    networks:
+      - lms
+
+  identity-service:
+    build:
+      context: ./backend/identity-service
+    image: lms/identity-service:local
+    container_name: lms-identity-service
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${IDENTITY_SERVICE_PORT:-8081}
+      IDENTITY_SERVICE_PORT: ${IDENTITY_SERVICE_PORT:-8081}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      IDENTITY_URL_DB: jdbc:mysql://${MYSQL_HOST:-mysql}:${MYSQL_PORT:-3306}/${IDENTITY_DB_NAME:-identity_lms}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+      IDENTITY_DB_USERNAME: ${MYSQL_ROOT_USERNAME:-root}
+      IDENTITY_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqladmin123}
+      MINIO_URL: http://minio:9000
+      MINIO_PUBLIC_URL: http://localhost:9000
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    ports:
+      - "${IDENTITY_SERVICE_PORT:-8081}:${IDENTITY_SERVICE_PORT:-8081}"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      service-registry:
+        condition: service_healthy
+    networks:
+      - lms
+
+  course-service:
+    build:
+      context: ./backend/course-service
+    image: lms/course-service:local
+    container_name: lms-course-service
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${COURSE_SERVICE_PORT:-8082}
+      COURSE_SERVICE_PORT: ${COURSE_SERVICE_PORT:-8082}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      COURSE_DB_URL: jdbc:mysql://${MYSQL_HOST:-mysql}:${MYSQL_PORT:-3306}/${COURSE_DB_NAME:-course_lms}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+      COURSE_DB_USERNAME: ${MYSQL_ROOT_USERNAME:-root}
+      COURSE_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqladmin123}
+      COURSE_MONGODB_URI: ${COURSE_MONGODB_URI:-mongodb://${MONGODB_HOST:-mongodb}:${MONGODB_PORT:-27017}/${COURSE_MONGODB_DATABASE:-course_lms_mongo}}
+      MINIO_URL: http://minio:9000
+      MINIO_PUBLIC_URL: http://localhost:9000
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    ports:
+      - "${COURSE_SERVICE_PORT:-8082}:${COURSE_SERVICE_PORT:-8082}"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      service-registry:
+        condition: service_healthy
+      identity-service:
+        condition: service_started
+    networks:
+      - lms
+
+  assignment-service:
+    build:
+      context: ./backend/assignment-service
+    image: lms/assignment-service:local
+    container_name: lms-assignment-service
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${ASSIGNMENT_SERVICE_PORT:-8083}
+      ASSIGNMENT_SERVICE_PORT: ${ASSIGNMENT_SERVICE_PORT:-8083}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      ASSIGNMENT_DB_URL: jdbc:mysql://${MYSQL_HOST:-mysql}:${MYSQL_PORT:-3306}/${ASSIGNMENT_DB_NAME:-assignment_lms}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+      ASSIGNMENT_DB_USERNAME: ${MYSQL_ROOT_USERNAME:-root}
+      ASSIGNMENT_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqladmin123}
+      ASSIGNMENT_MONGODB_URI: ${ASSIGNMENT_MONGODB_URI:-mongodb://${MONGODB_HOST:-mongodb}:${MONGODB_PORT:-27017}/${ASSIGNMENT_MONGODB_DATABASE:-assignment_lms_mongo}}
+      JUDGE_ENGINE: ${JUDGE_ENGINE:-judge0}
+      JUDGE0_URL: ${JUDGE0_URL:-http://localhost:2358}
+      JUDGE0_API_KEY: ${JUDGE0_API_KEY:-}
+      MINIO_URL: http://minio:9000
+      MINIO_PUBLIC_URL: http://localhost:9000
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    ports:
+      - "${ASSIGNMENT_SERVICE_PORT:-8083}:${ASSIGNMENT_SERVICE_PORT:-8083}"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      service-registry:
+        condition: service_healthy
+      identity-service:
+        condition: service_started
+      course-service:
+        condition: service_started
+    networks:
+      - lms
+
+  blog-service:
+    build:
+      context: ./backend/blog-service
+    image: lms/blog-service:local
+    container_name: lms-blog-service
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${BLOG_SERVICE_PORT:-8084}
+      BLOG_SERVICE_PORT: ${BLOG_SERVICE_PORT:-8084}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      BLOG_DB_URL: jdbc:mysql://${MYSQL_HOST:-mysql}:${MYSQL_PORT:-3306}/${BLOG_DB_NAME:-blog_lms}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+      BLOG_DB_USERNAME: ${MYSQL_ROOT_USERNAME:-root}
+      BLOG_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqladmin123}
+      MINIO_URL: http://minio:9000
+      MINIO_PUBLIC_URL: http://localhost:9000
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    ports:
+      - "${BLOG_SERVICE_PORT:-8084}:${BLOG_SERVICE_PORT:-8084}"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      service-registry:
+        condition: service_healthy
+      identity-service:
+        condition: service_started
+    networks:
+      - lms
+
+  chatbot-service:
+    build:
+      context: ./backend/chatbot-service
+    image: lms/chatbot-service:local
+    container_name: lms-chatbot-service
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SERVER_PORT: ${CHATBOT_SERVICE_PORT:-8085}
+      CHATBOT_SERVICE_PORT: ${CHATBOT_SERVICE_PORT:-8085}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      CHATBOT_MONGO_URI: ${CHATBOT_MONGO_URI:-mongodb://${MONGODB_HOST:-mongodb}:${MONGODB_PORT:-27017}/${CHATBOT_MONGODB_DATABASE:-chatbot_db}}
+      CHATBOT_REDIS_HOST: ${CHATBOT_REDIS_HOST:-redis}
+      CHATBOT_REDIS_PORT: ${CHATBOT_REDIS_PORT:-6379}
+      CHATBOT_REDIS_PASSWORD: ${CHATBOT_REDIS_PASSWORD:-redisadmin123}
+      CHATBOT_REDIS_TIMEOUT: ${CHATBOT_REDIS_TIMEOUT:-5s}
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+    ports:
+      - "${CHATBOT_SERVICE_PORT:-8085}:${CHATBOT_SERVICE_PORT:-8085}"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      assignment-service:
+        condition: service_started
+      course-service:
+        condition: service_started
+    networks:
+      - lms
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
+        VITE_API_TIMEOUT_MS: ${VITE_API_TIMEOUT_MS:-15000}
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID:-}
+        VITE_GOOGLE_REDIRECT_URI: ${VITE_GOOGLE_REDIRECT_URI:-http://localhost:5173/authenticate}
+        VITE_GOOGLE_AUTH_URI: ${VITE_GOOGLE_AUTH_URI:-https://accounts.google.com/o/oauth2/v2/auth}
+        VITE_PUBLIC_IP_API_URL: ${VITE_PUBLIC_IP_API_URL:-https://api.ipify.org?format=json}
+        VITE_PUBLIC_IP_TIMEOUT_MS: ${VITE_PUBLIC_IP_TIMEOUT_MS:-3000}
+        VITE_GATEWAY_HEALTH_URL: ${VITE_GATEWAY_HEALTH_URL:-http://localhost:${SERVER_PORT:-8080}/actuator/health/liveness}
+        VITE_IDENTITY_HEALTH_URL: ${VITE_IDENTITY_HEALTH_URL:-http://localhost:${IDENTITY_SERVICE_PORT:-8081}/identity/actuator/health}
+        VITE_COURSE_HEALTH_URL: ${VITE_COURSE_HEALTH_URL:-http://localhost:${COURSE_SERVICE_PORT:-8082}/course/actuator/health/liveness}
+        VITE_ASSIGNMENT_HEALTH_URL: ${VITE_ASSIGNMENT_HEALTH_URL:-http://localhost:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment/actuator/health/liveness}
+        VITE_BLOG_HEALTH_URL: ${VITE_BLOG_HEALTH_URL:-http://localhost:${BLOG_SERVICE_PORT:-8084}/blog/actuator/health/liveness}
+        VITE_CHATBOT_HEALTH_URL: ${VITE_CHATBOT_HEALTH_URL:-http://localhost:${CHATBOT_SERVICE_PORT:-8085}/chatbot/actuator/health/liveness}
+        VITE_ADMIN_HEALTH_TIMEOUT_MS: ${VITE_ADMIN_HEALTH_TIMEOUT_MS:-5000}
+        VITE_ADMIN_HEALTH_IDENTITY_TIMEOUT_MS: ${VITE_ADMIN_HEALTH_IDENTITY_TIMEOUT_MS:-12000}
+        VITE_ADMIN_HEALTH_REFRESH_INTERVAL_MS: ${VITE_ADMIN_HEALTH_REFRESH_INTERVAL_MS:-30000}
+    image: lms/frontend:local
+    container_name: lms-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      api-gateway:
+        condition: service_started
+    networks:
+      - lms
+
+volumes:
+  mysql-data:
+  mongo-data:
+  redis-data:
+  minio-data:
+
+networks:
+  lms:
+    driver: bridge

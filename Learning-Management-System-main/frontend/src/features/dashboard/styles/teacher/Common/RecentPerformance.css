@@ -1,0 +1,205 @@
+.recent-performance-premium {
+  padding: 30px;
+  border-radius: 24px;
+}
+
+.performance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.title-area h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.title-area .subtitle {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.view-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  background: #eff6ff;
+  color: #3b82f6;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-all-btn:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+
+/* ── List ── */
+.performance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Item ── */
+.performance-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.performance-item:hover {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+/* ── Rank badge ── */
+.rank-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* ── Course initials ── */
+.course-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+/* ── Info column ── */
+.course-info-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.course-name {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-icon {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.student-count {
+  font-size: 0.775rem;
+  color: #64748b;
+}
+
+/* ── Progress row ── */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.progress-bg {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 100px;
+}
+
+.progress-text {
+  font-size: 0.775rem;
+  font-weight: 700;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ── States ── */
+.performance-loading,
+.performance-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  padding: 24px 0;
+  justify-content: center;
+}
+
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .performance-empty,
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .performance-empty:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .performance-list,
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .performance-list:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .progress-bg {
+  background: var(--surface-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .view-all-btn {
+  background: rgba(88, 166, 255, 0.14);
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] .instructor-layout .recent-performance-premium .view-all-btn:hover {
+  background: rgba(88, 166, 255, 0.22);
+}
+
+@media (max-width: 768px) {
+  .performance-item {
+    gap: 10px;
+    padding: 12px 14px;
+  }
+}

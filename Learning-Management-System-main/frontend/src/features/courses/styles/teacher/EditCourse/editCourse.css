@@ -1,0 +1,212 @@
+.edit-course-layout {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #f8fafc;
+    min-height: calc(100vh - 80px);
+}
+
+.sidebar-col {
+    flex: 0 0 250px;
+}
+
+.content-col {
+    flex: 1;
+}
+
+.edit-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.edit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.header-text h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 5px 0;
+}
+
+.header-text p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-discard {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-discard:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.btn-save {
+    background: #1a73e8; /* Default blue from the system */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+}
+
+.btn-save:hover {
+    background: #1557b0;
+}
+
+.edit-card-body {
+    padding: 30px;
+}
+
+.edit-course-loading,
+.edit-course-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    font-size: 1rem;
+    color: #64748b;
+    padding: 40px;
+}
+
+.edit-course-error {
+    color: #ef4444;
+}
+
+/* Adjust Step2Curriculum to fit inside edit-card-body */
+.curriculum-wrapper-edit .curriculum-builder {
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Breadcrumbs Styling */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #1c74e9;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+    color: #1558b8;
+}
+
+.breadcrumbs a.breadcrumb-current {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.breadcrumbs a.breadcrumb-current:hover {
+    color: #64748b;
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout {
+    background-color: var(--bg-light) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .sidebar-col,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .content-col,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .breadcrumbs,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .breadcrumbs:hover,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .edit-card,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .edit-card-body,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .edit-actions {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .edit-card-header {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    border-bottom-color: var(--border-color) !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .header-text h2 {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .header-text p {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .btn-discard {
+    background: transparent;
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .btn-discard:hover {
+    background: var(--surface-muted);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .btn-save {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .btn-save:hover {
+    background: var(--primary-hover);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .breadcrumbs {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .breadcrumbs a {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-layout .breadcrumbs a.breadcrumb-current,
+html[data-theme="dark"] .instructor-layout .edit-course-layout .breadcrumbs span {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--text-muted);
+}
+

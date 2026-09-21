@@ -1,0 +1,214 @@
+footer {
+    background-color: #020617;
+    /* slate-950 */
+    border-top: 1px solid #1e293b;
+    padding: 48px 24px;
+}
+
+.footer__inner {
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+}
+
+@media (min-width: 768px) {
+    .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.footer__col-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer__logo-icon {
+    display: flex;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+}
+
+.footer__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: white;
+    margin: 0;
+}
+
+.footer__desc {
+    font-size: 0.875rem;
+    color: var(--text-muted-dark);
+    margin: 0;
+}
+
+.footer__socials {
+    display: flex;
+    gap: 16px;
+}
+
+.social-btn {
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted-dark);
+    transition: color 0.2s;
+}
+
+.social-btn:hover {
+    color: var(--primary);
+}
+
+.footer__heading {
+    font-weight: 700;
+    color: white;
+    margin: 0 0 16px 0;
+}
+
+.footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer__link {
+    font-size: 0.875rem;
+    color: var(--text-muted-dark);
+    transition: color 0.2s;
+}
+
+.footer__link:hover {
+    color: var(--primary);
+}
+
+.footer__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer__input {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #1e293b;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: white;
+    outline: none;
+}
+
+.footer__input::placeholder {
+    color: var(--text-muted-dark);
+}
+
+.footer__input:focus {
+    box-shadow: 0 0 0 2px var(--primary);
+}
+
+.footer__submit {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgba(28, 116, 233, 0.2);
+    transition: opacity 0.2s;
+}
+
+.footer__submit:hover {
+    opacity: 0.9;
+}
+
+.footer__bottom {
+    padding-top: 32px;
+    border-top: 1px solid #1e293b;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .footer__bottom {
+        flex-direction: row;
+    }
+}
+
+.footer__copyright {
+    font-size: 0.875rem;
+    color: var(--text-muted-dark);
+    margin: 0;
+}
+
+.footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+
+.footer__legal a {
+    font-size: 0.875rem;
+    color: var(--text-muted-dark);
+    transition: color 0.2s;
+}
+
+.footer__legal a:hover {
+    color: var(--primary);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer.footer,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer.footer:hover {
+    background-color: #020617 !important;
+    border-color: #1e293b !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer .footer__inner,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer .footer__grid,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer .footer__grid > div,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer .footer__col-1,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer .footer__heading,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) footer .footer__form {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}

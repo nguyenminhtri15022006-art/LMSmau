@@ -1,0 +1,285 @@
+.course-curriculum {
+    margin-bottom: 3rem;
+}
+
+.course-curriculum__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+}
+
+html[data-theme="dark"] .course-curriculum__title {
+    color: #ffffff;
+}
+
+.course-curriculum__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+    .course-curriculum__header {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.course-curriculum__expand-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+}
+
+.course-curriculum__expand-btn:hover {
+    text-decoration: underline;
+}
+
+.course-curriculum__list {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.course-curriculum__empty {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px dashed #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    color: #64748b;
+    background: #f8fafc;
+}
+
+.course-curriculum__empty .material-symbols-outlined {
+    color: #0f766e;
+}
+
+html[data-theme="dark"] .course-curriculum__list {
+    border-color: #1e293b;
+}
+
+.course-curriculum__section {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+html[data-theme="dark"] .course-curriculum__section {
+    border-color: #1e293b;
+}
+
+.course-curriculum__section:last-child {
+    border-bottom: none;
+}
+
+.course-curriculum__section--open {
+    background-color: #f8fafc;
+}
+
+html[data-theme="dark"] .course-curriculum__section--open {
+    background-color: rgba(30, 41, 59, 0.5);
+}
+
+.course-curriculum__section-header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.course-curriculum__section-header:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="dark"] .course-curriculum__section-header:hover {
+    background-color: #1e293b;
+}
+
+.course-curriculum__section-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.course-curriculum__section-icon {
+    transition: transform 0.2s;
+}
+
+.course-curriculum__section-icon--open {
+    transform: rotate(180deg);
+}
+
+.course-curriculum__section-title {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .course-curriculum__section-title {
+    color: var(--primary);
+}
+
+.course-curriculum__section-meta {
+    font-size: 0.875rem;
+    color: #64748b;
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .course-curriculum__section-meta {
+        display: block;
+    }
+}
+
+.course-curriculum__items {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .course-curriculum__items {
+        padding: 1rem 2.5rem;
+    }
+}
+
+html[data-theme="dark"] .course-curriculum__items {
+    background-color: #0f172a;
+}
+
+.course-curriculum__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.course-curriculum__item-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.course-curriculum__item-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #6ea8f7;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: rgba(28, 116, 233, 0.08);
+    padding: 0.1rem 0.45rem;
+    border-radius: 0.3rem;
+}
+
+.course-curriculum__item-icon {
+    font-size: 1.1rem !important;
+    flex-shrink: 0;
+}
+.course-curriculum__item-icon--blue   { color: #3b82f6; }
+.course-curriculum__item-icon--green  { color: #22c55e; }
+.course-curriculum__item-icon--amber  { color: #f59e0b; }
+.course-curriculum__item-icon--purple { color: #a855f7; }
+.course-curriculum__item-icon--red    { color: #ef4444; }
+.course-curriculum__item-icon--default{ color: #94a3b8; }
+
+.course-curriculum__item-title {
+    color: #334155;
+}
+
+html[data-theme="dark"] .course-curriculum__item-title {
+    color: #cbd5e0;
+}
+
+.course-curriculum__item-title--preview {
+    color: var(--primary);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.course-curriculum__item-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.course-curriculum__item-preview-badge {
+    color: var(--primary);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.course-curriculum__item-duration {
+    color: #64748b;
+}
+
+.course-curriculum__item-type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+}
+
+.course-curriculum__item-type--blue    { background: #eff6ff; color: #2563eb; }
+.course-curriculum__item-type--green   { background: #f0fdf4; color: #16a34a; }
+.course-curriculum__item-type--amber   { background: #fffbeb; color: #d97706; }
+.course-curriculum__item-type--purple  { background: #faf5ff; color: #9333ea; }
+.course-curriculum__item-type--red     { background: #fef2f2; color: #dc2626; }
+.course-curriculum__item-type--default { background: #f1f5f9; color: #64748b; }
+
+.course-curriculum__item--clickable {
+    cursor: pointer;
+    border-radius: 0.375rem;
+    transition: background 0.15s;
+}
+
+.course-curriculum__item--clickable:hover {
+    background: #f8fafc;
+}
+
+html[data-theme="dark"] .course-curriculum__item--clickable:hover {
+    background: #1e293b;
+}
+
+
+.course-curriculum__section-index {
+    font-weight: 600;
+    color: var(--primary);
+    margin-right: 0.25rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Nested folder (folder bên trong folder) */
+.course-curriculum__section--nested {
+    border: none;
+    border-top: 1px solid #f1f5f9;
+    border-radius: 0.5rem;
+    margin: 0.25rem 0;
+}
+
+.course-curriculum__section--nested .course-curriculum__section-header {
+    padding: 0.625rem 0.75rem;
+    background: #f0f6ff;
+    border-radius: 0.5rem;
+}
+
+.course-curriculum__section--nested .course-curriculum__items {
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    background: transparent;
+}
+
+html[data-theme="dark"] .course-curriculum__section--nested .course-curriculum__section-header {
+    background: rgba(59, 130, 246, 0.08);
+}

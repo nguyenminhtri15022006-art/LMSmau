@@ -1,0 +1,98 @@
+.skeleton {
+    background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 6px;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+.skeleton-card__img {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+}
+
+.skeleton-card__content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skeleton-card__title-line {
+    height: 16px;
+    width: 100%;
+}
+
+.skeleton-card__title-line--short {
+    width: 65%;
+}
+
+.skeleton-card__instructor-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.skeleton-card__icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.skeleton-card__instructor-text {
+    height: 13px;
+    width: 45%;
+}
+
+.skeleton-card__meta {
+    display: flex;
+    gap: 6px;
+    padding-top: 10px;
+    border-top: 1px solid #edf2f7;
+}
+
+.skeleton-card__pill {
+    height: 24px;
+    width: 72px;
+    border-radius: 20px;
+}
+
+.skeleton-card__btn {
+    height: 38px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 4px;
+}
+
+html[data-theme="dark"] .skeleton,
+html[data-theme="dark"] .skeleton-card__img {
+    background: linear-gradient(90deg, #1f2937 25%, #263247 50%, #1f2937 75%);
+    background-size: 200% 100%;
+}
+
+html[data-theme="dark"] .skeleton-card {
+    background: #172033;
+    border-color: rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .skeleton-card__meta {
+    border-top-color: rgba(148, 163, 184, 0.16);
+}

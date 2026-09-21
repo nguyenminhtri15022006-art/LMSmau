@@ -1,0 +1,358 @@
+.recent-activity-premium {
+  padding: 30px;
+  border-radius: 24px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-title-row h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.activity-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.activity-card-premium {
+  display: flex;
+  gap: 20px;
+}
+
+.activity-dot-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12px;
+}
+
+.activity-dot-line .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  z-index: 2;
+}
+
+.activity-dot-line.blue .dot { background: #3b82f6; }
+.activity-dot-line.green .dot { background: #10b981; }
+.activity-dot-line.purple .dot { background: #8b5cf6; }
+
+.activity-dot-line .line {
+  flex: 1;
+  width: 2px;
+  background: #f1f5f9;
+}
+
+.activity-card-premium:last-child .line {
+  display: none;
+}
+
+.activity-main-content {
+  flex: 1;
+  padding-bottom: 24px;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.activity-icon-mini {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.activity-icon-mini.blue { background: #eff6ff; color: #3b82f6; }
+.activity-icon-mini.green { background: #ecfdf5; color: #10b981; }
+.activity-icon-mini.purple { background: #f5f3ff; color: #8b5cf6; }
+
+.activity-time-stamp {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.activity-text {
+  font-size: 0.875rem;
+  color: #1e293b;
+  margin: 0 0 6px 0;
+}
+
+.high-link {
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.activity-quote {
+  font-size: 0.8125rem;
+  color: #64748b;
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid #e2e8f0;
+}
+
+.view-more-activity {
+  width: 100%;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.view-more-activity:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.activity-student-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 3px solid #10b981;
+}
+
+.activity-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.activity-avatar-placeholder {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.activity-student-name {
+  font-size: 0.8125rem;
+  color: #374151;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px 0 8px;
+}
+
+.pagination-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  color: #0284c7;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+  min-width: 48px;
+  text-align: center;
+}
+
+.activity-loading,
+.activity-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  padding: 24px 0;
+}
+
+.activity-empty {
+  justify-content: center;
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .section-title-row,
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-timeline,
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-loading,
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-empty,
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-card-premium,
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-main-content {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-empty,
+html[data-theme="dark"] .dashboard-teacher-container .recent-activity-premium .activity-loading {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .section-title-row h3 {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-dot-line .dot {
+  background: var(--border-color);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-dot-line.blue .dot { background: var(--primary); }
+html[data-theme="dark"] .dashboard-teacher-container .activity-dot-line.green .dot { background: #3fb950; }
+html[data-theme="dark"] .dashboard-teacher-container .activity-dot-line.purple .dot { background: #bc8cff; }
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-dot-line .line {
+  background: var(--border-color);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-icon-mini.blue {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-icon-mini.green {
+  background: rgba(63, 185, 80, 0.15);
+  color: #3fb950;
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-icon-mini.purple {
+  background: rgba(188, 140, 255, 0.15);
+  color: #bc8cff;
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-time-stamp {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-text {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .high-link {
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-quote {
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  border-left-color: var(--border-color);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-student-info {
+  background: var(--surface-muted);
+  border-left-color: #3fb950;
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-student-name {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .activity-avatar-placeholder {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .view-more-activity {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .view-more-activity:hover {
+  background: var(--surface);
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .pagination-btn {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .pagination-btn:hover:not(:disabled) {
+  background: rgba(88, 166, 255, 0.15);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .pagination-info {
+  color: var(--text-label);
+}

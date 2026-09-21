@@ -1,0 +1,238 @@
+services:
+  service-registry:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/service-registry:${IMAGE_TAG:-latest}
+    container_name: lms-service-registry
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${SERVICE_REGISTRY_PORT:-8761}
+      SERVICE_REGISTRY_PORT: ${SERVICE_REGISTRY_PORT:-8761}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${SERVICE_REGISTRY_PORT:-8761}/actuator/health/liveness || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 90s
+    networks:
+      - lms
+
+  api-gateway:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/api-gateway:${IMAGE_TAG:-latest}
+    container_name: lms-api-gateway
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${SERVER_PORT:-8080}
+      API_GATEWAY_PORT: ${API_GATEWAY_PORT:-8080}
+      API_GATEWAY_LOG_LEVEL: ${API_GATEWAY_LOG_LEVEL_OVERRIDE:-INFO}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      GATEWAY_PUBLIC_READ_RATE_LIMIT_ENABLED: ${GATEWAY_PUBLIC_READ_RATE_LIMIT_ENABLED:-false}
+      GATEWAY_PUBLIC_READ_RATE_LIMIT_REPLENISH_RATE: ${GATEWAY_PUBLIC_READ_RATE_LIMIT_REPLENISH_RATE:-30}
+      GATEWAY_PUBLIC_READ_RATE_LIMIT_BURST_CAPACITY: ${GATEWAY_PUBLIC_READ_RATE_LIMIT_BURST_CAPACITY:-60}
+      GATEWAY_IDENTITY_HEALTH_URI: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}
+      GATEWAY_COURSE_HEALTH_URI: http://course-service:${COURSE_SERVICE_PORT:-8082}
+      GATEWAY_ASSIGNMENT_HEALTH_URI: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}
+      GATEWAY_BLOG_HEALTH_URI: http://blog-service:${BLOG_SERVICE_PORT:-8084}
+      GATEWAY_CHATBOT_HEALTH_URI: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}
+    ports:
+      - "${SERVER_PORT:-8080}:${SERVER_PORT:-8080}"
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${SERVER_PORT:-8080}/actuator/health/liveness || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
+    networks:
+      - lms
+
+  identity-service:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/identity-service:${IMAGE_TAG:-latest}
+    container_name: lms-identity-service
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${IDENTITY_SERVICE_PORT:-8081}
+      IDENTITY_LOG_LEVEL: ${IDENTITY_LOG_LEVEL_OVERRIDE:-INFO}
+      IDENTITY_JPA_SHOW_SQL: ${IDENTITY_JPA_SHOW_SQL_OVERRIDE:-false}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      MINIO_URL: ${MINIO_URL}
+      MINIO_PUBLIC_URL: ${MINIO_PUBLIC_URL}
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${IDENTITY_SERVICE_PORT:-8081}/identity/actuator/health/liveness || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
+    networks:
+      - lms
+
+  course-service:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/course-service:${IMAGE_TAG:-latest}
+    container_name: lms-course-service
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${COURSE_SERVICE_PORT:-8082}
+      COURSE_LOG_LEVEL: ${COURSE_LOG_LEVEL_OVERRIDE:-INFO}
+      COURSE_JPA_SHOW_SQL: ${COURSE_JPA_SHOW_SQL_OVERRIDE:-false}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      MINIO_URL: ${MINIO_URL}
+      MINIO_PUBLIC_URL: ${MINIO_PUBLIC_URL}
+      GOOGLE_SERVICE_ACCOUNT_FILE: /run/secrets/google-service-account.json
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    volumes:
+      - ./google-service-account.json:/run/secrets/google-service-account.json:ro
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${COURSE_SERVICE_PORT:-8082}/course/actuator/health/liveness || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
+    networks:
+      - lms
+
+  assignment-service:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/assignment-service:${IMAGE_TAG:-latest}
+    container_name: lms-assignment-service
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${ASSIGNMENT_SERVICE_PORT:-8083}
+      ASSIGNMENT_LOG_LEVEL: ${ASSIGNMENT_LOG_LEVEL_OVERRIDE:-INFO}
+      ASSIGNMENT_JPA_SHOW_SQL: ${ASSIGNMENT_JPA_SHOW_SQL_OVERRIDE:-false}
+      ASSIGNMENT_HIBERNATE_GENERATE_STATISTICS: ${ASSIGNMENT_HIBERNATE_GENERATE_STATISTICS_OVERRIDE:-false}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      MINIO_URL: ${MINIO_URL}
+      MINIO_PUBLIC_URL: ${MINIO_PUBLIC_URL}
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment/actuator/health/liveness || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
+    networks:
+      - lms
+
+  blog-service:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/blog-service:${IMAGE_TAG:-latest}
+    container_name: lms-blog-service
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${BLOG_SERVICE_PORT:-8084}
+      BLOG_LOG_LEVEL: ${BLOG_LOG_LEVEL_OVERRIDE:-INFO}
+      BLOG_JPA_SHOW_SQL: ${BLOG_JPA_SHOW_SQL_OVERRIDE:-false}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      MINIO_URL: ${MINIO_URL}
+      MINIO_PUBLIC_URL: ${MINIO_PUBLIC_URL}
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      CHATBOT_SERVICE_URL: http://chatbot-service:${CHATBOT_SERVICE_PORT:-8085}/chatbot
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${BLOG_SERVICE_PORT:-8084}/blog/actuator/health/liveness || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
+    networks:
+      - lms
+
+  chatbot-service:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/chatbot-service:${IMAGE_TAG:-latest}
+    container_name: lms-chatbot-service
+    restart: unless-stopped
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.prod}
+    environment:
+      TZ: ${TZ:-UTC}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--Duser.timezone=UTC}
+      SERVER_PORT: ${CHATBOT_SERVICE_PORT:-8085}
+      CHATBOT_LOG_LEVEL: ${CHATBOT_LOG_LEVEL_OVERRIDE:-INFO}
+      EUREKA_URL: http://service-registry:${SERVICE_REGISTRY_PORT:-8761}/eureka
+      LLM_PROVIDER: ${LLM_PROVIDER:-opencode}
+      LLM_API_KEY: ${LLM_API_KEY}
+      LLM_MODEL: ${LLM_MODEL:-deepseek-v4-flash-free}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://opencode.ai/zen/v1}
+      LLM_THINKING_TYPE: ${LLM_THINKING_TYPE:-disabled}
+      IDENTITY_SERVICE_URL: http://identity-service:${IDENTITY_SERVICE_PORT:-8081}/identity
+      COURSE_SERVICE_URL: http://course-service:${COURSE_SERVICE_PORT:-8082}/course
+      ASSIGNMENT_SERVICE_URL: http://assignment-service:${ASSIGNMENT_SERVICE_PORT:-8083}/assignment
+      BLOG_SERVICE_URL: http://blog-service:${BLOG_SERVICE_PORT:-8084}/blog
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${CHATBOT_SERVICE_PORT:-8085}/chatbot/actuator/health/liveness || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
+    networks:
+      - lms
+
+  frontend:
+    image: ${IMAGE_PREFIX:-ghcr.io/duckziec/learning-management-system-vi}/frontend:${IMAGE_TAG:-latest}
+    container_name: lms-frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HOST_FRONTEND_PORT:-3000}:80"
+    depends_on:
+      api-gateway:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - lms
+
+networks:
+  lms:
+    driver: bridge

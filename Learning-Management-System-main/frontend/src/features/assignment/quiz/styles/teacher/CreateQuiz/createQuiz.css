@@ -1,0 +1,453 @@
+/* Create Quiz Wizard Styles */
+
+.create-quiz-page {
+  padding: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header & Stepper */
+.create-quiz-header {
+  padding: 32px 40px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-top {
+  margin-bottom: 16px;
+}
+
+.create-quiz-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.create-quiz-breadcrumb-link,
+.create-quiz-breadcrumb-current {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.create-quiz-breadcrumb-link {
+  flex: 0 0 auto;
+  color: #1c74e9;
+  font-weight: 600;
+}
+
+.create-quiz-breadcrumb-link:hover {
+  color: #1558b8;
+  text-decoration: underline;
+}
+
+.create-quiz-breadcrumb-course {
+  flex: 0 1 auto;
+  max-width: min(440px, 42vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #94a3b8;
+}
+
+.create-quiz-breadcrumb-current {
+  flex: 0 0 auto;
+  color: #94a3b8;
+}
+
+.create-quiz-breadcrumb-separator {
+  position: relative;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0 6px;
+}
+
+.create-quiz-breadcrumb-separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid #cbd5e1;
+  border-right: 1.5px solid #cbd5e1;
+  transform: translate(-60%, -50%) rotate(45deg);
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 24px;
+}
+
+.header-main h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e293b;
+  min-width: 0;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  gap: 12px;
+}
+
+.create-quiz-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 108px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.create-quiz-action-btn--primary {
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+.create-quiz-action-btn--primary:hover:not(:disabled) {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+}
+
+.create-quiz-action-btn--secondary {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #475569;
+}
+
+.create-quiz-action-btn--secondary:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.stepper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+
+.step-item.active {
+  opacity: 1;
+}
+
+.header-actions .create-quiz-action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #64748b;
+  transition: all 0.3s;
+}
+
+.step-item.active .step-circle {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.step-title {
+  font-weight: 600;
+  color: #64748b;
+}
+
+.step-item.active .step-title {
+  color: #2563eb;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: #e2e8f0;
+  margin: 0 24px;
+  transition: all 0.3s;
+}
+
+.step-line.active {
+  background: #2563eb;
+}
+
+/* Content Area */
+.step-content-area {
+  flex: 1;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-validation-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.quiz-validation-dialog {
+  width: min(440px, 100%);
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #fee2e2;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
+  padding: 28px;
+}
+
+.quiz-validation-dialog__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+  background: #fef2f2;
+  margin-bottom: 16px;
+}
+
+.quiz-validation-dialog h2 {
+  margin: 0 0 8px;
+  color: #1e293b;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.quiz-validation-dialog p {
+  margin: 0 0 22px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.quiz-validation-dialog__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.quiz-validation-dialog__button:hover {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+}
+
+@media (max-width: 760px) {
+  .create-quiz-header {
+    padding: 24px 20px;
+  }
+
+  .create-quiz-breadcrumb {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+
+  .create-quiz-breadcrumb-course {
+    max-width: calc(100vw - 160px);
+  }
+
+  .header-main {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .create-quiz-action-btn {
+    flex: 1 1 0;
+  }
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-page {
+  background: var(--bg-light) !important;
+  background-color: var(--bg-light) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-header {
+  background: var(--bg-light) !important;
+  background-color: var(--bg-light) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb,
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb:hover,
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb:focus-within,
+html[data-theme="dark"] .instructor-layout .header-top,
+html[data-theme="dark"] .instructor-layout .header-main,
+html[data-theme="dark"] .instructor-layout .header-main:hover,
+html[data-theme="dark"] .instructor-layout .stepper-container,
+html[data-theme="dark"] .instructor-layout .stepper-container:hover,
+html[data-theme="dark"] .instructor-layout .step-item,
+html[data-theme="dark"] .instructor-layout .step-item:hover,
+html[data-theme="dark"] .instructor-layout .step-item.active,
+html[data-theme="dark"] .instructor-layout .step-item.active:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .header-main h1 {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb-link {
+  color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb-link:hover {
+  color: var(--primary-hover) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb-course,
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb-current {
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-breadcrumb-separator::before {
+  border-color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-action-btn--secondary {
+  background: var(--surface-muted) !important;
+  background-color: var(--surface-muted) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-action-btn--secondary:hover:not(:disabled) {
+  background: var(--surface-elevated) !important;
+  background-color: var(--surface-elevated) !important;
+  border-color: rgba(88, 166, 255, 0.42) !important;
+  color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-action-btn:disabled {
+  background: var(--surface-muted) !important;
+  background-color: var(--surface-muted) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-action-btn--primary {
+  background: #2563eb !important;
+  background-color: #2563eb !important;
+  background-image: none !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-action-btn--primary:hover:not(:disabled) {
+  background: #1d4ed8 !important;
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .instructor-layout .create-quiz-action-btn--primary:disabled {
+  background: rgba(37, 99, 235, 0.78) !important;
+  background-color: rgba(37, 99, 235, 0.78) !important;
+  background-image: none !important;
+  border-color: rgba(37, 99, 235, 0.78) !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-circle {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-item.active .step-circle {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-title {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-item.active .step-title {
+  color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-line {
+  background: var(--border-color) !important;
+  background-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-line.active {
+  background: var(--primary) !important;
+  background-color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-content-area {
+  background: var(--bg-light) !important;
+  background-color: var(--bg-light) !important;
+}
+
+

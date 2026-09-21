@@ -1,0 +1,82 @@
+.locked-feature-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    width: 100%;
+    padding: 2rem;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    border: 1px dashed #cbd5e1;
+    margin: 2rem 0;
+}
+
+.locked-feature-content {
+    text-align: center;
+    max-width: 400px;
+}
+
+.locked-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: #64748b;
+}
+
+.locked-icon .material-symbols-outlined {
+    font-size: 32px;
+}
+
+.locked-feature-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+}
+
+.locked-feature-content p {
+    color: #64748b;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.locked-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.locked-actions .btn-primary {
+    padding: 10px 24px;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.locked-actions .btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.locked-actions .btn-secondary {
+    padding: 10px 24px;
+    background-color: white;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.locked-actions .btn-secondary:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}

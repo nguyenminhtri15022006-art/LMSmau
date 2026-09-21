@@ -1,0 +1,323 @@
+.reuse-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.46);
+}
+
+.reuse-modal {
+    width: min(1120px, 100%);
+    max-height: min(760px, calc(100vh - 48px));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #dbe4ef;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.25);
+}
+
+.reuse-modal__header,
+.reuse-modal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    background: #ffffff;
+}
+
+.reuse-modal__header {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.reuse-modal__eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.reuse-modal h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.reuse-modal__close {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #475569;
+    cursor: pointer;
+}
+
+.reuse-modal__close:hover {
+    color: #dc2626;
+    border-color: #fecaca;
+    background: #fff1f2;
+}
+
+.reuse-modal__error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 22px 0;
+    padding: 10px 12px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fff1f2;
+    color: #b91c1c;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.reuse-modal__body {
+    min-height: 0;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    background: #f8fafc;
+}
+
+.reuse-modal__quiz-list {
+    min-height: 0;
+    overflow-y: auto;
+    padding: 18px;
+    border-right: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.reuse-modal__pane-title {
+    margin-bottom: 12px;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.reuse-quiz-item,
+.reuse-question-item {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #334155;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.reuse-quiz-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 9px;
+}
+
+.reuse-quiz-item:hover,
+.reuse-quiz-item.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.reuse-quiz-item:hover {
+    transform: translateY(-1px);
+}
+
+.reuse-quiz-item .material-symbols-outlined {
+    color: #2563eb;
+    font-size: 22px;
+}
+
+.reuse-quiz-item strong,
+.reuse-question-item strong {
+    display: block;
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.reuse-quiz-item small,
+.reuse-question-item small {
+    display: block;
+    margin-top: 3px;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.reuse-modal__questions {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.reuse-modal__questions-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.reuse-modal__questions-head p {
+    margin: 0;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.reuse-select-all {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 12px;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.reuse-select-all:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.reuse-select-all .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.reuse-question-list {
+    min-height: 0;
+    overflow-y: auto;
+    padding: 18px 22px;
+}
+
+.reuse-question-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.reuse-question-item:hover:not(:disabled),
+.reuse-question-item.selected {
+    border-color: #10b981;
+    background: #ecfdf5;
+}
+
+.reuse-question-item.disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+    background: #f8fafc;
+}
+
+.reuse-question-check {
+    color: #2563eb;
+    font-size: 22px;
+}
+
+.reuse-question-item.selected .reuse-question-check {
+    color: #059669;
+}
+
+.reuse-modal__empty {
+    padding: 18px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.reuse-modal__footer {
+    border-top: 1px solid #e2e8f0;
+}
+
+.reuse-modal__footer > span {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.reuse-modal__footer > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reuse-modal__secondary,
+.reuse-modal__primary {
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.reuse-modal__secondary {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #475569;
+}
+
+.reuse-modal__primary {
+    border: 1px solid #2563eb;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.reuse-modal__primary:disabled {
+    border-color: #cbd5e1;
+    background: #cbd5e1;
+    cursor: not-allowed;
+}
+
+@media (max-width: 860px) {
+    .reuse-modal {
+        max-height: calc(100vh - 28px);
+    }
+
+    .reuse-modal__body {
+        grid-template-columns: 1fr;
+    }
+
+    .reuse-modal__quiz-list {
+        max-height: 220px;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .reuse-modal__questions-head,
+    .reuse-modal__footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/png" href="/public/LMSicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LMS | Online Learning Platform</title>
+
+    <style>
+        :root {
+            color-scheme: light;
+        }
+
+        html, body, #root {
+            margin: 0;
+            padding: 0;
+            background-color: #f6f7f8; /* = --bg-light */
+            min-height: 100vh;
+        }
+
+        html[data-theme="dark"],
+        html[data-theme="dark"] body,
+        html[data-theme="dark"] #root {
+            background-color: #111827;
+            color-scheme: dark;
+        }
+
+        html[data-route-surface="auth"],
+        html[data-route-surface="auth"] body,
+        html[data-route-surface="auth"] #root {
+            background-color: #ffffff;
+        }
+
+        html[data-theme="dark"][data-route-surface="auth"],
+        html[data-theme="dark"][data-route-surface="auth"] body,
+        html[data-theme="dark"][data-route-surface="auth"] #root {
+            background-color: #111827;
+        }
+    </style>
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('app_theme');
+                var path = window.location.pathname;
+                var isAuthRoute = path === '/login'
+                    || path === '/register'
+                    || path === '/forgot-password'
+                    || path === '/authenticate';
+                var lightBackground = isAuthRoute ? '#ffffff' : '#f6f7f8';
+
+                if (isAuthRoute) {
+                    document.documentElement.dataset.routeSurface = 'auth';
+                }
+
+                if (theme === 'dark') {
+                    document.documentElement.dataset.theme = 'dark';
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.backgroundColor = '#111827';
+                    document.documentElement.style.colorScheme = 'dark';
+                } else {
+                    document.documentElement.dataset.theme = 'light';
+                    document.documentElement.style.backgroundColor = lightBackground;
+                    document.documentElement.style.colorScheme = 'light';
+                }
+            } catch (error) {
+                document.documentElement.dataset.theme = 'light';
+                document.documentElement.style.backgroundColor = '#f6f7f8';
+            }
+        })();
+    </script>
+
+    <!-- Google Fonts: thêm &display=swap để không block render -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

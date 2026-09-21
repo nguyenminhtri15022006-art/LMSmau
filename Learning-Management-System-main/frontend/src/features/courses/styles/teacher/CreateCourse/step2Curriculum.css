@@ -1,0 +1,610 @@
+/* step2Curriculum.css */
+
+/* Top Actions (Collapse, Save) */
+.top-actions-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.btn-collapse {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-save-draft {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-save-draft:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* --- Curriculum Tree Structure --- */
+.chapters-container.tree-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.curriculum-node {
+  --indent: calc(var(--level, 0) * 30px);
+  padding-left: var(--indent);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Vertical connector lines */
+.curriculum-node:not(.chapter-node)::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--indent) - 15px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #f1f5f9;
+}
+
+/* Horizontal node indicators */
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 15px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.node-header:hover {
+  border-color: #3b82f644;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Node specific styles */
+.chapter-node {
+  margin-bottom: 10px;
+}
+
+.chapter-header {
+  background: #ffffff;
+  border-left: 4px solid #3b82f6;
+}
+
+.section-node {
+  margin-top: 10px;
+}
+
+.section-bullet {
+    width: 6px;
+    height: 6px;
+    background: #cbd5e1;
+    border-radius: 50%;
+}
+
+.lesson-node {
+  margin-top: 8px;
+}
+
+.lesson-header {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  padding: 10px 15px;
+}
+
+.node-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.node-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.lesson-header .node-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Drag & Order Controls */
+.drag-and-order {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.order-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  padding: 2px;
+  font-size: 0.6rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.order-btn:hover:not(:disabled) {
+  color: #3b82f6;
+  background: #eff6ff;
+  border-radius: 2px;
+}
+
+.order-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Inline Editing */
+.inline-edit-input {
+  background: transparent;
+  border: 1px solid #3b82f6;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  width: 100%;
+  color: #1e293b;
+  outline: none;
+}
+
+.lesson-header .inline-edit-input {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Improved Actions - Clean & Minimal */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0; /* Hide by default */
+  transform: translateX(10px);
+  transition: all 0.2s ease;
+}
+
+.node-header:hover .item-actions {
+  opacity: 1; /* Show on hover */
+  transform: translateX(0);
+}
+
+.action-icon-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+}
+
+.action-icon-btn:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.action-icon-btn.add {
+  color: #3b82f6;
+}
+
+.action-icon-btn.add:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.action-icon-btn.delete:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+/* ── Text action buttons (Thêm mục / Thêm bài / Chỉnh sửa) ── */
+.action-text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.action-text-btn.add {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+
+.action-text-btn.add:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.action-text-btn.edit {
+  background: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+.action-text-btn.edit:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #cbd5e1;
+}
+
+/* Layout adjustments */
+.node-header {
+  padding: 10px 15px; /* More compact */
+}
+
+.node-title {
+  font-size: 0.95rem; /* Slightly smaller for better scanning */
+}
+
+.add-chapter-wrapper {
+    background: #f8fafc;
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 60px;
+}
+
+.add-chapter-wrapper:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.plus-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 1.2rem;
+}
+
+.add-chapter-wrapper span {
+    font-weight: 700;
+    color: #475569;
+    font-size: 1.1rem;
+}
+
+/* ── Inline add chapter ── */
+.add-chapter-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f8fafc;
+    border: 2px dashed #1a73e8;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 60px;
+}
+
+.add-chapter-input {
+    width: 100%;
+    padding: 11px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.2s ease;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.add-chapter-input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.add-chapter-inline-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-chapter-confirm {
+    padding: 8px 20px;
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-chapter-confirm:hover {
+    background-color: #1557b0;
+}
+
+.btn-chapter-cancel {
+    padding: 8px 20px;
+    background-color: #ffffff;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-chapter-cancel:hover {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+/* Empty State Chapter */
+.empty-chapter-content {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    color: #f1f5f9;
+}
+
+.empty-text {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    max-width: 300px;
+}
+
+.btn-add-first-section {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-add-first-section:hover {
+    background: #f8fafc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Dark mode overrides */
+html[data-theme="dark"] .instructor-layout .chapters-container.tree-view {
+    background: transparent;
+}
+
+html[data-theme="dark"] .instructor-layout .curriculum-node,
+html[data-theme="dark"] .instructor-layout .section-node,
+html[data-theme="dark"] .instructor-layout .lesson-node {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .item-actions,
+html[data-theme="dark"] .instructor-layout .item-actions:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .node-header {
+    background: var(--surface);
+    border-color: var(--border-color);
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .instructor-layout .node-header:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .instructor-layout .chapter-header {
+    background: var(--surface);
+}
+
+html[data-theme="dark"] .instructor-layout .lesson-header {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .node-title {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .section-bullet {
+    background: var(--text-muted) !important;
+    background-color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .curriculum-node:not(.chapter-node)::before {
+    background: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .add-chapter-wrapper {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .add-chapter-wrapper:hover {
+    background: var(--surface);
+    border-color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .add-chapter-wrapper span {
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .plus-icon-circle {
+    background: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .add-chapter-inline {
+    background: var(--surface-muted);
+    border-color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .add-chapter-input {
+    background: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .add-chapter-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-shadow);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-chapter-cancel {
+    background: var(--surface);
+    color: var(--text-body);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-chapter-cancel:hover {
+    background: var(--surface-muted);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-collapse {
+    background: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .action-icon-btn {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .action-icon-btn:hover {
+    background: var(--surface-muted);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .action-icon-btn.add {
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .action-icon-btn.add:hover {
+    background: rgba(88, 166, 255, 0.12);
+    color: var(--primary-hover);
+}
+
+html[data-theme="dark"] .instructor-layout .action-icon-btn.delete:hover {
+    background: rgba(248, 81, 73, 0.12);
+    color: #f85149;
+}
+
+html[data-theme="dark"] .instructor-layout .action-text-btn.add {
+    background: rgba(88, 166, 255, 0.1);
+    color: var(--primary);
+    border-color: rgba(88, 166, 255, 0.25);
+}
+
+html[data-theme="dark"] .instructor-layout .action-text-btn.add:hover {
+    background: rgba(88, 166, 255, 0.18);
+    border-color: rgba(88, 166, 255, 0.45);
+}
+
+html[data-theme="dark"] .instructor-layout .action-text-btn.edit {
+    background: var(--surface-muted);
+    color: var(--text-body);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .action-text-btn.edit:hover {
+    background: var(--surface);
+    color: var(--text-dark);
+    border-color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .order-btn {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .order-btn:hover:not(:disabled) {
+    color: var(--primary);
+    background: rgba(88, 166, 255, 0.1);
+}
+
+html[data-theme="dark"] .instructor-layout .inline-edit-input {
+    color: var(--text-dark);
+    border-color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .empty-icon {
+    color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .empty-text {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-add-first-section {
+    background: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-add-first-section:hover {
+    background: var(--surface-muted);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}

@@ -1,0 +1,218 @@
+.course-hero {
+    background-color: #111827;
+    color: #ffffff;
+    padding: 4rem 0;
+}
+
+html[data-theme="dark"] .course-hero {
+    background:
+        linear-gradient(135deg, #172033 0%, #1d3150 48%, #24558c 100%);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.22);
+    box-shadow: inset 0 -36px 70px rgba(17, 24, 39, 0.32);
+}
+
+html[data-theme="dark"] .course-hero__container,
+html[data-theme="dark"] .course-hero__grid,
+html[data-theme="dark"] .course-hero__content {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: inherit;
+}
+
+html[data-theme="dark"] .course-hero__content {
+    max-width: 760px;
+}
+
+.course-hero__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.course-hero__category-badge {
+    background: rgba(79, 70, 229, 0.3);
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    color: #c7d2fe;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+}
+
+html[data-theme="dark"] .course-hero__category-badge {
+    background: rgba(191, 219, 254, 0.14);
+    border-color: rgba(191, 219, 254, 0.38);
+    color: #eff6ff;
+}
+
+@media (min-width: 768px) {
+    .course-hero {
+        padding: 6rem 0 8rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .course-hero {
+        padding: 2rem 0 12rem;
+    }
+}
+
+.course-hero__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .course-hero__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 3rem;
+    }
+
+    .course-hero__content {
+        grid-column: span 2 / span 2;
+    }
+}
+
+.course-hero__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: nowrap;
+}
+
+.course-hero__breadcrumb-link {
+    color: #60a5fa;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+    flex: 0 0 auto;
+}
+
+.course-hero__breadcrumb-link:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.course-hero__breadcrumb-current {
+    color: #94a3b8;
+    font-weight: 500;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.course-hero__breadcrumbs .material-symbols-outlined {
+    flex: 0 0 auto;
+}
+
+html[data-theme="dark"] .course-hero__breadcrumbs,
+html[data-theme="dark"] .course-hero__breadcrumb-current {
+    color: #c8d3e4;
+}
+
+html[data-theme="dark"] .course-hero__breadcrumb-link {
+    color: #bfdbfe;
+}
+
+html[data-theme="dark"] .course-hero__breadcrumb-link:hover {
+    color: #ffffff;
+}
+
+.course-hero__title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+}
+
+html[data-theme="dark"] .course-hero__title {
+    color: #ffffff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
+}
+
+@media (min-width: 768px) {
+    .course-hero__title {
+        font-size: 3rem;
+    }
+}
+
+.course-hero__description {
+    font-size: 1.125rem;
+    color: #cbd5e0;
+    margin-bottom: 1.5rem;
+    max-width: 42rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+html[data-theme="dark"] .course-hero__description {
+    color: #e2e8f0;
+}
+
+.course-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.course-hero__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.course-hero__rating-value {
+    color: #fbbf24;
+    font-weight: 700;
+}
+
+.course-hero__stars {
+    display: flex;
+    color: #fbbf24;
+}
+
+.course-hero__stars .material-symbols-outlined {
+    font-size: 0.75rem;
+}
+
+.course-hero__reviews {
+    color: #94a3b8;
+    text-decoration: underline;
+}
+
+.course-hero__students {
+    color: #cbd5e0;
+}
+
+.course-hero__info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #cbd5e0;
+}
+
+html[data-theme="dark"] .course-hero__students,
+html[data-theme="dark"] .course-hero__info-item {
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .course-hero__info-item .material-symbols-outlined {
+    color: #bfdbfe;
+}
+
+.course-hero__info-item .material-symbols-outlined {
+    font-size: 1.125rem;
+}

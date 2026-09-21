@@ -1,0 +1,579 @@
+/* ── Overlay & shell ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+}
+
+/* ── Header ── */
+.modal-header {
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.modal-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-title-icon {
+    color: #1a73e8;
+    font-size: 1rem;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    transition: color 0.15s;
+}
+
+.close-btn:hover {
+    color: #475569;
+}
+
+/* ── Body ── */
+.modal-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    padding: 11px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.12);
+}
+
+/* ── Two-column row ── */
+.form-row-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ── Input with trailing icon ── */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    padding-right: 40px;
+}
+
+.input-suffix-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+/* ── Content type tabs ── */
+.modal-type-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.modal-type-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-type-tab:hover {
+    border-color: #1a73e8;
+    color: #1a73e8;
+    background: #f0f7ff;
+}
+
+.modal-type-tab.active {
+    border-color: #1a73e8;
+    background: #f0f7ff;
+    color: #1a73e8;
+}
+
+.modal-type-tab:disabled,
+.modal-type-tab.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Footer ── */
+.modal-footer {
+    padding: 18px 28px;
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-modal-cancel {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-modal-cancel:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.btn-modal-submit {
+    background: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-modal-submit:hover {
+    background: #1557b0;
+}
+
+.btn-modal-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* ── File upload ── */
+.upload-dropzone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #f8fafc;
+}
+
+.upload-dropzone:hover {
+    border-color: #1a73e8;
+    background: #f0f7ff;
+}
+
+.upload-dropzone-icon {
+    font-size: 1.6rem;
+    color: #94a3b8;
+}
+
+.upload-dropzone:hover .upload-dropzone-icon {
+    color: #1a73e8;
+}
+
+.upload-dropzone-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.upload-dropzone-hint {
+    font-size: 0.78rem;
+    color: #94a3b8;
+}
+
+.upload-file-input {
+    display: none;
+}
+
+/* Done state */
+.upload-done-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+}
+
+.upload-done-icon {
+    color: #22c55e;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.upload-done-name {
+    flex: 1;
+    font-size: 0.88rem;
+    color: #166534;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Progress state */
+.upload-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 14px;
+    background: #f0f7ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+}
+
+.upload-progress-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: #1e40af;
+}
+
+.upload-progress-bar-track {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.upload-progress-bar-fill {
+    height: 100%;
+    background: #1a73e8;
+    border-radius: 2px;
+    transition: width 0.2s ease;
+}
+
+.upload-progress-pct {
+    font-size: 0.78rem;
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+/* Error state */
+.upload-error-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    color: #b91c1c;
+}
+
+.upload-error-icon {
+    color: #ef4444;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.upload-error-text {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.35;
+}
+
+/* Shared remove / retry buttons */
+.upload-remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 1rem;
+    padding: 2px;
+    transition: color 0.15s;
+    margin-left: auto;
+}
+
+.upload-remove-btn:hover {
+    color: #ef4444;
+}
+
+.upload-retry-btn {
+    background: none;
+    border: 1px solid #fca5a5;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #ef4444;
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    transition: all 0.15s;
+    margin-left: auto;
+}
+
+.upload-retry-btn:hover {
+    background: #fee2e2;
+}
+
+/* ── Dark mode overrides ── */
+html[data-theme="dark"] .instructor-layout .modal-overlay {
+    background: rgba(0, 0, 0, 0.58) !important;
+    background-color: rgba(0, 0, 0, 0.58) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-content {
+    background: var(--surface);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-title-icon {
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-header h2 {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .close-btn {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .close-btn:hover {
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .form-field label {
+    color: var(--text-label);
+}
+
+html[data-theme="dark"] .instructor-layout .form-field input,
+html[data-theme="dark"] .instructor-layout .form-field select,
+html[data-theme="dark"] .instructor-layout .form-field textarea {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .form-field input:focus,
+html[data-theme="dark"] .instructor-layout .form-field select:focus,
+html[data-theme="dark"] .instructor-layout .form-field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-shadow);
+}
+
+html[data-theme="dark"] .instructor-layout .input-suffix-icon {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-type-tabs,
+html[data-theme="dark"] .instructor-layout .modal-type-tabs:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .modal-type-tab {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-type-tab:hover {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    background: rgba(88, 166, 255, 0.1) !important;
+    background-color: rgba(88, 166, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .modal-type-tab.active {
+    border-color: var(--primary);
+    background: rgba(88, 166, 255, 0.15);
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .modal-footer {
+    background: var(--surface-muted);
+    border-top-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-modal-cancel {
+    background: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-modal-cancel:hover {
+    background: var(--surface-muted);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-modal-submit {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .instructor-layout .btn-modal-submit:hover {
+    background: var(--primary-hover);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-modal-submit:disabled {
+    background: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-dropzone {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-dropzone:hover {
+    border-color: var(--primary);
+    background: rgba(88, 166, 255, 0.08);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-dropzone-icon {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-dropzone:hover .upload-dropzone-icon {
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-dropzone-label {
+    color: var(--text-label);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-dropzone-hint {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-done-row {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.25);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-done-name {
+    color: #4ade80;
+}
+
+html[data-theme="dark"] .instructor-layout .upload-progress-wrap {
+    background: rgba(88, 166, 255, 0.08);
+    border-color: rgba(88, 166, 255, 0.2);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-progress-name {
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-progress-bar-track {
+    background: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-progress-bar-fill {
+    background: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-progress-pct {
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-error-row {
+    background: rgba(248, 81, 73, 0.1);
+    border-color: rgba(248, 81, 73, 0.25);
+    color: #f87171;
+}
+
+html[data-theme="dark"] .instructor-layout .upload-error-icon {
+    color: #f87171;
+}
+
+html[data-theme="dark"] .instructor-layout .upload-remove-btn {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-remove-btn:hover {
+    color: #f87171;
+}
+
+html[data-theme="dark"] .instructor-layout .upload-retry-btn {
+    color: #f87171;
+    border-color: rgba(248, 81, 73, 0.35);
+}
+
+html[data-theme="dark"] .instructor-layout .upload-retry-btn:hover {
+    background: rgba(248, 81, 73, 0.12);
+}

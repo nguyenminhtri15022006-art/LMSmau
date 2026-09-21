@@ -1,0 +1,175 @@
+.core-value {
+    padding: 78px 24px;
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.core-value__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+}
+
+.core-value__top {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.core-value__title {
+    font-size: 2.2rem;
+    font-weight: 950;
+    line-height: 1.15;
+    letter-spacing: 0;
+    color: var(--text-dark);
+    margin: 0 0 12px;
+    text-align: center;
+}
+
+.core-value__desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 1280px;
+    margin: 0;
+    text-align: center;
+    line-height: 1.65;
+}
+
+.core-value__bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.core-value__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 8px;
+    min-height: 230px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.core-value__item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(28, 116, 233, 0.34);
+    box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
+}
+
+.core-value__logo {
+    height: 48px;
+    width: 48px;
+    border-radius: 8px;
+    background-color: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.core-value__item:nth-child(2n) .core-value__logo {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.core-value__item:nth-child(3n) .core-value__logo {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.core-value__item .core-value__title__item {
+    font-size: 1.28rem;
+    font-weight: 850;
+    line-height: 1.18;
+    letter-spacing: 0;
+    color: var(--text-dark);
+    margin: 4px 0 4px;
+    text-align: center;
+}
+
+.core-value__item .core-value__desc {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    margin: 0;
+    text-align: center;
+}
+
+html[data-theme="dark"] .core-value .core-value__title {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .core-value .core-value__desc {
+    color: #b8c4d6;
+}
+
+html[data-theme="dark"] .core-value .core-value__item {
+    background:
+        linear-gradient(180deg, rgba(24, 39, 70, 0.96) 0%, rgba(17, 28, 48, 0.98) 100%) !important;
+    border-color: rgba(96, 165, 250, 0.52) !important;
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(147, 197, 253, 0.2);
+}
+
+html[data-theme="dark"] .core-value .core-value__item:hover {
+    border-color: rgba(34, 211, 238, 0.78) !important;
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(34, 211, 238, 0.24), inset 0 1px 0 rgba(191, 219, 254, 0.22);
+}
+
+html[data-theme="dark"] .core-value .core-value__logo {
+    background: rgba(59, 130, 246, 0.24);
+    color: #bfdbfe;
+    border: 1px solid rgba(147, 197, 253, 0.42);
+}
+
+html[data-theme="dark"] .core-value .core-value__item:nth-child(2n) .core-value__logo {
+    background: rgba(20, 184, 166, 0.22);
+    color: #99f6e4;
+    border-color: rgba(94, 234, 212, 0.42);
+}
+
+html[data-theme="dark"] .core-value .core-value__item:nth-child(3n) .core-value__logo {
+    background: rgba(245, 158, 11, 0.22);
+    color: #fef3c7;
+    border-color: rgba(252, 211, 77, 0.42);
+}
+
+html[data-theme="dark"] .core-value .core-value__item .core-value__title__item {
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .core-value .core-value__item .core-value__desc {
+    color: #aab8ca;
+}
+
+@media (min-width: 640px) {
+    .core-value__bottom {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .core-value__bottom {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .core-value {
+        padding: 58px 18px;
+    }
+
+    .core-value__title {
+        font-size: 1.85rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .core-value__item {
+        transition: none;
+    }
+}

@@ -1,0 +1,90 @@
+/* d:\Hoc\Project\Learning-Management-System\frontend\src\features\dashboard\styles\admin\AdminSidebar.css */
+
+.admin-sidebar {
+  width: var(--admin-sidebar-width);
+  min-width: var(--admin-sidebar-width);
+  background: var(--admin-card);
+  border-right: 1px solid var(--admin-border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.admin-sidebar-logo {
+  min-height: 75px;
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.admin-logo-txt {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--admin-accent);
+  letter-spacing: -0.5px;
+}
+
+.admin-logo-sub {
+  font-size: 0.7rem;
+  color: var(--admin-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.admin-nav-section {
+  padding: 20px 16px 8px;
+  font-size: 0.65rem;
+  color: var(--admin-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  margin: 2px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--admin-muted);
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.admin-nav-item:hover {
+  background: var(--admin-card-hover);
+  color: var(--admin-text);
+}
+
+.admin-nav-item.active {
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--admin-accent);
+}
+
+.admin-nav-item i {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.admin-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--admin-red);
+  margin-left: auto;
+  box-shadow: 0 0 8px var(--admin-red);
+}

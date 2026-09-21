@@ -1,0 +1,31 @@
+HƯỚNG DẪN ĐỊNH DẠNG FILE IMPORT CÂU HỎI QUIZ
+Mỗi câu hỏi được phân cách bởi một dòng trống.
+Đáp án đúng được đánh dấu bằng dấu * ở đầu dòng đáp án.
+
+Định dạng:
+1. <Nội dung câu hỏi>
+A) <Đáp án A>
+*B) <Đáp án B đúng>
+C) <Đáp án C>
+D) <Đáp án D>
+
+Ví dụ:
+
+1. Thủ đô của Việt Nam là gì?
+A) Thành phố Hồ Chí Minh
+*B) Hà Nội
+C) Đà Nẵng
+D) Huế
+
+2. React là gì?
+A) Một ngôn ngữ lập trình
+B) Một cơ sở dữ liệu
+*C) Một thư viện JavaScript dùng để xây dựng giao diện người dùng
+D) Một hệ điều hành
+
+Lưu ý:
+- Với câu hỏi một đáp án đúng, chỉ đánh dấu * cho một đáp án.
+- Với câu hỏi nhiều đáp án đúng, có thể đánh dấu * cho nhiều đáp án.
+- Không thêm ký tự đặc biệt khác trước A), B), C), D) ngoài dấu * để đánh dấu đáp án đúng.
+- Mỗi câu hỏi nên có ít nhất 2 đáp án.
+- Nội dung câu hỏi phải bắt đầu bằng số thứ tự, ví dụ: 1., 2., 3.

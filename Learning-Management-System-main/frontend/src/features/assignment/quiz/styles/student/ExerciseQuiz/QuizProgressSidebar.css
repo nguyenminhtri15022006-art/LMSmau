@@ -1,0 +1,299 @@
+/* ===============================================
+   QUIZ PROGRESS SIDEBAR COMPONENT
+   =============================================== */
+
+.quiz-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.progress-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.progress-header {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.progress-num {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  transition: all 0.2s;
+  background: white;
+}
+
+.progress-num:hover {
+  border-color: #2563eb;
+}
+
+.progress-card--locked .progress-num {
+  cursor: default;
+}
+
+.progress-card--locked .progress-num:hover {
+  border-color: #e2e8f0;
+  transform: none;
+}
+
+.progress-num.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.progress-num.answered {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #dbeafe;
+}
+
+.progress-num.review {
+  background: #fef9c3;
+  color: #854d0e;
+  border-color: #fef08a;
+}
+
+.tip-card {
+  background: #eff6ff;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid #dbeafe;
+}
+
+.tip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2563eb;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.tip-content {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #1e40af;
+}
+
+.tip-shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #1e40af;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.shortcut-row kbd,
+.practice-enter-key {
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7px;
+  border: 1px solid #bfdbfe;
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #1d4ed8;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.shortcut-row .shortcut-wide {
+  min-width: 52px;
+}
+
+.practice-nav-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.practice-nav-btn,
+.practice-copy-btn,
+.practice-next-btn {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.practice-nav-btn {
+  flex: 1;
+}
+
+.practice-copy-btn {
+  flex: 0 0 168px;
+  min-width: 168px;
+}
+
+.practice-copy-btn.copied {
+  background: #ecfdf5;
+  border-color: #86efac;
+  color: #047857;
+}
+
+.practice-next-btn {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+}
+
+.practice-nav-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.practice-enter-key {
+  margin-left: 6px;
+  opacity: 0.55;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.38);
+}
+
+/* ===============================================
+   DARK THEME
+   =============================================== */
+html[data-theme="dark"] .student-layout .progress-card,
+html[data-theme="dark"] .student-layout .tip-card {
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(18, 27, 45, 0.96), rgba(15, 23, 42, 0.98));
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+html[data-theme="dark"] .student-layout .progress-header {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .student-layout .progress-num {
+  background: rgba(15, 23, 42, 0.66);
+  border-color: rgba(96, 165, 250, 0.24);
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .progress-num:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(147, 197, 253, 0.48);
+  color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .progress-card--locked .progress-num:hover {
+  background: rgba(15, 23, 42, 0.66);
+  border-color: rgba(96, 165, 250, 0.24);
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .progress-card--locked .progress-num.active:hover {
+  background: #2563eb;
+  border-color: #93c5fd;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .student-layout .progress-card--locked .progress-num.answered:hover {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(134, 239, 172, 0.38);
+  color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .progress-num.active {
+  background: #2563eb;
+  border-color: #93c5fd;
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.22);
+}
+
+html[data-theme="dark"] .student-layout .progress-num.answered {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(134, 239, 172, 0.38);
+  color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .progress-num.review {
+  background: rgba(245, 158, 11, 0.16);
+  border-color: rgba(253, 230, 138, 0.38);
+  color: #fcd34d;
+}
+
+html[data-theme="dark"] .student-layout .tip-header {
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] .student-layout .tip-content,
+html[data-theme="dark"] .student-layout .shortcut-row {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .student-layout .shortcut-row kbd,
+html[data-theme="dark"] .student-layout .practice-enter-key {
+  background: rgba(15, 23, 42, 0.78);
+  border-color: rgba(147, 197, 253, 0.34);
+  color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .practice-copy-btn.copied {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(134, 239, 172, 0.4);
+  color: #86efac;
+}
+
+@media (max-width: 768px) {
+  .quiz-sidebar {
+    gap: 16px;
+  }
+
+  .progress-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .practice-nav-actions {
+    flex-direction: column;
+  }
+
+  .practice-copy-btn,
+  .practice-next-btn {
+    flex: auto;
+    width: 100%;
+    min-width: 0;
+  }
+}

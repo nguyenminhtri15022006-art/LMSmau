@@ -1,0 +1,441 @@
+/* --- Admin Common Styles --- */
+
+/* --- 1. Layout & Grid --- */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* --- 2. Stat Cards --- */
+.admin-stat-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--admin-accent);
+}
+
+.admin-stat-label {
+  font-size: 0.75rem;
+  color: var(--admin-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.admin-stat-val {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.admin-stat-sub {
+  font-size: 0.75rem;
+  color: var(--admin-green);
+  margin-top: 8px;
+}
+
+.admin-stat-sub.neg {
+  color: var(--admin-red);
+}
+
+/* --- 3. General Cards --- */
+.admin-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.admin-card-hd {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.admin-card-body {
+  padding: 20px;
+}
+
+/* --- 4. Data Display (Tables) --- */
+.admin-table-container {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--admin-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--admin-border);
+  font-weight: 600;
+}
+
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--admin-card-hover);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.admin-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* --- 5. Status Indicators (Pills & Dots) --- */
+.admin-status-pill {
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-pill-green {
+  background: rgba(63, 185, 80, 0.1);
+  color: var(--admin-green);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+.admin-pill-red {
+  background: rgba(248, 81, 73, 0.1);
+  color: var(--admin-red);
+  border: 1px solid rgba(248, 81, 73, 0.2);
+}
+
+.admin-pill-yellow {
+  background: rgba(210, 153, 34, 0.1);
+  color: var(--admin-yellow);
+  border: 1px solid rgba(210, 153, 34, 0.2);
+}
+
+.admin-pill-blue {
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--admin-accent);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+}
+
+.admin-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.admin-dot-green {
+  background: var(--admin-green);
+  box-shadow: 0 0 8px var(--admin-green);
+}
+
+.admin-dot-yellow {
+  background: var(--admin-yellow);
+  box-shadow: 0 0 8px var(--admin-yellow);
+}
+
+.admin-dot-red {
+  background: var(--admin-red);
+  box-shadow: 0 0 8px var(--admin-red);
+}
+
+/* --- 6. Service Row --- */
+.admin-service-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--admin-card-hover);
+}
+
+.admin-service-row:last-child {
+  border-bottom: none;
+}
+
+/* --- 7. Buttons & Avatars --- */
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-card-hover);
+  color: var(--admin-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-btn:hover {
+  border-color: var(--admin-accent);
+  color: var(--admin-accent);
+  background: rgba(88, 166, 255, 0.08);
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-card-hover);
+  color: var(--admin-text);
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: rgba(88, 166, 255, 0.1);
+  border-color: var(--admin-accent);
+  color: var(--admin-accent);
+}
+
+.icon-btn i {
+  font-size: 1.1rem;
+}
+
+.admin-btn-primary {
+  background: var(--admin-accent);
+  border-color: var(--admin-accent);
+  color: var(--admin-accent-contrast, #ffffff);
+}
+
+.admin-btn-primary:hover {
+  background: var(--admin-accent);
+  filter: brightness(1.08);
+  color: var(--admin-accent-contrast, #ffffff);
+}
+
+.admin-btn-danger {
+  color: var(--admin-red);
+  border-color: rgba(248, 81, 73, 0.2);
+}
+
+.admin-btn-danger:hover {
+  background: rgba(248, 81, 73, 0.1);
+  border-color: var(--admin-red);
+}
+
+.admin-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(88, 166, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--admin-accent);
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* --- 8. Forms & Inputs --- */
+.admin-field {
+  margin-bottom: 16px;
+}
+
+.admin-field label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--admin-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+  width: 100%;
+  background: var(--admin-card-hover);
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--admin-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+  border-color: var(--admin-accent);
+}
+
+/* --- 9. Tabs --- */
+.admin-tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-tab {
+  padding: 12px 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--admin-muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.admin-tab:hover {
+  color: var(--admin-text);
+}
+
+.admin-tab.active {
+  color: var(--admin-accent);
+  border-bottom-color: var(--admin-accent);
+}
+
+/* --- 10. Loading States --- */
+.admin-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(88, 166, 255, 0.1);
+  border-top-color: var(--admin-accent);
+  border-radius: 50%;
+  animation: adminSpin 1s linear infinite;
+}
+
+@keyframes adminSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- 11. Confirm Dialog --- */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  backdrop-filter: blur(4px);
+}
+
+.confirm-dialog {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--admin-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.confirm-dialog h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--admin-text);
+  margin: 0 0 8px;
+}
+
+.confirm-dialog p {
+  font-size: 0.9rem;
+  color: var(--admin-muted);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.confirm-dialog p strong {
+  color: var(--admin-text);
+  font-weight: 700;
+}
+
+.lock-reason-input {
+  width: 100%;
+  background: var(--admin-card-hover);
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--admin-text);
+  font-size: 0.9rem;
+  outline: none;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
+}
+
+.lock-reason-input:focus {
+  border-color: var(--admin-accent);
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.confirm-btn {
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.confirm-btn.cancel {
+  background: transparent;
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+}
+
+.confirm-btn.cancel:hover {
+  background: var(--admin-card-hover);
+}
+
+.confirm-btn.delete {
+  background: var(--admin-red);
+  border: 1px solid var(--admin-red);
+  color: #fff;
+}
+
+.confirm-btn.delete:hover {
+  filter: brightness(1.1);
+}

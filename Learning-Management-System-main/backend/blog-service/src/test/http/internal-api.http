@@ -1,0 +1,5 @@
+@baseUrl = http://localhost:8084/blog
+
+GET {{baseUrl}}/internal/posts/10
+
+#GET {{baseUrl}}/internal/posts/10/exists

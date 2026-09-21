@@ -1,0 +1,260 @@
+.detail-course-page {
+    position: relative;
+    padding-bottom: 5rem;
+}
+
+.detail-course-page__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 640px) {
+    .detail-course-page__container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .detail-course-page__container {
+        padding: 0 2rem;
+        margin-top: -15rem;
+    }
+}
+
+.detail-course-page__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.detail-course-page__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .detail-course-page__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .detail-course-page__layout {
+        grid-template-columns: minmax(0, 2fr) minmax(320px, 360px);
+        gap: 3rem;
+        align-items: start;
+    }
+}
+
+.detail-course-page__main {
+    padding-bottom: 5rem;
+}
+
+html[data-theme="dark"] .detail-course-page,
+html[data-theme="dark"] .detail-course-page__grid {
+    background: #111827 !important;
+    color: #d6e0ee;
+}
+
+html[data-theme="dark"] .detail-course-page__container,
+html[data-theme="dark"] .detail-course-page__layout,
+html[data-theme="dark"] .detail-course-page__main {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #d6e0ee;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-chapters-container {
+    background: #172033 !important;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .detail-course-page .ch-section-title {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .detail-course-page :is(
+    .ch-section-header,
+    .ch-section-title,
+    .ch-chapters-list,
+    .ch-item-wrapper,
+    .ch-item-main,
+    .ch-item-info,
+    .ch-item-title-row,
+    .course-sidebar__overview,
+    .course-sidebar__metric-copy,
+    .course-sidebar__pricing,
+    .course-sidebar__actions,
+    .course-sidebar__includes,
+    .course-sidebar__list,
+    .course-sidebar__list-item,
+    .instructor-section__avatar-wrapper,
+    .instructor-section__info
+) {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-total-units,
+html[data-theme="dark"] .detail-course-page .ch-item-meta,
+html[data-theme="dark"] .detail-course-page .ch-item-action {
+    color: #9aa8bd !important;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-toggle-all-btn {
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-toggle-all-btn:hover {
+    background: rgba(37, 99, 235, 0.16);
+}
+
+html[data-theme="dark"] .detail-course-page .folder-row {
+    background: transparent !important;
+    border-color: rgba(148, 163, 184, 0.14) !important;
+}
+
+html[data-theme="dark"] .detail-course-page .folder-row:hover,
+html[data-theme="dark"] .detail-course-page .lesson-row:hover {
+    background: rgba(37, 99, 235, 0.14) !important;
+    border-color: rgba(96, 165, 250, 0.38) !important;
+}
+
+html[data-theme="dark"] .detail-course-page .lesson-row:not(.lesson-clickable):hover {
+    background: transparent !important;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-item-title {
+    color: #eaf2ff !important;
+}
+
+html[data-theme="dark"] .detail-course-page .lesson-row {
+    color: #d6e0ee !important;
+}
+
+html[data-theme="dark"] .detail-course-page .lesson-wrapper::before {
+    background: rgba(148, 163, 184, 0.16);
+}
+
+html[data-theme="dark"] .detail-course-page .ch-lesson-icon.video {
+    background: rgba(239, 68, 68, 0.16);
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-lesson-icon.reading,
+html[data-theme="dark"] .detail-course-page .ch-lesson-icon.document {
+    background: rgba(59, 130, 246, 0.16);
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-lesson-icon.quiz {
+    background: rgba(245, 158, 11, 0.16);
+    color: #fcd34d;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-lesson-icon.coding {
+    background: rgba(34, 197, 94, 0.16);
+    color: #86efac;
+}
+
+html[data-theme="dark"] .detail-course-page .ch-empty-state {
+    background: #111827 !important;
+    border-color: rgba(148, 163, 184, 0.18) !important;
+    color: #9aa8bd !important;
+}
+
+html[data-theme="dark"] .detail-course-page__skeleton-sidebar,
+html[data-theme="dark"] .detail-course-page__skeleton-block {
+    background: linear-gradient(90deg, #172033 25%, #263247 50%, #172033 75%);
+    background-size: 1200px 100%;
+}
+
+@media (min-width: 1024px) {
+    .detail-course-page__main {
+        min-width: 0;
+    }
+}
+
+/* ── Skeleton loading ── */
+@keyframes shimmer {
+    0% {
+        background-position: -600px 0;
+    }
+    100% {
+        background-position: 600px 0;
+    }
+}
+
+.detail-course-page__skeleton-hero {
+    height: 22rem;
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 1200px 100%;
+    animation: shimmer 1.4s infinite;
+}
+
+.detail-course-page__skeleton-sidebar {
+    height: 28rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 1200px 100%;
+    animation: shimmer 1.4s infinite;
+}
+
+.detail-course-page__skeleton-block {
+    height: 10rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 1200px 100%;
+    animation: shimmer 1.4s infinite;
+}
+
+.detail-course-page__skeleton-block--tall {
+    height: 18rem;
+}
+
+.detail-course-page--loading,
+.detail-course-page--error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1rem;
+    color: #6b7280;
+}
+
+.detail-course-page--error button {
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.detail-course-page--error button:hover {
+    background: #4338ca;
+}
+
+.detail-course-page__spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid #e5e7eb;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

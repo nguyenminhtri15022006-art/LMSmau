@@ -1,0 +1,182 @@
+.preview-table-container {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.preview-table th {
+  background: rgba(241, 245, 249, 0.95);
+  padding: 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-400, #94a3b8);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+
+.preview-table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  font-size: 14px;
+}
+
+.preview-table tbody tr:hover {
+  background: rgba(248, 250, 252, 0.8);
+}
+
+.preview-table .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.preview-table .status-badge.valid {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.preview-table .status-badge.error {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.preview-table .option-input,
+.preview-table .type-select {
+  min-height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.preview-table .option-input {
+  width: 100%;
+  padding: 8px 12px;
+}
+
+.preview-table .input-error {
+  border-color: #dc2626;
+}
+
+.preview-table .btn-delete-option {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  background: white;
+  color: var(--text-400, #94a3b8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.preview-table .btn-delete-option:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+  transform: scale(1.05);
+}
+
+.preview-table .btn-delete-option .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.preview-add-button {
+  margin: 16px auto;
+  width: auto;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: var(--primary-color, #2563eb);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .preview-table-container {
+  background: var(--surface-elevated);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .preview-table th {
+  background: var(--surface);
+  border-bottom-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .preview-table td {
+  background: var(--surface-elevated);
+  border-bottom-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .preview-table tbody tr:hover {
+  background: var(--surface-muted);
+}
+
+html[data-theme="dark"] .preview-table tbody tr:hover td {
+  background: var(--surface-muted);
+}
+
+html[data-theme="dark"] .preview-table .status-badge.valid {
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.34);
+  color: #6ee7b7;
+}
+
+html[data-theme="dark"] .preview-table .status-badge.error {
+  background: rgba(248, 113, 113, 0.14);
+  border: 1px solid rgba(248, 113, 113, 0.34);
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] .preview-table .option-input,
+html[data-theme="dark"] .preview-table .type-select {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .preview-table .option-input:focus,
+html[data-theme="dark"] .preview-table .type-select:focus {
+  background: var(--surface);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.16);
+  outline: none;
+}
+
+html[data-theme="dark"] .preview-table .input-error {
+  border-color: rgba(248, 113, 113, 0.58);
+}
+
+html[data-theme="dark"] .preview-table .btn-delete-option {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .preview-table .btn-delete-option:hover {
+  background: rgba(248, 113, 113, 0.14);
+  border-color: rgba(248, 113, 113, 0.38);
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] .preview-add-button {
+  color: var(--primary);
+}

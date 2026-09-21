@@ -1,0 +1,1194 @@
+/* styles/variables.css */
+/* ============================
+   DESIGN TOKENS - Chỉnh tại đây
+   để thay đổi toàn bộ theme
+   ============================ */
+
+:root {
+  /* === COLORS (ALIASING FOR UNIFICATION) === */
+  --primary: #1c74e9;
+  --color-primary: var(--primary);
+
+  --primary-hover: #155ecb;
+  --color-primary-hover: var(--primary-hover);
+
+  --primary-shadow: rgba(28, 116, 233, 0.25);
+  --color-primary-shadow: var(--primary-shadow);
+
+  --bg-light: #f6f7f8;
+  --color-bg-page: var(--bg-light);
+
+  --bg-white: #ffffff;
+  --color-bg-white: var(--bg-white);
+  --color-bg-input: var(--bg-white);
+
+  --text-dark: #0f172a;
+  --color-text-heading: var(--text-dark);
+
+  --text-body: #334155;
+  --color-text-body: var(--text-body);
+
+  --text-muted: #64748b;
+  --color-text-muted: var(--text-muted);
+
+  --text-label: #475569;
+  --color-text-label: var(--text-label);
+
+  --border-color: #e2e8f0;
+  --color-border: var(--border-color);
+
+  --text-light: #f8fafc;
+  --bg-dark: #111821;
+  --border-color-dark: #1e293b;
+  --text-muted-dark: #94a3b8;
+
+  /* === DARK MODE === */
+  --color-dark-bg-page: #111821;
+  --color-dark-bg-white: #0f172a;
+  --color-dark-bg-input: #1e293b;
+  --color-dark-border: #334155;
+  --color-dark-text: #f1f5f9;
+  --color-dark-muted: #94a3b8;
+
+  /* === HERO PANEL === */
+  --color-hero-bg: #020817;
+  --color-hero-glow-1: rgba(28, 116, 233, 0.15);
+  --color-hero-glow-2: rgba(99, 102, 241, 0.1);
+
+  /* === TYPOGRAPHY === */
+  --font-family: 'Inter', -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  /* 12px */
+  --font-size-sm: 0.875rem;
+  /* 14px */
+  --font-size-base: 1rem;
+  /* 16px */
+  --font-size-lg: 1.125rem;
+  /* 18px */
+  --font-size-xl: 1.25rem;
+  /* 20px */
+  --font-size-2xl: 1.5rem;
+  /* 24px */
+  --font-size-3xl: 1.875rem;
+  /* 30px */
+  --font-size-4xl: 2.25rem;
+  /* 36px */
+
+  /* === SPACING === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* === RADIUS === */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-primary: 0 4px 20px var(--color-primary-shadow);
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --surface-muted: #f1f5f9;
+  --surface-elevated: #ffffff;
+  --overlay-header: rgba(255, 255, 255, 0.8);
+
+  /* === TRANSITIONS === */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+
+  /* === LAYOUT === */
+  --form-max-width: 480px;
+  --input-height: 2.75rem;
+  /* 44px (compacted from 48px) */
+  --button-height: 2.75rem;
+
+  /* === ADMIN PANEL (DEEP SPACE THEME) === */
+  --admin-bg: #f6f7f8;
+  --admin-card: #ffffff;
+  --admin-card-hover: #f1f5f9;
+  --admin-border: #e2e8f0;
+  --admin-text: #0f172a;
+  --admin-muted: #64748b;
+  --admin-accent: #2563eb;
+  --admin-accent-contrast: #ffffff;
+  --admin-green: #059669;
+  --admin-yellow: #d97706;
+  --admin-red: #dc2626;
+  --admin-purple: #7c3aed;
+  --admin-sidebar-width: 240px;
+}
+
+html[data-theme="dark"] {
+  --primary: #58a6ff;
+  --color-primary: var(--primary);
+  --primary-hover: #79c0ff;
+  --color-primary-hover: var(--primary-hover);
+  --primary-shadow: rgba(88, 166, 255, 0.28);
+  --color-primary-shadow: var(--primary-shadow);
+
+  --bg-light: #111827;
+  --color-bg-page: var(--bg-light);
+  --bg-white: #111827;
+  --color-bg-white: var(--bg-white);
+  --color-bg-input: #172033;
+
+  --text-dark: #f8fafc;
+  --color-text-heading: var(--text-dark);
+  --text-body: #d6e0ee;
+  --color-text-body: var(--text-body);
+  --text-muted: #9aa8bd;
+  --color-text-muted: var(--text-muted);
+  --text-label: #c8d3e4;
+  --color-text-label: var(--text-label);
+
+  --border-color: #263247;
+  --color-border: var(--border-color);
+  --text-light: #f8fafc;
+  --bg-dark: #050914;
+  --border-color-dark: #263247;
+  --text-muted-dark: #9aa8bd;
+
+  --surface: #111827;
+  --surface-soft: #0f172a;
+  --surface-muted: #172033;
+  --surface-elevated: #162033;
+  --overlay-header: rgba(11, 17, 32, 0.84);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 18px 36px rgba(0, 0, 0, 0.34);
+  --shadow-xl: 0 28px 56px rgba(0, 0, 0, 0.42);
+
+  --admin-bg: #111827;
+  --admin-card: #161b22;
+  --admin-card-hover: #1c2230;
+  --admin-border: #30363d;
+  --admin-text: #e6edf3;
+  --admin-muted: #8b949e;
+  --admin-accent: #58a6ff;
+  --admin-accent-contrast: #0d1117;
+  --admin-green: #3fb950;
+  --admin-yellow: #d29922;
+  --admin-red: #f85149;
+  --admin-purple: #bc8cff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  background: var(--bg-light);
+}
+
+html.auth-route {
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+body.auth-route {
+  overflow: hidden;
+}
+
+.app-shell,
+.student-layout,
+.instructor-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-light);
+}
+
+.flex-1,
+.student-main,
+.instructor-main {
+  flex: 1;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  text-decoration: none;
+}
+/* --- LOADING SCREEN --- */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-light, #f6f7f8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: none;
+}
+
+html[data-route-surface="auth"] .loading-screen,
+body.auth-route .loading-screen {
+  background: var(--color-bg-white, #ffffff);
+}
+
+html[data-theme="dark"] .loading-screen {
+  background: var(--bg-light, #111827);
+  color: var(--text-body, #d6e0ee);
+}
+
+html[data-theme="dark"] .loading-screen__spinner {
+  border-color: #263247;
+  border-top-color: var(--primary);
+}
+
+html[data-theme="dark"] .admin-shell {
+  background: var(--admin-bg);
+}
+
+html[data-theme="dark"] .content__inner,
+html[data-theme="dark"] .core-value__item,
+html[data-theme="dark"] .vision__text,
+html[data-theme="dark"] .about-capabilities,
+html[data-theme="dark"] .about-role-card,
+html[data-theme="dark"] .about-future,
+html[data-theme="dark"] .about-future__item,
+html[data-theme="dark"] .founders-section,
+html[data-theme="dark"] .founder-card,
+html[data-theme="dark"] .home-highlights,
+html[data-theme="dark"] .featured-courses,
+html[data-theme="dark"] .course-card,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .toast {
+  background-color: var(--surface);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .content__inner,
+html[data-theme="dark"] .founder-card {
+  background-image: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface) 100%);
+}
+
+html[data-theme="dark"] .home-highlights,
+html[data-theme="dark"] .home-learning-flow {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-soft) 100%);
+}
+
+html[data-theme="dark"] .home-roles,
+html[data-theme="dark"] .home-hero__btn--secondary:hover,
+html[data-theme="dark"] .settings-nav-item:hover,
+html[data-theme="dark"] .form-group input,
+html[data-theme="dark"] .form-group textarea,
+html[data-theme="dark"] .blog-filter-select-wrap .material-symbols-outlined {
+  background: var(--surface-muted);
+}
+
+html[data-theme="dark"] .home-feature-card,
+html[data-theme="dark"] .home-role-panel,
+html[data-theme="dark"] .home-learning-flow__step,
+html[data-theme="dark"] .home-hero__btn--secondary,
+html[data-theme="dark"] .home-hero__search,
+html[data-theme="dark"] .home-hero__tags a,
+html[data-theme="dark"] .home-hero__floating,
+html[data-theme="dark"] .home-hero__stats,
+html[data-theme="dark"] .blog-search-bar,
+html[data-theme="dark"] .blog-filter-row,
+html[data-theme="dark"] .blog-filter-select,
+html[data-theme="dark"] .featured-post-card,
+html[data-theme="dark"] .blog-card,
+html[data-theme="dark"] .blog-badge,
+html[data-theme="dark"] .manage-posts-btn,
+html[data-theme="dark"] .settings-content,
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .course-info,
+html[data-theme="dark"] .course-sticky-sidebar,
+html[data-theme="dark"] .course-curriculum__chapter,
+html[data-theme="dark"] .course-curriculum__item,
+html[data-theme="dark"] .learning-points,
+html[data-theme="dark"] .course-sidebar,
+html[data-theme="dark"] .course-details-card {
+  background: var(--surface);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .home-hero__eyebrow {
+  background: rgba(88, 166, 255, 0.14);
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] .home-page,
+html[data-theme="dark"] .home-page :is(
+  .home-hero,
+  .home-highlights,
+  .home-roles,
+  .home-learning-flow,
+  .home-courses,
+  .home-quotes,
+  .home-practice,
+  .home-blog-cta
+) {
+  background: #111827;
+  background-color: #111827;
+}
+
+html[data-theme="dark"] .blog-hub-title,
+html[data-theme="dark"] .blog-filter-label,
+html[data-theme="dark"] .featured-title,
+html[data-theme="dark"] .author-name,
+html[data-theme="dark"] .blog-recent-title,
+html[data-theme="dark"] .blog-card-title,
+html[data-theme="dark"] .blog-card-author-name,
+html[data-theme="dark"] .popular-title,
+html[data-theme="dark"] .settings-section-header h2,
+html[data-theme="dark"] .form-group label,
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .course-info h2,
+html[data-theme="dark"] .course-curriculum h2,
+html[data-theme="dark"] .learning-points h2 {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .featured-excerpt,
+html[data-theme="dark"] .blog-card-excerpt,
+html[data-theme="dark"] .popular-author,
+html[data-theme="dark"] .settings-section-header p,
+html[data-theme="dark"] .settings-nav-item,
+html[data-theme="dark"] .form-group input,
+html[data-theme="dark"] .form-group textarea {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .form-group input:focus,
+html[data-theme="dark"] .form-group textarea:focus {
+  background: var(--surface);
+}
+
+/* Dark coverage for feature CSS that still defines fixed light colors. */
+html[data-theme="dark"] :is(
+  .toast-title,
+  .locked-feature-content h2,
+  .app-error-copy h1,
+  .home-practice__title,
+  .home-practice-card__title,
+  .home-courses__title,
+  .manage-posts-header h1,
+  .manage-post-title,
+  .editor-header h1,
+  .preview-title,
+  .blog-detail-title,
+  .blog-detail-content h1,
+  .blog-detail-content h2,
+  .blog-detail-content h3,
+  .comments-header,
+  .comment-name,
+  .related-posts-header,
+  .sidebar-title,
+  .dashboard-title,
+  .dashboard-title-premium,
+  .dashboard-stat-value,
+  .dashboard-sidebar__name,
+  .course-progress-title,
+  .continue-learning-title,
+  .teacher-hero-title,
+  .teacher-hero-stat-value,
+  .title-with-icon h3,
+  .quick-action-title,
+  .recent-activity-title,
+  .recent-performance-title,
+  .listing-title,
+  .lesson-sidebar__header h2,
+  .lesson-panel-header h2,
+  .lesson-nav-item__title,
+  .challenge-text h3,
+  .code-result-status h2,
+  .code-result-section-heading h3,
+  .exercise-detail-title-group h2,
+  .problem-statement h3,
+  .problem-markdown h1,
+  .problem-markdown h2,
+  .problem-markdown h3,
+  .create-card-heading h2,
+  .settings-panel-heading h2,
+  .coding-clone-body h2,
+  .coding-import-header h2,
+  .coding-import-info-card h3,
+  .create-coding-title,
+  .ai-test-modal h2,
+  .ai-test-preview h3,
+  .ai-test-preview-heading h3,
+  .leaderboard-title,
+  .podium-name,
+  .user-name,
+  .current-user-float-name,
+  .course-card__title,
+  .chatbot-md-h1,
+  .chatbot-md-h2,
+  .chatbot-md-h3,
+  .chatbot-md strong,
+  .chatbot-history-title
+) {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(
+  .toast-body,
+  .locked-feature-content p,
+  .app-error-copy p,
+  .editor-header p,
+  .blog-detail-meta,
+  .share-label,
+  .blog-detail-content p,
+  .breadcrumb-title,
+  .listing-subtitle,
+  .lesson-sidebar__header p,
+  .lesson-panel-header p,
+  .code-result-status p,
+  .code-result-case__label,
+  .exercise-detail-title-group p,
+  .problem-markdown p,
+  .create-card-heading p,
+  .settings-panel-heading p,
+  .create-coding-subtitle,
+  .ai-test-modal-title-group p,
+  .ai-test-preview-heading p,
+  .leaderboard-subtitle,
+  .dashboard-subtitle,
+  .teacher-hero-subtitle,
+  .quick-action-desc,
+  .recent-activity-empty,
+  .course-card__meta,
+  .chatbot-md,
+  .chatbot-md-list li,
+  .chatbot-history-item
+) {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] :is(
+  .locked-feature-page,
+  .app-error-page,
+  .app-error-card,
+  .toast,
+  .blog-detail-card,
+  .comments-section,
+  .comment-card,
+  .comment-form,
+  .related-post-card,
+  .preview-placeholder,
+  .manage-posts-table,
+  .blog-editor-card,
+  .dashboard-card,
+  .dashboard-sidebar,
+  .continue-learning-card,
+  .course-progress-card,
+  .teacher-dashboard,
+  .teacher-card,
+  .recent-activity-card,
+  .quick-actions-card,
+  .recent-performance-card,
+  .exercise-listing-page,
+  .lesson-sidebar,
+  .lesson-panel,
+  .challenge-card,
+  .code-result-card,
+  .code-result-panel,
+  .exercise-code-page,
+  .problem-panel,
+  .editor-panel,
+  .console-panel,
+  .create-coding-page,
+  .create-coding-card,
+  .challenge-settings-panel,
+  .ai-test-modal,
+  .ai-test-preview,
+  .leaderboard-card,
+  .podium-card,
+  .current-user-float,
+  .course-card,
+  .chatbot-history-panel,
+  .chatbot-history-header,
+  .chatbot-history-item
+) {
+  background: var(--surface);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(
+  .locked-feature-icon,
+  .app-error-tech,
+  .dashboard-sidebar-link:hover,
+  .continue-learning-empty,
+  .recent-activity-empty,
+  .lesson-nav-item,
+  .code-result-case,
+  .problem-markdown pre,
+  .preview-placeholder,
+  .chatbot-history-item:hover
+) {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] :is(
+  .blog-detail-content,
+  .problem-markdown,
+  .chatbot-md
+) {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(
+  .toast-close,
+  .comment-action,
+  .lesson-nav-item__meta,
+  .code-result-case__meta
+) {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] :is(
+  .toast-close:hover,
+  .comment-action:hover
+) {
+  background: var(--surface-muted);
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(
+  [class*="title"],
+  [class*="Title"],
+  [class*="heading"],
+  [class*="Heading"],
+  [class*="name"],
+  [class*="Name"]
+) {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(
+  [class*="subtitle"],
+  [class*="Subtitle"],
+  [class*="desc"],
+  [class*="Desc"],
+  [class*="meta"],
+  [class*="Meta"]
+) {
+  color: var(--text-muted);
+}
+
+/* Public and student screens: readability pass for fixed light CSS. */
+html[data-theme="dark"] :is(
+  .list-course-page,
+  .sidebar,
+  .search-bar,
+  .sort-select,
+  .category-choice,
+  .suggestion-tag,
+  .no-results,
+  .blog-sidebar-card,
+  .manage-posts-container,
+  .blog-manage-table,
+  .action-btn,
+  .my-courses-page,
+  .my-courses-page__overview-card,
+  .my-courses-page__tab,
+  .my-courses-page__empty,
+  .pagination__btn,
+  .pagination__btn--arrow,
+  .sidebar-card,
+  .badge-item,
+  .badge-icon,
+  .continue-card,
+  .ch-card,
+  .ch-chapters-container,
+  .ch-announcements-container,
+  .folder-row,
+  .ch-page-btn,
+  .detail-my-course-page,
+  .dmc-viewer-card,
+  .dmc-doc-download,
+  .dmc-document-content,
+  .dmc-special-lesson,
+  .dmc-completion-panel,
+  .dmc-next-btn,
+  .dmc-nav-btn,
+  .detail-my-course-page__sidebar,
+  .dmc-sidebar-header,
+  .dmc-sidebar-folder-btn,
+  .dmc-sidebar-lesson,
+  .dmc-lesson-loading
+) {
+  background: var(--surface);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(
+  .search-bar,
+  .sort-select,
+  .category-choice,
+  .suggestion-tag,
+  .blog-manage-table th,
+  .dmc-next-btn,
+  .dmc-nav-btn
+) {
+  box-shadow: none;
+}
+
+html[data-theme="dark"] :is(
+  .sidebar__header,
+  .sidebar__summary,
+  .course-results-header,
+  .course-card__meta,
+  .blog-manage-table th,
+  .blog-manage-table td,
+  .ch-announcements-pagination,
+  .ch-hw-section,
+  .dmc-lesson-info,
+  .dmc-completion-panel,
+  .dmc-sidebar-header,
+  .dmc-sidebar-folder,
+  .dmc-sidebar-lesson
+) {
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] :is(
+  .sidebar__clear-btn,
+  .filter-option:hover,
+  .search-bar__clear,
+  .suggestion-tag:hover,
+  .no-results,
+  .my-courses-page__tab:hover,
+  .my-courses-page__empty,
+  .pagination__btn:hover:not(.pagination__btn--disabled):not(.pagination__btn--active),
+  .pagination__btn--disabled,
+  .badge-item,
+  .progress-bar-bg,
+  .blog-manage-table th,
+  .status-draft,
+  .ch-progress-bar-bg,
+  .ch-sm-metric-box,
+  .ch-sm-metric-box.green,
+  .ch-verified-tag,
+  .dmc-media-placeholder,
+  .dmc-sidebar-folder-btn:hover,
+  .dmc-sidebar-folder-btn.open,
+  .dmc-sidebar-lesson:hover,
+  .dmc-folder-count
+) {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] :is(
+  .category-choice:hover,
+  .category-choice--active,
+  .my-courses-page__tab.active,
+  .pagination__btn--active,
+  .btn-join-event,
+  .lesson-row:hover,
+  .dmc-sidebar-lesson.active,
+  .dmc-progress-badge
+) {
+  background: rgba(88, 166, 255, 0.14);
+  border-color: rgba(88, 166, 255, 0.36);
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] :is(
+  .ch-announcement-card,
+  .ch-announcement-card:nth-child(even)
+) {
+  background: rgba(217, 119, 6, 0.12);
+  border-left-color: #f59e0b;
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .ch-announcement-card:nth-child(even) {
+  background: rgba(59, 130, 246, 0.12);
+  border-left-color: #3b82f6;
+}
+
+html[data-theme="dark"] :is(
+  .results-title,
+  .no-results h3,
+  .sidebar__title,
+  .filter-group__title,
+  .sidebar__summary-title,
+  .manage-posts-header h1,
+  .manage-post-title,
+  .blog-manage-table td,
+  .my-courses-page__overview-card strong,
+  .my-courses-page__empty h2,
+  .event-date .day,
+  .event-details h5,
+  .continue-info h3,
+  .ch-section-title,
+  .ch-sidebar-title,
+  .ch-item-title,
+  .ch-sm-metric-value,
+  .dmc-doc-filename,
+  .dmc-lesson-title,
+  .dmc-special-lesson h3,
+  .dmc-sidebar-header h3,
+  .dmc-sidebar-folder-btn,
+  .dmc-folder-title,
+  .dmc-document-content pre,
+  .stat-info .value
+) {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(
+  .results-count,
+  .results-sort label,
+  .sort-select,
+  .no-results p,
+  .category-choice,
+  .category-choice__count,
+  .filter-option__text,
+  .rating__label,
+  .suggestion-label,
+  .suggestion-tag,
+  .empty-state-td,
+  .my-courses-page__subtitle,
+  .my-courses-page__overview-label,
+  .my-courses-page__summary,
+  .my-courses-page__empty,
+  .pagination__btn:not(.pagination__btn--active),
+  .pagination__dots,
+  .event-details p,
+  .continue-info p,
+  .progress-labels,
+  .blog-manage-table th,
+  .ch-breadcrumb,
+  .ch-total-units,
+  .ch-item-meta,
+  .ch-announcement-time,
+  .ch-announcement-empty,
+  .ch-page-info,
+  .ch-progress-lessons,
+  .ch-hw-section-label,
+  .ch-hw-count,
+  .ch-hw-empty,
+  .ch-hw-loading,
+  .ch-sm-metric-label,
+  .ch-sm-metric-update,
+  .dmc-doc-hint,
+  .dmc-lesson-desc,
+  .dmc-hint-text,
+  .dmc-progress-pct,
+  .dmc-sidebar-lesson,
+  .dmc-sidebar-lesson.completed,
+  .dmc-folder-count,
+  .dmc-sidebar-empty,
+  .dmc-nav-count,
+  .dmc-error-state,
+  .stat-info .label
+) {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] :is(
+  .ch-announcement-content,
+  .dmc-document-content pre,
+  .dmc-next-btn,
+  .dmc-nav-btn,
+  .dmc-no-lesson p
+) {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(
+  .search-bar__input,
+  .search-bar__input::placeholder
+) {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .search-bar__input:not(:placeholder-shown),
+html[data-theme="dark"] .search-bar__input:focus {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(
+  .dmc-completion-panel--done,
+  .ch-hw-done
+) {
+  background: rgba(22, 101, 52, 0.18);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+html[data-theme="dark"] :is(
+  .dmc-completion-label,
+  .ch-hw-done
+) {
+  color: #86efac;
+}
+
+/* Final contrast guard for every student/instructor feature screen. */
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) {
+  background: var(--bg-light);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="page"],
+  [class*="container"],
+  [class*="shell"],
+  [class*="layout"],
+  [class*="main"]
+) {
+  background-color: var(--bg-light);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="card"],
+  [class*="panel"],
+  [class*="modal"],
+  [class*="drawer"],
+  [class*="sidebar"],
+  [class*="table"],
+  [class*="form"],
+  [class*="editor"],
+  [class*="preview"],
+  [class*="toolbar"],
+  [class*="box"],
+  [class*="section"],
+  [class*="content"]
+):not(.center-sections-gap):not(.sidebar-col):not(.sub-card-title):not(.section-title):not(.announcement-history-wrapper):not(.schedules-left-col):not(.schedules-comm-grid):not(.header__inner):not([class*="course-sidebar"]):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="progress"]):not([class*="hero"]):not([class*="image"]):not([class*="img"]) {
+  background-color: var(--surface);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="list"],
+  [class*="row"],
+  [class*="item"],
+  [class*="option"],
+  [class*="choice"],
+  [class*="question"],
+  [class*="answer"],
+  [class*="case"],
+  [class*="test"],
+  [class*="result"],
+  [class*="empty"],
+  [class*="placeholder"]
+):not(.empty-history):not(.sessions-empty):not(.upcoming-schedules-empty):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="progress"]):not([class*="hero"]):not([class*="image"]):not([class*="img"]):not(.profile-dropdown-item):not([class*="event-empty"]):not([class*="course-info-row"]) {
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="row"]:hover,
+  [class*="item"]:hover,
+  [class*="option"]:hover,
+  [class*="choice"]:hover,
+  [class*="tab"]:hover,
+  [class*="list"]:hover,
+  [class*="empty"],
+  [class*="placeholder"],
+  [class*="skeleton"],
+  [class*="loading"]
+):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="progress"]):not([class*="hero"]):not([class*="image"]):not([class*="img"]):not([class*="course-info-row"]):not([class*="meta-row"]):not([class*="status-tab"]):not([class*="event-item"]):not([class*="event-list"]):not([class*="comment-item"]):not([class*="comments-list"]):not([class*="label"]):not([class*="group"]):not([class*="stat"]) {
+  background-color: var(--surface-muted);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td
+) {
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  th,
+  thead,
+  [class*="table-head"],
+  [class*="header-row"]
+) {
+  background-color: var(--surface-muted);
+  color: var(--text-label);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  input,
+  textarea,
+  select,
+  [contenteditable="true"],
+  [class*="input"],
+  [class*="textarea"],
+  [class*="select"],
+  [class*="field"]
+):not([class*="btn"]):not([class*="button"]) {
+  background-color: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  input,
+  textarea,
+  select
+)::placeholder {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  p,
+  li,
+  td,
+  dd,
+  small,
+  figcaption,
+  label,
+  [class*="text"],
+  [class*="desc"],
+  [class*="description"],
+  [class*="subtitle"],
+  [class*="summary"],
+  [class*="meta"],
+  [class*="hint"],
+  [class*="caption"],
+  [class*="body"],
+  [class*="copy"],
+  [class*="muted"],
+  [class*="note"],
+  [class*="empty"],
+  [class*="message"],
+  [class*="info"]
+):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="status"]) {
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="meta"],
+  [class*="hint"],
+  [class*="caption"],
+  [class*="muted"],
+  [class*="empty"],
+  [class*="subtitle"],
+  [class*="helper"],
+  [class*="placeholder"],
+  [class*="time"],
+  [class*="date"],
+  [class*="count"]
+):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="status"]) {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  legend,
+  th,
+  [class*="title"],
+  [class*="heading"],
+  [class*="name"],
+  [class*="label"],
+  [class*="value"],
+  [class*="question-title"],
+  [class*="problem-title"],
+  [class*="lesson-title"],
+  [class*="course-title"]
+):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="status"]) {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="active"],
+  [aria-selected="true"],
+  [aria-current="page"]
+):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="icon"]):not([class*="btn"]):not([class*="button"]):not([class*="status"]) {
+  background-color: rgba(88, 166, 255, 0.16);
+  border-color: rgba(88, 166, 255, 0.38);
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  code,
+  kbd,
+  samp,
+  [class*="code"],
+  [class*="console"],
+  [class*="output"]
+) {
+  background-color: #0a1020;
+  border-color: var(--border-color);
+  color: #d6e0ee;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  [class*="primary"],
+  [class*="submit"],
+  [class*="save"],
+  [class*="create"],
+  [class*="publish"]
+):is(button, a, .btn, [class*="btn"], [class*="button"]) {
+  color: #ffffff;
+}
+
+/* Centralized exclusion: elements whose class names match global wildcard rules but should remain transparent */
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  .chapter-header-content,
+  .answer-editor-header,
+  .sidebar-column,
+  .create-coding-settings-panel,
+  .create-coding-layout,
+  .create-coding-main-column,
+  .quiz-tab-bar,
+  .quiz-tab-btn,
+  .options-list,
+  .template-download-row,
+  .template-format-field,
+  .coding-import-info-list,
+  .import-error-list,
+  .question-inline-field,
+  .score-field,
+  .format-label,
+  .ai-test-field:not(.ai-test-count-field),
+  .ai-test-modal-title-group,
+  .ai-test-modal-title-group *,
+  .validation-alert-ready,
+  .validation-alert-error,
+  .input-with-icon,
+  .home-hero__search-input,
+  .home-practice_decor,
+  .home-practice__decor,
+  .content_title,
+  .content__title,
+  .content_text,
+  .content__text,
+  .content_copy,
+  .content__copy,
+  .content_desc,
+  .content__desc,
+  .about-architecture__content,
+  .about-future_list,
+  .about-future__list,
+  .select-wrapper,
+  .form-group
+) {
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .home-hero__search-input {
+  background-color: transparent !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) :is(
+  .home-practice_decor,
+  .home-practice__decor,
+  .content_title,
+  .content__title,
+  .content_text,
+  .content__text,
+  .content_copy,
+  .content__copy,
+  .content_desc,
+  .content__desc,
+  .about-architecture__content,
+  .about-architecture__content.is-visible,
+  .about-future_list,
+  .about-future__list,
+  .about-future__list:hover
+) {
+  background-color: transparent !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.loading-screen__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: var(--primary, #1c74e9);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.loading-screen__text {
+  margin-top: 14px;
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+  font-family: var(--font-family);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}

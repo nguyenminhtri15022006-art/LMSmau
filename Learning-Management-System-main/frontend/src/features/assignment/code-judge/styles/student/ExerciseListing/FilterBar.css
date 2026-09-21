@@ -1,0 +1,150 @@
+/* ===============================================
+   FILTER BAR COMPONENT
+   =============================================== */
+
+.exercise-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-chip:hover {
+  border-color: #cbd5e1;
+}
+
+.filter-chip.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.filter-select {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  outline: none;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-select:hover {
+  border-color: #cbd5e1;
+}
+
+.leaderboard-btn {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  border: 1px solid #dbeafe;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.leaderboard-btn:hover {
+  background: #dbeafe;
+  border-color: #0284c7;
+}
+
+@media (max-width: 768px) {
+  .exercise-filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .leaderboard-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .exercise-filter-bar {
+  background:
+    linear-gradient(180deg, rgba(22, 32, 51, 0.98) 0%, rgba(17, 24, 39, 0.99) 100%) !important;
+  border-color: rgba(96, 165, 250, 0.4) !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(147, 197, 253, 0.1);
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-group {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-chip,
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-select {
+  background: rgba(15, 23, 42, 0.76) !important;
+  border-color: rgba(96, 165, 250, 0.34);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-select option {
+  background: #111827;
+  color: #f8fafc;
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-chip:hover,
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-select:hover {
+  border-color: rgba(103, 232, 249, 0.58);
+  color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .filter-chip.active {
+  background: linear-gradient(135deg, #2563eb, #0891b2) !important;
+  border-color: rgba(103, 232, 249, 0.64);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .leaderboard-btn {
+  background: rgba(59, 130, 246, 0.16) !important;
+  border-color: rgba(96, 165, 250, 0.42);
+  color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .exercise-lesson-page .leaderboard-btn:hover {
+  background: rgba(14, 165, 233, 0.22) !important;
+  border-color: rgba(103, 232, 249, 0.64);
+  color: #ffffff;
+}

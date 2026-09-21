@@ -1,0 +1,196 @@
+.app-error-page {
+  width: min(100% - 40px, 1200px);
+  margin: 0 auto;
+  padding: 24px 0;
+  min-height: 68vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.app-error-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.app-error-breadcrumb a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-error-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.app-error-breadcrumb .material-symbols-outlined {
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+.app-error-card {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 72px;
+  padding: 34px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.app-error-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: #2563eb;
+}
+
+.app-error-card--locked::before {
+  background: #f59e0b;
+}
+
+.app-error-card--service::before {
+  background: #64748b;
+}
+
+.app-error-card--not-found::before {
+  background: #0ea5e9;
+}
+
+.app-error-card--warning::before {
+  background: #ef4444;
+}
+
+.app-error-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 22px;
+  color: #2563eb;
+  background: #eff6ff;
+  border-radius: 16px;
+}
+
+.app-error-card--locked .app-error-icon {
+  color: #92400e;
+  background: #fffbeb;
+}
+
+.app-error-card--service .app-error-icon {
+  color: #475569;
+  background: #f8fafc;
+}
+
+.app-error-card--not-found .app-error-icon {
+  color: #0369a1;
+  background: #f0f9ff;
+}
+
+.app-error-card--warning .app-error-icon {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+.app-error-icon .material-symbols-outlined {
+  font-size: 32px;
+}
+
+.app-error-copy {
+  max-width: 580px;
+}
+
+.app-error-kicker {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app-error-copy h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.app-error-copy p:last-child {
+  margin: 12px 0 0;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.app-error-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.app-error-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.app-error-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  min-height: 48px;
+  padding: 0 22px;
+  color: #ffffff;
+  background: #2563eb;
+  border: none;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-error-back-btn:hover {
+  background: #1e40af;
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.22);
+  transform: translateY(-1px);
+}
+
+.app-error-back-btn .material-symbols-outlined {
+  font-size: 19px;
+}
+
+@media (max-width: 640px) {
+  .app-error-card {
+    padding: 28px 22px;
+    border-radius: 14px;
+  }
+
+  .app-error-copy h1 {
+    font-size: 23px;
+  }
+
+  .app-error-back-btn {
+    width: 100%;
+  }
+}

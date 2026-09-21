@@ -1,0 +1,93 @@
+.dashboard-teacher-container {
+  --teacher-page-bg: #f8fafc;
+  --teacher-page-glow-blue: rgba(28, 116, 233, 0.03);
+  --teacher-page-glow-violet: rgba(99, 102, 241, 0.03);
+  --teacher-card-bg: rgba(255, 255, 255, 0.8);
+  --teacher-card-border: rgba(255, 255, 255, 0.4);
+  --teacher-card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+
+  padding: 40px 5%;
+  background-color: var(--teacher-page-bg);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(at 0% 0%, var(--teacher-page-glow-blue) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--teacher-page-glow-violet) 0px, transparent 50%);
+}
+
+.dashboard-main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: var(--teacher-card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--teacher-card-border);
+  box-shadow: var(--teacher-card-shadow);
+}
+
+.dashboard-header-simple {
+  margin-bottom: 32px;
+}
+
+.dashboard-title-premium {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  letter-spacing: 0;
+}
+
+.dashboard-subtitle-premium {
+  font-size: 1.125rem;
+  color: #64748b;
+  margin: 0;
+}
+
+html[data-theme="dark"] .dashboard-teacher-container {
+  --teacher-page-bg: var(--bg-light);
+  --teacher-page-glow-blue: rgba(88, 166, 255, 0.08);
+  --teacher-page-glow-violet: rgba(167, 139, 250, 0.07);
+  --teacher-card-bg: rgba(17, 24, 39, 0.82);
+  --teacher-card-border: rgba(148, 163, 184, 0.18);
+  --teacher-card-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+
+  background-color: var(--teacher-page-bg);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .dashboard-main-content {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .dashboard-teacher-container .glass-card {
+  background: var(--teacher-card-bg);
+  border-color: var(--teacher-card-border);
+  box-shadow: var(--teacher-card-shadow);
+  color: var(--text-body);
+}
+
+@media (max-width: 1200px) {
+  .dashboard-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-teacher-container {
+    padding: 20px 15px;
+  }
+}

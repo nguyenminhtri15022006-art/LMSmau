@@ -1,0 +1,88 @@
+.edit-course-sidebar {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-title {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.sidebar-item:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+.sidebar-item.active {
+    background-color: #1a73e8;
+    color: #ffffff;
+}
+
+.sidebar-icon {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.sidebar-item.active .sidebar-icon {
+    opacity: 1;
+}
+
+/* Dark mode overrides */
+html[data-theme="dark"] .instructor-layout .edit-course-sidebar {
+    background-color: var(--surface);
+    border-color: var(--border-color);
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .instructor-layout .sidebar-title {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .sidebar-item {
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .sidebar-item:hover {
+    background-color: var(--surface-muted);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .edit-course-sidebar .sidebar-item.active {
+    background-color: var(--primary) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .instructor-layout .sidebar-item.active .sidebar-icon {
+    opacity: 1;
+}

@@ -1,0 +1,598 @@
+.white-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.sub-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.sub-card-title.mini {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.schedules-communication {
+  margin-top: 10px;
+}
+
+.schedules-comm-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.schedules-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.announcement-form textarea {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: none;
+  transition: all 0.2s;
+  color: #1e293b;
+}
+
+.announcement-form textarea:focus {
+  outline: none;
+  background: white;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.05);
+}
+
+.announcement-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.post-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.post-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.announcement-history-list {
+  max-height: 350px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 5px;
+}
+
+.announcement-history-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.announcement-history-list::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.history-item-card {
+  padding: 12px 15px;
+  background: #f8fafc;
+  border-left: 3px solid #cbd5e1;
+  border-radius: 8px;
+  position: relative;
+}
+
+.history-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.history-date {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.btn-del-ann {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px 5px;
+  transition: color 0.2s;
+}
+
+.btn-del-ann:hover {
+  color: #ef4444;
+}
+
+.history-text {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.history-attachment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.day-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.timetable-grid.stackable.full-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.day-sessions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 80px;
+}
+
+.event-box.multi {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border-left: 4px solid #22c55e;
+  background: #f0fdf4;
+}
+
+.event-header-delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.session-del-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  line-height: 0.8;
+  cursor: pointer;
+}
+
+.session-del-btn:hover {
+  color: #ef4444;
+}
+
+.event-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-time {
+  font-size: 0.7rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.event-box.empty {
+  background: #f8fafc;
+  border: 1px dashed #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.scheduler-form {
+  padding: 5px 0;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 0.85rem;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.update-cal-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1e293b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 5px;
+}
+
+.update-cal-btn:hover {
+  background: #0f172a;
+}
+
+/* ── All sessions section ── */
+.all-sessions-section {
+  margin-top: 0;
+}
+
+.all-sessions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.sessions-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.sessions-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.sessions-empty-icon {
+  font-size: 2.2rem;
+  opacity: 0.2;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sessions-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.sessions-page-btn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sessions-page-btn:hover:not(:disabled) {
+  border-color: #22c55e;
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+.sessions-page-btn.active {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: white;
+}
+
+.sessions-page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.session-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 10px;
+  background: #f8fafc;
+  overflow: hidden;
+  transition: background 0.15s;
+}
+
+.session-row:hover {
+  background: #f1f5f9;
+}
+
+.session-row-accent {
+  width: 4px;
+  align-self: stretch;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
+.session-row-body {
+  flex: 1;
+  padding: 12px 16px;
+}
+
+.session-row-title {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.session-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.session-row-arrow {
+  opacity: 0.4;
+}
+
+.session-row-note {
+  font-size: 0.77rem;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+
+
+.enrollment-health-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 25px;
+  border-radius: 20px;
+  color: white;
+  margin-top: 25px;
+}
+
+.health-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.health-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.health-val {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.health-progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.health-progress-fill {
+  height: 100%;
+  background: #3b82f6;
+}
+
+.health-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication,
+html[data-theme="dark"] .instructor-layout .schedules-communication .schedules-comm-grid,
+html[data-theme="dark"] .instructor-layout .schedules-communication .schedules-left-col,
+html[data-theme="dark"] .instructor-layout .schedules-communication .sidebar-col,
+html[data-theme="dark"] .instructor-layout .schedules-communication .sidebar-col:hover,
+html[data-theme="dark"] .instructor-layout .schedules-communication .sidebar-col:focus-within,
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-history-wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .white-card {
+  background: var(--surface) !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .sub-card-title {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .sub-card-title.mini,
+html[data-theme="dark"] .instructor-layout .schedules-communication .day-label,
+html[data-theme="dark"] .instructor-layout .schedules-communication .empty-history,
+html[data-theme="dark"] .instructor-layout .schedules-communication .sessions-empty,
+html[data-theme="dark"] .instructor-layout .schedules-communication .upcoming-schedules-empty {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-history-list {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .history-item-card {
+  background: var(--surface-muted) !important;
+  background-color: var(--surface-muted) !important;
+  border-left-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .history-text {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-body) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .history-date,
+html[data-theme="dark"] .instructor-layout .schedules-communication .session-row-meta,
+html[data-theme="dark"] .instructor-layout .schedules-communication .session-row-note,
+html[data-theme="dark"] .instructor-layout .schedules-communication .event-time {
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-form {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-top-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-form input,
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-form textarea,
+html[data-theme="dark"] .instructor-layout .schedules-communication .scheduler-form input,
+html[data-theme="dark"] .instructor-layout .schedules-communication .scheduler-form select {
+  background: var(--surface-muted) !important;
+  background-color: var(--surface-muted) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-form input::placeholder,
+html[data-theme="dark"] .instructor-layout .schedules-communication .announcement-form textarea::placeholder,
+html[data-theme="dark"] .instructor-layout .schedules-communication .scheduler-form input::placeholder {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .all-sessions-header,
+html[data-theme="dark"] .instructor-layout .schedules-communication .sessions-pagination,
+html[data-theme="dark"] .instructor-layout .schedules-communication .upcoming-schedule-item {
+  border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .sessions-list {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .session-row {
+  background: var(--surface-muted) !important;
+  background-color: var(--surface-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .session-row:hover {
+  background: var(--surface-elevated) !important;
+  background-color: var(--surface-elevated) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .session-row-body,
+html[data-theme="dark"] .instructor-layout .schedules-communication .session-row-title {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .upcoming-schedules-card,
+html[data-theme="dark"] .instructor-layout .schedules-communication .upcoming-schedule-item {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .upcoming-schedule-title {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .schedules-communication .upcoming-schedule-time {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-body) !important;
+}

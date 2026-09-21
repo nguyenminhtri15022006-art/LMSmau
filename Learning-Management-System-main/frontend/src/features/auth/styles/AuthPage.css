@@ -1,0 +1,88 @@
+/* styles/AuthPage.css */
+/* ============================
+   TRANG CHÍNH - LAYOUT 2 CỘT
+   ============================ */
+
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Layout chia đôi --- */
+.auth-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cột trái: form đăng nhập */
+.auth-form-side {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+    background-color: var(--color-bg-white);
+}
+
+.auth-form-inner {
+    width: 100%;
+    max-width: var(--form-max-width);
+}
+
+/* Cột phải: hero panel */
+.auth-hero-side {
+    display: none;
+    /* Ẩn trên mobile */
+}
+
+/* --- Responsive: Desktop --- */
+@media (min-width: 768px) {
+    .auth-layout {
+        flex-direction: row;
+    }
+
+    .auth-form-side {
+        width: 45%;
+    }
+
+    .auth-hero-side {
+        display: flex;
+        width: 55%;
+        min-height: 100vh;
+    }
+}
+
+@media (max-height: 860px) {
+    .auth-form-side {
+        padding: var(--space-6);
+        justify-content: flex-start;
+    }
+
+    .auth-form-inner {
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+        padding-right: 0.5rem;
+    }
+
+    .auth-form-inner::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+html[data-theme="dark"] .auth-layout-wrapper,
+html[data-theme="dark"] .auth-page,
+html[data-theme="dark"] .auth-layout,
+html[data-theme="dark"] .auth-form-side {
+    background-color: var(--bg-light);
+}

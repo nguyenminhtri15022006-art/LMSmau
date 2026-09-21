@@ -1,0 +1,993 @@
+.step-2-review {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.step-2-review .icon-status {
+    color: var(--primary);
+}
+
+.import-summary {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 18px 40px 0;
+    flex-wrap: wrap;
+}
+
+.summary-compact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+}
+
+.summary-compact .summary-icon {
+    color: #2563eb;
+    font-size: 22px;
+}
+
+.summary-copy {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.summary-copy strong {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1e293b;
+}
+
+.summary-copy span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.review-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: #64748b;
+    padding: 40px;
+}
+
+.review-empty .material-symbols-outlined {
+    font-size: 48px;
+}
+
+.review-empty p {
+    font-size: 16px;
+    text-align: center;
+}
+
+.review-empty-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.review-empty-actions .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    border: 1px solid #2563eb;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.review-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 400px minmax(0, 1fr);
+    gap: 0;
+    min-height: 560px;
+    margin-top: 18px;
+    border-top: 1px solid #e2e8f0;
+    align-items: start;
+}
+
+.pane-left,
+.pane-middle {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.pane-left {
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    position: sticky;
+    top: 16px;
+    align-self: start;
+    max-height: calc(100vh - 32px);
+    height: calc(100vh - 32px);
+}
+
+.pane-middle {
+    background: #f8fafc;
+    overflow: visible;
+}
+
+.pane-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    background: white;
+}
+
+.review-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.list-subtitle,
+.preview-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.05em;
+}
+
+.preview-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.review-hint {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.question-list {
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 10px;
+}
+
+.q-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-align: left;
+    background: white;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.q-item:hover {
+    border-color: #93c5fd;
+    background: #f8fafc;
+}
+
+.q-item.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.q-item.valid .icon-status {
+    color: var(--primary);
+}
+
+.q-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.q-info strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.q-info small {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.q-score {
+    margin-left: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1c74e9;
+    white-space: nowrap;
+}
+
+.review-side-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px;
+    border-top: 1px solid #e2e8f0;
+    background: white;
+}
+
+.review-side-actions .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.review-side-actions .btn-secondary {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #475569;
+}
+
+.review-side-actions .btn-secondary:hover:not(:disabled) {
+    border-color: #93c5fd;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.review-side-actions .btn-secondary .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.preview-content {
+    padding: 28px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.preview-card {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+    scroll-margin-top: 84px;
+}
+
+.preview-card.active-card {
+    border-color: #2563eb;
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.1);
+}
+
+.reuse-readonly-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    background: #eff6ff;
+    color: #1e40af;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.reuse-readonly-banner > span:nth-child(2) {
+    flex: 1;
+    min-width: 0;
+}
+
+.reuse-readonly-banner button {
+    min-height: 34px;
+    padding: 0 10px;
+    border: 1px solid #2563eb;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #1d4ed8;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.reuse-readonly-banner button:hover {
+    background: #dbeafe;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.q-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.review-card-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.review-card-controls .review-inline-field {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.btn-delete-question {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 12px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fff1f2;
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-delete-question:hover {
+    border-color: #fca5a5;
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-delete-question .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.review-card-controls label,
+.review-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.review-card-controls select,
+.review-card-controls input,
+.review-field input,
+.review-field textarea,
+.p-option input[type="text"] {
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.review-card-controls select,
+.review-card-controls input {
+    height: 38px;
+    padding: 0 10px;
+}
+
+.review-card-controls input {
+    width: 84px;
+}
+
+.review-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.review-field input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+}
+
+.review-field.compact {
+    gap: 8px;
+}
+
+.review-field.full {
+    grid-column: 1 / -1;
+}
+
+.review-card-controls select:focus,
+.review-card-controls input:focus,
+.review-field input:focus,
+.review-field textarea:focus,
+.p-option input[type="text"]:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.question-extra-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.question-extra-toolbar button {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.question-extra-toolbar button:hover,
+.question-extra-toolbar button.active {
+    background: #eff6ff;
+    border-color: #2563eb;
+    color: #1d4ed8;
+}
+
+.question-extra-toolbar button:disabled,
+.btn-question-upload:disabled,
+.btn-question-clear:disabled,
+.answer-label:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.question-extra-toolbar button:hover {
+    transform: translateY(-1px);
+}
+
+.question-extra-toolbar .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.question-extra-panel {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) minmax(260px, 1.2fr);
+    gap: 14px;
+    margin-top: 14px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.question-image-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 8px;
+    align-items: center;
+}
+
+.question-image-local-path {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.question-image-local-path.muted {
+    color: #94a3b8;
+}
+
+.btn-question-upload,
+.btn-question-clear {
+    min-height: 42px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: white;
+    color: #2563eb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-question-upload {
+    padding: 0 12px;
+    white-space: nowrap;
+}
+
+.btn-question-upload:disabled {
+    color: #94a3b8;
+    cursor: wait;
+}
+
+.btn-question-upload .material-symbols-outlined,
+.btn-question-clear .material-symbols-outlined {
+    font-size: 19px;
+}
+
+.btn-question-clear {
+    width: 42px;
+    color: #64748b;
+}
+
+.btn-question-clear:hover {
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.question-image-preview {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 16 / 9;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.question-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.preview-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.answer-editor-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.p-option {
+    padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 28px 20px minmax(0, 1fr) 32px;
+    align-items: center;
+    gap: 12px;
+    color: #475569;
+    background: white;
+}
+
+.p-option.correct {
+    border-color: #10b981;
+    background: #ecfdf5;
+}
+
+.answer-label {
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    font-weight: 800;
+    color: #64748b;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.answer-label:hover {
+    background: #dbeafe;
+    color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.p-option.correct .answer-label {
+    background: #10b981;
+    color: white;
+}
+
+.p-option input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+}
+
+.btn-remove-answer,
+.btn-add-answer {
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.btn-remove-answer {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #94a3b8;
+}
+
+.btn-remove-answer:hover:not(:disabled) {
+    color: #dc2626;
+}
+
+.btn-remove-answer:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.btn-remove-answer .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.btn-add-answer {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #ffffff;
+    color: #2563eb;
+    border: 1px dashed #93c5fd;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.btn-add-answer:hover:not(:disabled) {
+    background: #eff6ff;
+    border-color: #2563eb;
+}
+
+.btn-add-answer:disabled {
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .import-summary,
+html[data-theme="dark"] .instructor-layout .step-2-review .card-header,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls .review-inline-field,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .pane-left,
+html[data-theme="dark"] .instructor-layout .step-2-review .pane-header,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-side-actions,
+html[data-theme="dark"] .instructor-layout .step-2-review .preview-card {
+    background: var(--surface-elevated) !important;
+    background-color: var(--surface-elevated) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .pane-middle,
+html[data-theme="dark"] .instructor-layout .step-2-review .preview-content {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .review-layout {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+    border-top-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .pane-left {
+    border-right-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .pane-header,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-side-actions {
+    border-bottom-color: var(--border-color) !important;
+    border-top-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .question-list {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-item {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+    border-color: var(--border-color) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-item:hover {
+    background: var(--surface-elevated) !important;
+    background-color: var(--surface-elevated) !important;
+    border-color: rgba(88, 166, 255, 0.38) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-item.active {
+    background: rgba(88, 166, 255, 0.18) !important;
+    background-color: rgba(88, 166, 255, 0.18) !important;
+    border-color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-info strong {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-info small {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-score {
+    color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .preview-card.active-card {
+    background: var(--surface-elevated) !important;
+    background-color: var(--surface-elevated) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .summary-compact {
+    background: rgba(88, 166, 255, 0.12) !important;
+    background-color: rgba(88, 166, 255, 0.12) !important;
+    border-color: rgba(88, 166, 255, 0.34) !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .summary-copy strong {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .summary-copy span,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls .review-inline-field,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-hint,
+html[data-theme="dark"] .instructor-layout .step-2-review .answer-editor-header {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .list-subtitle,
+html[data-theme="dark"] .instructor-layout .step-2-review .preview-label {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .q-badge {
+    background: rgba(88, 166, 255, 0.16) !important;
+    background-color: rgba(88, 166, 255, 0.16) !important;
+    border: 1px solid rgba(88, 166, 255, 0.36) !important;
+    color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .reuse-readonly-banner {
+    background: rgba(88, 166, 255, 0.12) !important;
+    background-color: rgba(88, 166, 255, 0.12) !important;
+    border-color: rgba(88, 166, 255, 0.34) !important;
+    color: var(--text-label) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .question-extra-panel,
+html[data-theme="dark"] .instructor-layout .step-2-review .question-image-preview {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+    border-color: rgba(148, 163, 184, 0.24) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .question-image-local-path {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+    border-color: rgba(148, 163, 184, 0.28) !important;
+    color: var(--text-body) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .question-image-local-path.muted {
+    color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .question-extra-toolbar,
+html[data-theme="dark"] .instructor-layout .step-2-review .preview-options {
+    background: var(--surface-elevated) !important;
+    background-color: var(--surface-elevated) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls select,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls input,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field input,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field textarea,
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option input[type="text"] {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+    background-image: none !important;
+    border-color: var(--border-color) !important;
+    color: #f8fafc !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option input[type="text"] {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field textarea::placeholder,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field input::placeholder,
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option input[type="text"]::placeholder {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls select:focus,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-card-controls input:focus,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field input:focus,
+html[data-theme="dark"] .instructor-layout .step-2-review .review-field textarea:focus,
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option input[type="text"]:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.16) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .review-side-actions .btn-secondary,
+html[data-theme="dark"] .instructor-layout .step-2-review .question-extra-toolbar button,
+html[data-theme="dark"] .instructor-layout .step-2-review .btn-add-answer,
+html[data-theme="dark"] .instructor-layout .step-2-review .reuse-readonly-banner button {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+    border-color: rgba(148, 163, 184, 0.28) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .review-side-actions .btn-secondary:hover:not(:disabled),
+html[data-theme="dark"] .instructor-layout .step-2-review .question-extra-toolbar button:hover:not(:disabled),
+html[data-theme="dark"] .instructor-layout .step-2-review .question-extra-toolbar button.active,
+html[data-theme="dark"] .instructor-layout .step-2-review .btn-add-answer:hover:not(:disabled),
+html[data-theme="dark"] .instructor-layout .step-2-review .reuse-readonly-banner button:hover {
+    background: rgba(88, 166, 255, 0.16) !important;
+    background-color: rgba(88, 166, 255, 0.16) !important;
+    border-color: rgba(88, 166, 255, 0.38) !important;
+    color: #bfdbfe !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .answer-label {
+    background: var(--surface-muted) !important;
+    background-color: var(--surface-muted) !important;
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.28) !important;
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .answer-label:hover {
+    background: rgba(88, 166, 255, 0.16) !important;
+    background-color: rgba(88, 166, 255, 0.16) !important;
+    color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+    border-color: rgba(148, 163, 184, 0.24) !important;
+    color: var(--text-body) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option.correct {
+    background: rgba(16, 185, 129, 0.12) !important;
+    background-color: rgba(16, 185, 129, 0.12) !important;
+    border-color: rgba(16, 185, 129, 0.42) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .p-option.correct .answer-label {
+    background: #10b981 !important;
+    background-color: #10b981 !important;
+    box-shadow: inset 0 0 0 1px rgba(110, 231, 183, 0.42) !important;
+    color: #04130d !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .btn-delete-question {
+    background: rgba(220, 38, 38, 0.12) !important;
+    background-color: rgba(220, 38, 38, 0.12) !important;
+    border-color: rgba(248, 113, 113, 0.36) !important;
+    color: #fca5a5 !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-2-review .btn-delete-question:hover {
+    background: rgba(220, 38, 38, 0.2) !important;
+    background-color: rgba(220, 38, 38, 0.2) !important;
+    border-color: rgba(248, 113, 113, 0.58) !important;
+    color: #fecaca !important;
+}
+
+@media (max-width: 900px) {
+    .review-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .pane-left {
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        max-height: 260px;
+        height: auto;
+        position: static;
+    }
+
+    .preview-content {
+        padding: 24px 20px 32px;
+    }
+
+    .card-header,
+    .review-editor-header,
+    .answer-editor-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .question-extra-panel,
+    .question-image-row {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-question-clear {
+        width: 100%;
+    }
+}

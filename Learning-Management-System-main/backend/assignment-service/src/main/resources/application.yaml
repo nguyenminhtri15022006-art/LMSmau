@@ -1,0 +1,169 @@
+spring:
+  application:
+    name: assignment-service
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: ${FEIGN_CONNECT_TIMEOUT_MS:10000}
+            readTimeout: ${FEIGN_READ_TIMEOUT_MS:30000}
+          chatbot-service:
+            connectTimeout: ${ASSIGNMENT_CHATBOT_FEIGN_CONNECT_TIMEOUT:10000}
+            readTimeout: ${ASSIGNMENT_CHATBOT_FEIGN_READ_TIMEOUT:120000}
+  jackson:
+    time-zone: ${JACKSON_TIME_ZONE:UTC}
+  datasource:
+    url: ${ASSIGNMENT_DB_URL:jdbc:mysql://localhost:3306/assignment_lms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true}
+    username: ${ASSIGNMENT_DB_USERNAME:root}
+    password: ${ASSIGNMENT_DB_PASSWORD:mysqladmin123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      idle-timeout: 300000
+      connection-timeout: 30000
+      pool-name: AssignmentHikariPool
+      minimum-idle: 5
+      maximum-pool-size: 20
+      max-lifetime: 1200000
+      leak-detection-threshold: 60000
+  jpa:
+    show-sql: ${ASSIGNMENT_JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        #        format_sql: true
+        default_batch_fetch_size: 100
+        jdbc:
+          time_zone: ${HIBERNATE_JDBC_TIME_ZONE:UTC}
+        connection:
+          autocommit: false
+        hibernate.jdbc.batch_size: 50
+        hibernate.order_inserts: true
+        hibernate.hibernate.order_updates: true
+        hibernate.generate_statistics: ${ASSIGNMENT_HIBERNATE_GENERATE_STATISTICS:false}
+
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-version: 1
+    baseline-on-migrate: true
+    sql-migration-prefix: V
+    sql-migration-separator: __
+
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: false
+        default-page-size: 20
+        max-page-size: 100
+
+    mongodb:
+      uri: ${ASSIGNMENT_MONGODB_URI:mongodb://mongoadmin:mongoadmin123@localhost:27017/assignment_lms_mongo?authSource=admin}
+      web:
+        pageable:
+          one-indexed-parameters: false
+          default-page-size: 20
+          max-page-size: 100
+
+
+
+server:
+  port: ${ASSIGNMENT_SERVICE_PORT:8083}
+  servlet:
+    context-path: /assignment
+
+# ===== Eureka =====
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+services:
+  course-service:
+    url: ${COURSE_SERVICE_URL:http://localhost:8082/course}
+  identity-service:
+    url: ${IDENTITY_SERVICE_URL:http://localhost:8081/identity}
+
+  # ============================================================
+  # Judge Engine Config
+  # Chỉ cần đổi judge.engine để chuyển máy chấm
+  # ============================================================
+
+judge:
+  # Chọn engine: "judge0" | "custom"
+  engine: ${JUDGE_ENGINE:judge0}
+
+  judge0:
+    base-url: ${JUDGE0_URL:yourremotejudge.com}
+    api-key: ${JUDGE0_API_KEY:yourapikey}
+    max-poll-attempts: ${JUDGE0_MAX_POLL_ATTEMPTS:30}
+    poll-interval-ms: ${JUDGE0_POLL_INTERVAL_MS:2000}
+
+  custom:
+    base-url: ${CUSTOM_JUDGE_URL:}
+    api-key: ${CUSTOM_JUDGE_API_KEY:}
+    max-poll-attempts: ${CUSTOM_JUDGE_MAX_POLL_ATTEMPTS:10}
+    poll-interval-ms: ${CUSTOM_JUDGE_POLL_INTERVAL_MS:2000}
+
+quiz:
+  abandoned-threshold-days: ${QUIZ_ABANDONED_THRESHOLD_DAYS:7}
+  ai:
+    source-content-max-length: ${QUIZ_AI_SOURCE_CONTENT_MAX_LENGTH:10000}
+    test-case-max-count: ${QUIZ_AI_TEST_CASE_MAX_COUNT:50}
+  cleanup:
+    expired-cron: "${QUIZ_CLEANUP_EXPIRED_CRON:0 * * * * *}"
+    abandoned-cron: "${QUIZ_CLEANUP_ABANDONED_CRON:0 0 * * * *}"
+    page-size: ${QUIZ_CLEANUP_PAGE_SIZE:100}
+
+assignment:
+  async:
+    judge:
+      core-pool-size: ${ASSIGNMENT_JUDGE_CORE_POOL_SIZE:4}
+      max-pool-size: ${ASSIGNMENT_JUDGE_MAX_POOL_SIZE:8}
+      queue-capacity: ${ASSIGNMENT_JUDGE_QUEUE_CAPACITY:100}
+      thread-name-prefix: ${ASSIGNMENT_JUDGE_THREAD_NAME_PREFIX:judge-}
+  cleanup:
+    submission-stuck-cron: "${ASSIGNMENT_SUBMISSION_STUCK_CLEANUP_CRON:0 */5 * * * *}"
+    submission-stuck-threshold-minutes: ${ASSIGNMENT_SUBMISSION_STUCK_THRESHOLD_MINUTES:10}
+    counter-sync-cron: "${ASSIGNMENT_COUNTER_SYNC_CRON:0 0 3 * * *}"
+  import:
+    test-case-max-file-size-bytes: ${ASSIGNMENT_TEST_CASE_IMPORT_MAX_FILE_SIZE_BYTES:10485760}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      group:
+        liveness:
+          include: ping
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      cors:
+        allowed-origins:
+          - "${FRONTEND_URL:http://localhost:5173}"
+        allowed-methods:
+          - GET
+
+
+# ===== MinIO =====
+minio:
+  url: ${MINIO_URL:http://localhost:9000}
+  public-url: ${MINIO_PUBLIC_URL:http://localhost:9000}
+  access-key: ${MINIO_ACCESS_KEY:minioadmin}
+  secret-key: ${MINIO_SECRET_KEY:minioadmin123}
+  bucket-name: ${MINIO_ASSIGNMENT_BUCKET:lms-assignment-bucket}
+  max-file-size-bytes: ${MINIO_ASSIGNMENT_MAX_FILE_SIZE_BYTES:5242880}
+  presigned-expiry-minutes: ${MINIO_ASSIGNMENT_PRESIGNED_EXPIRY_MINUTES:5}
+
+logging:
+  level:
+    com.lms.assignmentservice: ${ASSIGNMENT_LOG_LEVEL:INFO}

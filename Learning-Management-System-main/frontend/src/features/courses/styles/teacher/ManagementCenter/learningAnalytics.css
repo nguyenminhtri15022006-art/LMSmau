@@ -1,0 +1,165 @@
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+
+.performance-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.mini-stat-card {
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.mini-stat-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.mini-stat-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.mini-stat-value.green { color: #10b981; }
+
+.chart-placeholder-container {
+  height: 250px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 15px;
+  position: relative;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.bar-visual-group {
+  display: flex;
+  width: 30px;
+  height: 200px;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.bar-segment {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+}
+
+.bar-segment.code { background: #3b82f6; }
+.bar-segment.quiz { background: #cbd5e1; }
+
+.bar-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+.legend-dot.code { background: #3b82f6; }
+.legend-dot.quiz { background: #cbd5e1; }
+
+/* Rank Table */
+.rank-table-container {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+
+.rank-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rank-table th {
+  padding: 12px;
+  text-align: left;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rank-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.85rem;
+}
+
+.rank-cell { font-weight: 800; color: #64748b; }
+
+.student-info-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mini-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.grade-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+.grade-a { background: #dcfce7; color: #166534; }
+.grade-b { background: #fef9c3; color: #854d0e; }
+.grade-c { background: #fee2e2; color: #b91c1c; }
+
+.progress-bar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .instructor-layout .learning-analytics .progress-bar-track {
+  background: var(--surface-muted);
+}
+
+@media (max-width: 992px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # 1. DATABASE MYSQL (Cho Identity, Assignment, Blog)
+  mysql-db:
+    image: mysql:8.0
+    container_name: lms-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqladmin123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_master_data:/var/lib/mysql
+    networks:
+      - db-network
+
+  # 2. DATABASE MONGODB (Cho Course, Assignment)
+  mongo-db:
+    image: mongo:7.0
+    container_name: lms-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: mongoadmin123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_master_data:/data/db
+    networks:
+      - db-network
+
+  # 3. MINIO (Object Storage lưu Video/Ảnh thay thế cho AWS S3)
+  minio-storage:
+    image: minio/minio:latest
+    container_name: lms-minio
+    restart: always
+    ports:
+      - "9000:9000"       # Cổng API cho Backend gọi
+      - "9001:9001"       # Cổng Giao diện Web (Dashboard) để bạn vào xem file
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    volumes:
+      - ./minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - db-network
+
+  # 4. REDIS (Lưu Cache dữ liệu đọc nhiều)
+  redis-cache:
+    image: redis:7.2-alpine
+    container_name: lms-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass redisadmin123
+    volumes:
+      - redis_master_data:/data
+    networks:
+      - db-network
+
+volumes:
+  mysql_master_data:
+  mongo_master_data:
+  redis_master_data:
+
+networks:
+  db-network:
+    driver: bridge

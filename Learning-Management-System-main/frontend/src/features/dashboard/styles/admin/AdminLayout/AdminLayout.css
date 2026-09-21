@@ -1,0 +1,35 @@
+/* d:\Hoc\Project\Learning-Management-System\frontend\src\features\dashboard\styles\admin\AdminLayout.css */
+
+.admin-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.admin-main {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--admin-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-content-area {
+  padding: 24px;
+  animation: adminFadeIn 0.3s ease-out;
+}
+
+@keyframes adminFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.admin-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+@media (max-width: 1024px) {
+  .admin-grid-2, .admin-grid-3 { grid-template-columns: 1fr; }
+}

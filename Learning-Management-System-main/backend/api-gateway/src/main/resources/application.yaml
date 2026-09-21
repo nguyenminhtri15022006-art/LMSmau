@@ -1,0 +1,343 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  prefix-api: /api
+
+# ===== JWT Config =====
+jwt:
+  signer-key: ${JWT_SIGNER_KEY:yJTHpt18uThscnn2pXCGIhoXbv55gBLQF4bWZJKQDPVuny0bigzI2LAWWy0bBXki}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: ${GATEWAY_HTTP_CONNECT_TIMEOUT_MS:10000}
+        response-timeout: ${GATEWAY_HTTP_RESPONSE_TIMEOUT:30s}
+      routes:
+        # ===== Public actuator health endpoints for admin dashboard =====
+        - id: identity-health
+          uri: ${GATEWAY_IDENTITY_HEALTH_URI:lb://identity-service}
+          order: -100
+          predicates:
+            - Path=${app.prefix-api}/identity/actuator/**
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+
+        - id: course-health
+          uri: ${GATEWAY_COURSE_HEALTH_URI:lb://course-service}
+          order: -100
+          predicates:
+            - Path=${app.prefix-api}/course/actuator/**
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+
+        - id: assignment-health
+          uri: ${GATEWAY_ASSIGNMENT_HEALTH_URI:lb://assignment-service}
+          order: -100
+          predicates:
+            - Path=${app.prefix-api}/assignment/actuator/**
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+
+        - id: blog-health
+          uri: ${GATEWAY_BLOG_HEALTH_URI:lb://blog-service}
+          order: -100
+          predicates:
+            - Path=${app.prefix-api}/blog/actuator/**
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+
+        - id: chatbot-health
+          uri: ${GATEWAY_CHATBOT_HEALTH_URI:lb://chatbot-service}
+          order: -100
+          predicates:
+            - Path=${app.prefix-api}/chatbot/actuator/**
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+
+        # ===== Identity Service =====
+        - id: identity-public
+          uri: lb://identity-service
+          predicates:
+            - Path=${app.prefix-api}/identity/auth/**
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization   # Strip JWT trước khi forward
+          # Không có AuthFilter — public endpoint
+
+        - id: identity-public-profile
+          uri: lb://identity-service
+          predicates:
+            - Path=${app.prefix-api}/identity/users/*/profile
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+            - RemoveRequestHeader=X-User-Id
+            - RemoveRequestHeader=X-User-Role
+            - RemoveRequestHeader=X-User-Email
+            - RemoveRequestHeader=X-Gateway-Authenticated
+
+        - id: identity-private
+          uri: lb://identity-service
+          predicates:
+            - Path=${app.prefix-api}/identity/users/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter   # Verify JWT, inject headers
+            - name: CircuitBreaker
+              args:
+                name: identityServiceCircuitBreaker
+                fallbackUri: forward:/fallback/identity-service
+
+        - id: identity-admin
+          uri: lb://identity-service
+          predicates:
+            - Path=${app.prefix-api}/identity/admin/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: identityServiceCircuitBreaker
+                fallbackUri: forward:/fallback/identity-service
+
+        - id: identity-storage
+          uri: lb://identity-service
+          predicates:
+            - Path=${app.prefix-api}/identity/storage/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: identityServiceCircuitBreaker
+                fallbackUri: forward:/fallback/identity-service
+
+        #       storage (MinIO presigned URLs, course-service)
+        - id: storage-service
+          uri: lb://course-service
+          predicates:
+            - Path=${app.prefix-api}/storage/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: courseServiceCircuitBreaker
+                fallbackUri: forward:/fallback/course-service
+
+        - id: course-private-read-shortcuts
+          uri: lb://course-service
+          order: -30
+          predicates:
+            - Path=${app.prefix-api}/course/courses/my,${app.prefix-api}/course/courses/enrolled
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: courseServiceCircuitBreaker
+                fallbackUri: forward:/fallback/course-service
+
+        - id: course-public-read
+          uri: lb://course-service
+          order: -20
+          predicates:
+            - Path=${app.prefix-api}/course/categories,${app.prefix-api}/course/courses,${app.prefix-api}/course/courses/*,${app.prefix-api}/course/courses/*/students/count,${app.prefix-api}/course/courses/*/lessons/count,${app.prefix-api}/course/courses/*/structure,${app.prefix-api}/course/courses/*/structure/lessons
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+            - RemoveRequestHeader=X-User-Id
+            - RemoveRequestHeader=X-User-Role
+            - RemoveRequestHeader=X-User-Email
+            - RemoveRequestHeader=X-Gateway-Authenticated
+
+        #       course-service
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=${app.prefix-api}/course/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: courseServiceCircuitBreaker
+                fallbackUri: forward:/fallback/course-service
+
+        #       assignment-service AI preview endpoints (long-running)
+        - id: assignment-quiz-ai-service
+          uri: lb://assignment-service
+          order: -20
+          predicates:
+            - Path=${app.prefix-api}/assignment/questions/courses/*/ai-generate/preview
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: assignmentAiServiceCircuitBreaker
+                fallbackUri: forward:/fallback/assignment-service
+
+        - id: assignment-testcase-ai-service
+          uri: lb://assignment-service
+          order: -20
+          predicates:
+            - Path=${app.prefix-api}/assignment/problems/testcases/ai-generate/preview
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: assignmentAiServiceCircuitBreaker
+                fallbackUri: forward:/fallback/assignment-service
+
+        #       assignment-service
+        - id: assignment-service
+          uri: lb://assignment-service
+          order: 0
+          predicates:
+            - Path=${app.prefix-api}/assignment/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: assignmentServiceCircuitBreaker
+                fallbackUri: forward:/fallback/assignment-service
+
+        #       blog-service public endpoints
+        - id: blog-public
+          uri: lb://blog-service
+          predicates:
+            - Path=${app.prefix-api}/blog/posts/public,${app.prefix-api}/blog/posts/public/**,${app.prefix-api}/blog/tags,${app.prefix-api}/blog/tags/search,${app.prefix-api}/blog/posts/*/comments
+            - Method=GET
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Authorization
+            - RemoveRequestHeader=X-User-Id
+            - RemoveRequestHeader=X-User-Role
+            - RemoveRequestHeader=X-User-Email
+            - RemoveRequestHeader=X-Gateway-Authenticated
+
+        #       blog-service private endpoints
+        - id: blog-service
+          uri: lb://blog-service
+          predicates:
+            - Path=${app.prefix-api}/blog/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: blogServiceCircuitBreaker
+                fallbackUri: forward:/fallback/blog-service
+
+        - id: chatbot-service
+          uri: lb://chatbot-service
+          predicates:
+            - Path=${app.prefix-api}/chatbot/**
+          filters:
+            - StripPrefix=1
+            - AuthFilter
+            - name: CircuitBreaker
+              args:
+                name: chatbotServiceCircuitBreaker
+                fallbackUri: forward:/fallback/chatbot-service
+
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+              - "${FRONTEND_URL:http://localhost:5173}"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowed-headers:
+              - "*"
+              - "Content-Type"
+              - "Authorization"
+            allow-credentials: true
+            max-age: 3600
+            exposed-headers:
+              - "Authorization"
+              - "Content-Type"
+
+# ===== Eureka =====
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+# ===== Resilience4j cho Gateway =====
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: ${GATEWAY_CIRCUIT_SLIDING_WINDOW_SIZE:10}
+        minimum-number-of-calls: ${GATEWAY_CIRCUIT_MINIMUM_CALLS:5}
+        failure-rate-threshold: ${GATEWAY_CIRCUIT_FAILURE_RATE_THRESHOLD:50}
+        wait-duration-in-open-state: ${GATEWAY_CIRCUIT_WAIT_DURATION:10s}
+        permitted-number-of-calls-in-half-open-state: ${GATEWAY_CIRCUIT_HALF_OPEN_CALLS:3}
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: ${GATEWAY_CIRCUIT_TIMEOUT:10s}
+    instances:
+      assignmentServiceCircuitBreaker:
+        timeout-duration: ${GATEWAY_ASSIGNMENT_CIRCUIT_TIMEOUT:15s}
+      assignmentAiServiceCircuitBreaker:
+        timeout-duration: ${GATEWAY_ASSIGNMENT_AI_CIRCUIT_TIMEOUT:130s}
+      chatbotServiceCircuitBreaker:
+        timeout-duration: ${GATEWAY_CHATBOT_CIRCUIT_TIMEOUT:130s}
+      courseServiceCircuitBreaker:
+        timeout-duration: ${GATEWAY_STORAGE_CIRCUIT_TIMEOUT:15s}
+
+# ===== Logging =====
+logging:
+  level:
+    org.springframework.cloud.gateway: ${API_GATEWAY_SPRING_CLOUD_GATEWAY_LOG_LEVEL:INFO}
+    com.lms.apigateway: ${API_GATEWAY_LOG_LEVEL:INFO}
+    reactor.netty: ${API_GATEWAY_REACTOR_NETTY_LOG_LEVEL:INFO}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      group:
+        liveness:
+          include: ping
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      cors:
+        allowed-origins:
+          - "${FRONTEND_URL:http://localhost:5173}"
+        allowed-methods:
+          - GET

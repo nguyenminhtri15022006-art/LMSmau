@@ -1,0 +1,108 @@
+/* Shared Layout for Blog */
+.blog-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    font-family: 'Inter', sans-serif;
+    background-color: transparent;
+}
+
+.blog-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+@media (max-width: 1024px) {
+    .blog-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar Components */
+.blog-sidebar-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+html[data-theme="dark"] .instructor-layout .blog-hub-sidebar {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+    background-clip: padding-box;
+    border-color: var(--border-color) !important;
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .sidebar-title,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-posts-list,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-post-item,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-post-item:hover,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-info,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-author,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-author-main,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-views {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .sidebar-title,
+html[data-theme="dark"] .instructor-layout .blog-sidebar-card .popular-title {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-hub-sidebar,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .sidebar-title,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-posts-list,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-post-item,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-info,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-author,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-author-main,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-views {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+    border-color: rgba(96, 165, 250, 0.44) !important;
+    color: var(--text-body);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(147, 197, 253, 0.16);
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .sidebar-title,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-title {
+    color: var(--text-dark) !important;
+}
+
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-author,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-author-name,
+html[data-theme="dark"] :is(.student-layout, .instructor-layout) .blog-sidebar-card .popular-views {
+    color: var(--text-muted) !important;
+}

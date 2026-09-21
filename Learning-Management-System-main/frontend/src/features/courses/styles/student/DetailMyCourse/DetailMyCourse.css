@@ -1,0 +1,841 @@
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.fill-icon {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* ── Page shell ─────────────────────────────────────────────────── */
+
+.detail-my-course-page {
+    min-height: calc(100vh - 6rem);
+    background: #f1f5f9;
+    color: #0f172a;
+    position: relative;
+}
+
+.detail-my-course-page__header {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0;
+}
+
+.detail-my-course-page__main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem 4rem;
+}
+
+/* ── Layout grid ────────────────────────────────────────────────── */
+
+.detail-my-course-page__layout {
+    display: grid;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+    .detail-my-course-page__layout {
+        grid-template-columns: minmax(0, 1fr) 22rem;
+    }
+}
+
+/* ── Viewer card (left column) ──────────────────────────────────── */
+
+.detail-my-course-page__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.dmc-viewer-card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+/* ── Breadcrumb ──────────────────────────────────────────────────── */
+
+.ch-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #94a3b8;
+    flex-wrap: wrap;
+}
+
+.ch-breadcrumb a {
+    color: #1c74e9;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+}
+
+.ch-breadcrumb a:hover {
+    color: #1558b8;
+}
+
+.ch-breadcrumb-sep {
+    display: flex;
+    align-items: center;
+    color: #cbd5e1;
+}
+
+.ch-breadcrumb-sep .material-symbols-outlined {
+    font-size: 16px !important;
+}
+
+.ch-breadcrumb .ch-breadcrumb-current {
+  color: #94a3b8;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+/* ── Lesson viewer container ─────────────────────────────────────── */
+
+.dmc-lesson-viewer {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Video player ────────────────────────────────────────────────── */
+
+.dmc-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #000;
+}
+
+.dmc-video-iframe,
+.dmc-video-native {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.dmc-video-native {
+    background: #000;
+}
+
+/* ── Document viewer ─────────────────────────────────────────────── */
+
+.dmc-document-wrapper {
+    width: 100%;
+}
+
+.dmc-doc-iframe {
+    width: 100%;
+    height: 680px;
+    border: none;
+    display: block;
+}
+
+.dmc-doc-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    gap: 12px;
+    text-align: center;
+    background: #f8fafc;
+}
+
+.dmc-doc-icon {
+    font-size: 56px !important;
+    color: #16a34a;
+}
+
+.dmc-doc-filename {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.dmc-doc-hint {
+    font-size: 0.875rem;
+    color: #64748b;
+    max-width: 360px;
+}
+
+.dmc-doc-open-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: #3b82f6;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.dmc-doc-open-btn:hover {
+    background: #2563eb;
+}
+
+/* ── Lesson info ──────────────────────────────────────────────────── */
+
+.dmc-lesson-info {
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dmc-lesson-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px;
+}
+
+.dmc-lesson-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Media placeholder ───────────────────────────────────────────── */
+
+.dmc-media-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+    background: #f8fafc;
+    color: #94a3b8;
+    gap: 12px;
+}
+
+.dmc-media-placeholder .material-symbols-outlined {
+    font-size: 48px !important;
+}
+
+/* ── Special lesson (LIVE_CLASS / unknown) ───────────────────────── */
+
+.dmc-special-lesson {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 24px;
+    gap: 14px;
+    text-align: center;
+    background: #f8fafc;
+}
+
+.dmc-special-icon {
+    font-size: 52px !important;
+    color: #3b82f6;
+}
+
+.dmc-special-lesson h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.dmc-hint-text {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.dmc-meeting-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #3b82f6;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.dmc-meeting-btn:hover {
+    background: #2563eb;
+}
+
+/* ── Completion panel ─────────────────────────────────────────────── */
+
+.dmc-completion-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: #fff;
+    border-top: 1px solid #e2e8f0;
+}
+
+.dmc-completion-panel--done {
+    background: #f0fdf4;
+    border-top-color: #bbf7d0;
+}
+
+.dmc-completion-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.dmc-done-check {
+    font-size: 22px !important;
+    color: #16a34a;
+    flex-shrink: 0;
+}
+
+.dmc-completion-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #166534;
+}
+
+.dmc-complete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.dmc-complete-btn:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.dmc-complete-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.dmc-next-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    color: #334155;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.dmc-next-btn:hover {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+
+.dmc-btn-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Document content (text fallback) ────────────────────────────── */
+
+.dmc-document-content {
+    padding: 24px;
+    background: #f8fafc;
+    min-height: 300px;
+}
+
+.dmc-document-content pre {
+    white-space: pre-wrap;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #334155;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ── Navigation bar ─────────────────────────────────────────────── */
+
+.dmc-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4px;
+}
+
+.dmc-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dmc-nav-btn:hover:not(:disabled) {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+
+.dmc-nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.dmc-nav-count {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────────── */
+
+.detail-my-course-page__sidebar {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+}
+
+/* Sidebar header */
+
+.dmc-sidebar-header {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    flex-shrink: 0;
+}
+
+.dmc-sidebar-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.dmc-sidebar-header h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.dmc-progress-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.dmc-progress-bar-track {
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.dmc-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.dmc-progress-pct {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Sidebar list */
+
+.dmc-sidebar-list {
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Folder */
+
+.dmc-sidebar-folder {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dmc-sidebar-folder-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px 14px 10px calc(14px + var(--indent, 0) * 14px);
+    background: #f8fafc;
+    border: none;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.dmc-sidebar-folder-btn:hover {
+    background: #f1f5f9;
+}
+
+.dmc-sidebar-folder-btn.open {
+    background: #f1f5f9;
+}
+
+.dmc-folder-chevron {
+    font-size: 18px !important;
+    color: #94a3b8;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.dmc-folder-icon {
+    font-size: 18px !important;
+    color: #f59e0b;
+    flex-shrink: 0;
+}
+
+.dmc-folder-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dmc-folder-count {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #94a3b8;
+    background: #e2e8f0;
+    border-radius: 20px;
+    padding: 1px 8px;
+    flex-shrink: 0;
+}
+
+.dmc-folder-children {
+    /* children are indented via CSS var on each child */
+}
+
+/* Lesson item */
+
+.dmc-sidebar-lesson {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 14px 9px calc(14px + var(--indent, 0) * 14px);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #f8fafc;
+    text-align: left;
+    font-size: 0.82rem;
+    color: #475569;
+    cursor: pointer;
+    transition: background 0.15s;
+    min-height: 44px;
+}
+
+.dmc-sidebar-lesson:hover {
+    background: #f8fafc;
+}
+
+.dmc-sidebar-lesson.active {
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 600;
+}
+
+.dmc-sidebar-lesson.active .dmc-lesson-type-icon {
+    opacity: 1;
+}
+
+.dmc-sidebar-lesson.completed {
+    color: #64748b;
+}
+
+.dmc-sidebar-lesson-title {
+    flex: 1;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Lesson type icon badge */
+
+.dmc-lesson-type-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #f1f5f9;
+    opacity: 0.85;
+}
+
+.dmc-lesson-type-icon .material-symbols-outlined {
+    font-size: 16px !important;
+}
+
+.dmc-lesson-type-icon.video {
+    background: #dbeafe;
+    color: #3b82f6;
+}
+
+.dmc-lesson-type-icon.document {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.dmc-lesson-type-icon.quiz {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.dmc-lesson-type-icon.coding {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+.dmc-lesson-type-icon.live_class {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.dmc-done-icon {
+    font-size: 16px !important;
+    color: #16a34a;
+    flex-shrink: 0;
+}
+
+.dmc-sidebar-empty {
+    padding: 32px 20px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.875rem;
+}
+
+/* ── Toast notification ──────────────────────────────────────────── */
+
+.dmc-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+}
+
+.dmc-toast--success {
+    background: #166534;
+    color: #fff;
+}
+
+.dmc-toast--error {
+    background: #991b1b;
+    color: #fff;
+}
+
+.dmc-toast .material-symbols-outlined {
+    font-size: 18px !important;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(16px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ── Loading / Error / Empty states ─────────────────────────────── */
+
+.dmc-lesson-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 16px;
+    color: #64748b;
+    background: #fff;
+}
+
+.admin-loading-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e2e8f0;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.dmc-no-lesson {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 12px;
+    color: #94a3b8;
+    text-align: center;
+}
+
+.dmc-no-lesson .material-symbols-outlined {
+    font-size: 48px !important;
+}
+
+.dmc-no-lesson p {
+    font-size: 0.9rem;
+    margin: 0;
+    max-width: 280px;
+}
+
+.dmc-error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 16px;
+    text-align: center;
+    color: #64748b;
+}
+
+.dmc-error-state .material-symbols-outlined {
+    font-size: 48px !important;
+    color: #ef4444;
+}
+
+.dmc-error-state a {
+    padding: 10px 20px;
+    background: #3b82f6;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ── Skeletons ──────────────────────────────────────────────────── */
+
+@keyframes shimmer {
+    0% {
+        background-position: -400% 0;
+    }
+    100% {
+        background-position: 400% 0;
+    }
+}
+
+.dmc-skeleton-header {
+    height: 56px;
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.5s infinite;
+    margin: 24px auto;
+    max-width: 1440px;
+    border-radius: 8px;
+}
+
+.dmc-skeleton-body {
+    display: grid;
+    grid-template-columns: 1fr 22rem;
+    gap: 1.25rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.dmc-skeleton-main,
+.dmc-skeleton-sidebar {
+    border-radius: 1rem;
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.dmc-skeleton-main {
+    height: 520px;
+}
+
+.dmc-skeleton-sidebar {
+    height: 420px;
+}

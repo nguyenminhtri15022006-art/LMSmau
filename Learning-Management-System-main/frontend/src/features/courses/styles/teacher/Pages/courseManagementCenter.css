@@ -1,0 +1,144 @@
+.management-center-container {
+  padding: 40px 5%;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.center-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.center-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.center-header-info .breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 5px;
+}
+
+.center-header-info .breadcrumbs a {
+  color: #1c74e9;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.center-header-info .breadcrumbs a:hover {
+  color: #1558b8;
+  text-decoration: underline;
+}
+
+.center-header-info h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 5px 0;
+}
+
+.center-header-info p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.center-header-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-settings {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.btn-google-meet {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-google-meet:hover {
+  background: #2563eb;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.center-sections-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+html[data-theme="dark"] .instructor-layout .management-center-container {
+  background-color: var(--bg-light) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .management-center-container .center-inner,
+html[data-theme="dark"] .instructor-layout .management-center-container .center-inner:hover,
+html[data-theme="dark"] .instructor-layout .management-center-container .center-inner:focus-within,
+html[data-theme="dark"] .instructor-layout .management-center-container .center-sections-gap,
+html[data-theme="dark"] .instructor-layout .management-center-container .center-sections-gap:hover,
+html[data-theme="dark"] .instructor-layout .management-center-container .center-sections-gap:focus-within {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .management-center-container .section-title {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .management-center-container .btn-settings {
+  background: var(--surface-muted) !important;
+  background-color: var(--surface-muted) !important;
+  background-image: none !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-dark) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .management-center-container .btn-settings:hover,
+html[data-theme="dark"] .instructor-layout .management-center-container .btn-settings:focus-visible {
+  background: var(--surface-elevated) !important;
+  background-color: var(--surface-elevated) !important;
+  border-color: rgba(88, 166, 255, 0.42) !important;
+  color: var(--primary) !important;
+}

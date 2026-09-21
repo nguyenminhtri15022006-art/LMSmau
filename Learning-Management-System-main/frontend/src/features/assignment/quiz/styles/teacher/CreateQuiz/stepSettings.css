@@ -1,0 +1,411 @@
+/* Step 3: Settings */
+.step-3-settings {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.step-3-settings .settings-section {
+    margin-bottom: 40px;
+}
+
+.step-3-settings .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.step-3-settings .section-title .material-symbols-outlined {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #2563eb;
+    font-size: 20px;
+}
+
+.step-3-settings .settings-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 32px;
+}
+
+.step-3-settings .form-group {
+    margin-bottom: 20px;
+}
+
+.step-3-settings .form-group.full-width {
+    width: 100%;
+}
+
+.step-3-settings .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.step-3-settings .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1e293b;
+    transition: all 0.2s;
+}
+
+.step-3-settings .form-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.step-3-settings .settings-textarea {
+    min-height: 96px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.step-3-settings .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.step-3-settings .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+    padding: 0;
+}
+
+.step-3-settings .input-with-suffix {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.step-3-settings .input-with-suffix input {
+    padding-right: 48px;
+}
+
+.step-3-settings .suffix {
+    position: absolute;
+    right: 16px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* Radio Group */
+.step-3-settings .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+}
+
+.step-3-settings .radio-option {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.step-3-settings .radio-option.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.step-3-settings .radio-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.step-3-settings .radio-content p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Rules Toggle */
+.step-3-settings .rules-list {
+    padding: 0;
+}
+
+.step-3-settings .rule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.step-3-settings .rule-item.border-none {
+    border-bottom: none;
+}
+
+.step-3-settings .rule-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.step-3-settings .rule-info p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.step-3-settings .toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.step-3-settings .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.step-3-settings .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.step-3-settings .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.step-3-settings .toggle-switch input:checked + .slider {
+    background-color: #2563eb;
+}
+
+.step-3-settings .toggle-switch input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.step-3-settings .settings-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.step-3-settings .btn-primary,
+.step-3-settings .btn-secondary {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.step-3-settings .btn-primary.large,
+.step-3-settings .btn-secondary.large {
+    padding: 14px 32px;
+    font-size: 16px;
+}
+
+.step-3-settings .btn-secondary {
+    background: white;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+}
+
+.step-3-settings .btn-primary {
+    border: 1px solid #2563eb;
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+}
+
+.step-3-settings .btn-secondary:hover:not(:disabled) {
+    border-color: #bfdbfe;
+    background: #eff6ff;
+    color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.step-3-settings .btn-primary:hover:not(:disabled) {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.step-3-settings .btn-secondary:disabled,
+.step-3-settings .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.step-3-settings .btn-secondary.dark {
+    background: white;
+    color: #0f172a;
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings,
+html[data-theme="dark"] .instructor-layout .step-3-settings .settings-section,
+html[data-theme="dark"] .instructor-layout .step-3-settings .settings-grid,
+html[data-theme="dark"] .instructor-layout .step-3-settings .form-row,
+html[data-theme="dark"] .instructor-layout .step-3-settings .input-with-suffix {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .section-title {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .section-title .material-symbols-outlined {
+    background: rgba(88, 166, 255, 0.14);
+    color: var(--primary);
+    box-shadow: inset 0 0 0 1px rgba(88, 166, 255, 0.32);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .settings-card,
+html[data-theme="dark"] .instructor-layout .step-3-settings .radio-group,
+html[data-theme="dark"] .instructor-layout .step-3-settings .rules-list {
+    background: var(--surface) !important;
+    background-color: var(--surface) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .form-group label,
+html[data-theme="dark"] .instructor-layout .step-3-settings .radio-content h4,
+html[data-theme="dark"] .instructor-layout .step-3-settings .rule-info h4 {
+    color: var(--text-label);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .radio-content p,
+html[data-theme="dark"] .instructor-layout .step-3-settings .rule-info p,
+html[data-theme="dark"] .instructor-layout .step-3-settings .suffix {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .form-input,
+html[data-theme="dark"] .instructor-layout .step-3-settings .settings-textarea {
+    background: var(--surface-muted);
+    border-color: rgba(148, 163, 184, 0.28);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .form-input::placeholder,
+html[data-theme="dark"] .instructor-layout .step-3-settings .settings-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .form-input:focus,
+html[data-theme="dark"] .instructor-layout .step-3-settings .settings-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.16);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .radio-option {
+    background: var(--surface-muted);
+    border-color: rgba(148, 163, 184, 0.24);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .radio-option:hover {
+    border-color: rgba(88, 166, 255, 0.42);
+    background: var(--surface-elevated);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .radio-option.active {
+    background: rgba(88, 166, 255, 0.14);
+    border-color: rgba(88, 166, 255, 0.52);
+    box-shadow: inset 0 0 0 1px rgba(88, 166, 255, 0.12);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .rule-item {
+    border-bottom-color: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .slider {
+    background-color: var(--surface-muted);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.28);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .slider:before {
+    background-color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .toggle-switch input:checked + .slider {
+    background-color: var(--primary);
+    box-shadow: inset 0 0 0 1px rgba(88, 166, 255, 0.52);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .toggle-switch input:checked + .slider:before {
+    background-color: #07111f;
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .btn-secondary,
+html[data-theme="dark"] .instructor-layout .step-3-settings .btn-secondary.dark {
+    background: var(--surface-muted);
+    border-color: rgba(148, 163, 184, 0.28);
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .btn-secondary:hover:not(:disabled),
+html[data-theme="dark"] .instructor-layout .step-3-settings .btn-secondary.dark:hover:not(:disabled) {
+    background: rgba(88, 166, 255, 0.14);
+    border-color: rgba(88, 166, 255, 0.42);
+    color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .step-3-settings .btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
+    border-color: var(--primary);
+    color: #07111f;
+    box-shadow: 0 12px 24px rgba(88, 166, 255, 0.18);
+}
+
+@media (max-width: 760px) {
+    .step-3-settings .form-row,
+    .step-3-settings .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-3-settings .settings-actions,
+    .step-3-settings .btn-primary,
+    .step-3-settings .btn-secondary {
+        width: 100%;
+    }
+}

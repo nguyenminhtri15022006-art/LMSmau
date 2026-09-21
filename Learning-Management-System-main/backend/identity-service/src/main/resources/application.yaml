@@ -1,0 +1,152 @@
+server:
+  port: ${IDENTITY_SERVICE_PORT:8081}
+  servlet:
+    context-path: /identity
+
+spring:
+  application:
+    name: identity-service
+
+  jackson:
+    time-zone: ${JACKSON_TIME_ZONE:UTC}
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:youremailaddress}
+    password: ${MAIL_PASSWORD:yoursecretpassword}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  datasource:
+    #    url: jdbc:mysql://localhost:3306/identity_lms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true&useSSL=false
+    url: ${IDENTITY_URL_DB:jdbc:mysql://localhost:3306/identity_lms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true}
+    username: ${IDENTITY_DB_USERNAME:root}
+    password: ${IDENTITY_DB_PASSWORD:mysqladmin123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: identity-pool
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000   # 30s chờ lấy connection từ pool
+      idle-timeout: 600000        # 10 phút connection idle thì đóng
+      max-lifetime: 1800000       # 30 phút tối đa 1 connection tồn tại
+
+  jpa:
+    hibernate:
+      ddl-auto: none              # Chuẩn theo yêu cầu SRS: Dùng Flyway migration
+    show-sql: ${IDENTITY_JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        #        format_sql: true
+        default_batch_fetch_size: 100
+        jdbc:
+          time_zone: ${HIBERNATE_JDBC_TIME_ZONE:UTC}
+        connection:
+          autocommit: false
+
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: false
+        default-page-size: 20
+        max-page-size: 100
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-version: 1
+    baseline-on-migrate: true
+    sql-migration-prefix: V
+    sql-migration-separator: __
+
+# ============================================================
+# JWT — Identity Service CHỈ SIGN token, KHÔNG verify nữa.
+# ============================================================
+jwt:
+  signer-key: ${JWT_SIGNER_KEY:yJTHpt18uThscnn2pXCGIhoXbv55gBLQF4bWZJKQDPVuny0bigzI2LAWWy0bBXki}
+  valid-duration: ${JWT_ACCESS_DURATION:1800} # in second
+  refreshable-duration: ${JWT_REFRESH_DURATION:604800} # in seconds
+
+# ============================================================
+# CẤU HÌNH TÙY CHỈNH (CUSTOM PROPERTIES)
+# ============================================================
+app:
+  # OTP verification defaults:
+  # - expiry-minutes: OTP het han sau 15 phut.
+  # - max-attempts: nhap sai qua 5 lan thi OTP bi vo hieu.
+  otp-expiry-minutes: ${OTP_EXPIRY_MINUTES:15}
+  otp:
+    max-attempts: ${OTP_MAX_ATTEMPTS:5}
+
+  # Bootstrap admin mac dinh khi service khoi dong.
+  # Ho tro nhieu admin bang danh sach cach nhau boi dau phay.
+  bootstrap-admin:
+    enabled: ${BOOTSTRAP_ADMIN_ENABLED:true}
+    usernames: ${BOOTSTRAP_ADMIN_USERNAMES:admin}
+    passwords: ${BOOTSTRAP_ADMIN_PASSWORDS:admin}
+    emails: ${BOOTSTRAP_ADMIN_EMAILS:}
+    fullnames: ${BOOTSTRAP_ADMIN_FULLNAMES:}
+    email-domain: ${BOOTSTRAP_ADMIN_EMAIL_DOMAIN:lms.edu.vn}
+
+  cleanup:
+    cron: ${APP_CLEANUP_CRON:0 0 2 * * *}
+    zone: ${APP_CLEANUP_ZONE:UTC}
+  internal-secret: ${INTERNAL_SECRET:dev-internal-secret}
+
+  # Social Login Configuration (Google OAuth only)
+  social:
+    google:
+      client-id: ${GOOGLE_CLIENT_ID:your-client-id-here}
+      client-secret: ${GOOGLE_CLIENT_SECRET:your-client-secret-here}
+      token-url: https://oauth2.googleapis.com/token
+      user-info-url: https://www.googleapis.com/oauth2/v3/userinfo
+      scopes: openid,email,profile
+      allowed-redirect-uris: ${GOOGLE_ALLOWED_REDIRECT_URIS:http://localhost:5173/authenticate,https://lmsystem.cloud/authenticate}
+
+# ===== Eureka =====
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+# ===== MinIO =====
+minio:
+  url: ${MINIO_URL:http://localhost:9000}
+  public-url: ${MINIO_PUBLIC_URL:http://localhost:9000}
+  access-key: ${MINIO_ACCESS_KEY:minioadmin}
+  secret-key: ${MINIO_SECRET_KEY:minioadmin123}
+  bucket-name: ${MINIO_IDENTITY_BUCKET:lms-identity-bucket}
+  # Upload avatar/profile images. Default max 5MB, presigned form het han sau 5 phut.
+  max-file-size-bytes: ${MINIO_IDENTITY_MAX_FILE_SIZE_BYTES:5242880}
+  presigned-expiry-minutes: ${MINIO_IDENTITY_PRESIGNED_EXPIRY_MINUTES:5}
+
+logging:
+  level:
+    com.lms.identityservice: ${IDENTITY_LOG_LEVEL:INFO}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      group:
+        liveness:
+          include: ping
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      cors:
+        allowed-origins:
+          - "${FRONTEND_URL:http://localhost:5173}"
+        allowed-methods:
+          - GET

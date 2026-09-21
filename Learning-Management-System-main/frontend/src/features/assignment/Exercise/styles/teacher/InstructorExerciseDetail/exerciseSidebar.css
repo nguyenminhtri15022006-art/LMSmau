@@ -1,0 +1,368 @@
+.exercise-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-card {
+  background: white;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Insights Card with Circular Gauge */
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--primary-color);
+  background: var(--primary-50);
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.gauge-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.gauge-circle {
+  width: 60px;
+  height: 60px;
+}
+
+.circular-chart {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  stroke: var(--primary-color);
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% { stroke-dasharray: 0 100; }
+}
+
+.percentage {
+  fill: #334155;
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.gauge-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.gauge-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.gauge-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gauge-trend.positive { color: #10b981; }
+
+/* Activity Sparkline */
+.sidebar-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.sparkline-mock {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.spark-bar {
+  flex: 1;
+  background: var(--primary-100, #dbeafe);
+  border-radius: 4px 4px 0 0;
+  transition: all 0.3s;
+}
+
+.spark-bar:last-child {
+  background: var(--primary-color);
+}
+
+.spark-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Submission List */
+.submission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.submission-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sub-avatar {
+  width: 32px;
+  height: 32px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.sub-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.sub-time {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.sub-score {
+  font-size: 12px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.view-all-link {
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Quick Actions Grid */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.q-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.q-action-btn .material-symbols-outlined {
+  color: #64748b;
+  font-size: 20px;
+}
+
+.q-action-btn:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-50);
+}
+
+.q-action-btn:hover .material-symbols-outlined {
+  color: var(--primary-color);
+}
+
+.q-action-btn {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+/* Dark mode overrides */
+html[data-theme="dark"] .instructor-layout .exercise-sidebar {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .sidebar-card {
+  background: var(--surface);
+  border-color: var(--border-color);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .instructor-layout .sidebar-section-title {
+  color: var(--text-label);
+}
+
+html[data-theme="dark"] .instructor-layout .gauge-info,
+html[data-theme="dark"] .instructor-layout .card-header-flex {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .gauge-label {
+  color: var(--text-body) !important;
+}
+
+html[data-theme="dark"] .instructor-layout .percentage {
+  fill: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .gauge-circle,
+html[data-theme="dark"] .instructor-layout .circular-chart {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .insights-card .gauge-container {
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .circle-bg {
+  stroke: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .circle {
+  stroke: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .card-tag {
+  background: rgba(88, 166, 255, 0.15);
+  border: 1px solid rgba(88, 166, 255, 0.34);
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .card-header-flex .material-symbols-outlined,
+html[data-theme="dark"] .instructor-layout .gauge-trend .material-symbols-outlined {
+  color: inherit;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .instructor-layout .gauge-container > .gauge-info > .gauge-trend,
+html[data-theme="dark"] .instructor-layout .gauge-container > .gauge-info > .gauge-trend > .material-symbols-outlined {
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .instructor-layout .gauge-container > .gauge-info > .gauge-trend > .material-symbols-outlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+}
+
+html[data-theme="dark"] .instructor-layout .spark-bar {
+  background: var(--border-color);
+}
+
+html[data-theme="dark"] .instructor-layout .spark-bar:last-child {
+  background: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .spark-labels {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .sub-avatar {
+  background: var(--surface-muted);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .sub-name {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] .instructor-layout .sub-time {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .view-all-link {
+  border-top-color: var(--border-color);
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .instructor-layout .q-action-btn {
+  background: var(--surface-muted);
+  border-color: var(--border-color);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .instructor-layout .q-action-btn .material-symbols-outlined {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .instructor-layout .q-action-btn:hover {
+  border-color: var(--primary);
+  background: rgba(88, 166, 255, 0.1);
+}
+
+html[data-theme="dark"] .instructor-layout .q-action-btn:hover .material-symbols-outlined {
+  color: var(--primary);
+}

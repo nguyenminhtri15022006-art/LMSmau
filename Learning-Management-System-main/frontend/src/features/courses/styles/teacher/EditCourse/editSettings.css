@@ -1,0 +1,199 @@
+.edit-settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-icon {
+    font-size: 1.2rem;
+}
+
+.text-blue {
+    color: #1a73e8;
+}
+
+.text-red {
+    color: #ef4444;
+}
+
+.section-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1e293b;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+.radio-option:hover {
+    border-color: #cbd5e1;
+}
+
+.radio-option.selected {
+    border-color: #1a73e8;
+    background-color: #f0f7ff;
+}
+
+.radio-control {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+.radio-control input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.custom-radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.radio-control input:checked + .custom-radio {
+    border-color: #1a73e8;
+    border-width: 6px;
+}
+
+.radio-text h4 {
+    margin: 0 0 5px 0;
+    color: #1e293b;
+    font-size: 1rem;
+}
+
+.radio-text p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: none;
+}
+
+.transfer-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.transfer-box p {
+    margin: 0 0 15px 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.transfer-input-group {
+    display: flex;
+    gap: 15px;
+}
+
+.transfer-input-group input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.transfer-input-group input:focus {
+    border-color: #1a73e8;
+}
+
+.btn-transfer {
+    background-color: white;
+    border: 1px solid #1a73e8;
+    color: #1a73e8;
+    padding: 0 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-transfer:hover {
+    background-color: #f0f7ff;
+}
+
+.danger-zone-section {
+    margin-top: 10px;
+    padding-top: 30px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.danger-box {
+    border: 1px solid #fecaca;
+    background-color: #fef2f2;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.danger-text h4 {
+    margin: 0 0 5px 0;
+    color: #1e293b;
+    font-size: 1rem;
+}
+
+.danger-text p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.btn-delete-course {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-delete-course:hover {
+    background-color: #dc2626;
+}

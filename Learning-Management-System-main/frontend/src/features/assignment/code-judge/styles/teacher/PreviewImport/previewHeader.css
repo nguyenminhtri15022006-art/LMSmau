@@ -1,0 +1,31 @@
+.code-judge-nav-button {
+  border: none;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--primary-color, #2563eb);
+  cursor: pointer;
+  margin-bottom: 24px;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.code-judge-page-header {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.code-judge-page-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-900, #0f172a);
+  margin-bottom: 8px;
+}
+
+.code-judge-page-header p {
+  color: var(--text-500, #64748b);
+  font-size: 16px;
+}

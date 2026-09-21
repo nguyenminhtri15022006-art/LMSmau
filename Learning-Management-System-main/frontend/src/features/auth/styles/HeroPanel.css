@@ -1,0 +1,238 @@
+/* styles/HeroPanel.css */
+/* ============================
+   HERO PANEL - CỘT PHẢI
+   (nền tối, galaxy)
+   ============================ */
+
+.hero-panel {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-hero-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Gradient nền */
+.hero-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            #0d1a3a 0%,
+            #020817 50%,
+            #0a0f2e 100%);
+    z-index: 0;
+}
+
+/* Glow blobs */
+.hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-glow--top {
+    top: 5rem;
+    left: 5rem;
+    width: 8rem;
+    height: 8rem;
+    background: var(--color-hero-glow-1);
+}
+
+.hero-glow--bottom {
+    bottom: 5rem;
+    right: 5rem;
+    width: 16rem;
+    height: 16rem;
+    background: var(--color-hero-glow-2);
+}
+
+/* Content */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 3rem;
+}
+
+/* Galaxy image container */
+.hero-globe {
+    position: relative;
+    width: 18rem;
+    /* 288px */
+    height: 18rem;
+    margin: 0 auto var(--space-8);
+}
+
+.hero-globe-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0f172a 0%, rgba(28, 116, 233, 0.3) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.hero-globe-inner-glow {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 60%;
+    height: 60%;
+    background: rgba(28, 116, 233, 0.2);
+    border-radius: 50%;
+    filter: blur(2rem);
+    pointer-events: none;
+}
+
+.hero-galaxy-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0.85;
+}
+
+/* Decorative planets */
+.hero-planet {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-planet--purple {
+    top: -1rem;
+    right: -1rem;
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #818cf8, #4f46e5);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+}
+
+.hero-planet--blue {
+    bottom: 2.5rem;
+    left: -2.5rem;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--color-primary), #1e40af);
+    box-shadow: 0 8px 24px rgba(28, 116, 233, 0.4);
+}
+
+/* Heading */
+.hero-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-lg);
+    color: #94a3b8;
+    max-width: 22rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Community row */
+.hero-community {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: 3rem;
+}
+
+.hero-avatars {
+    display: flex;
+}
+
+.hero-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-hero-bg);
+    object-fit: cover;
+    margin-left: -0.75rem;
+}
+
+.hero-avatar:first-child {
+    margin-left: 0;
+}
+
+.hero-community-text strong {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.hero-community-text span {
+    font-size: var(--font-size-xs);
+    color: #64748b;
+}
+
+@media (max-height: 900px) {
+    .hero-content {
+        padding: 2rem;
+    }
+
+    .hero-globe {
+        width: 14rem;
+        height: 14rem;
+        margin-bottom: var(--space-6);
+    }
+
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .hero-subtitle {
+        max-width: 20rem;
+    }
+
+    .hero-community {
+        margin-top: var(--space-6);
+    }
+}
+
+@media (max-height: 820px) {
+    .hero-globe {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        max-width: 18rem;
+    }
+}
+
+/* Decorative star dots */
+.hero-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.hero-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff;
+}

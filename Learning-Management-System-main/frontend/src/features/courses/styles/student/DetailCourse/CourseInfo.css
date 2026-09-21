@@ -1,0 +1,74 @@
+.course-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.course-info__section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+html[data-theme="dark"] .course-info__section {
+    background: #172033 !important;
+    border-color: rgba(148, 163, 184, 0.18) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.course-info__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+}
+
+html[data-theme="dark"] .course-info__title {
+    color: #f8fafc;
+}
+
+.course-info__list {
+    list-style: disc;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #334155;
+}
+
+html[data-theme="dark"] .course-info__list {
+    color: #d6e0ee;
+}
+
+.course-info__description {
+    color: #334155;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+html[data-theme="dark"] .course-info__description {
+    color: #d6e0ee;
+}
+
+html[data-theme="dark"] .course-info__list li::marker,
+html[data-theme="dark"] .course-info__tech-list li::marker {
+    color: #93c5fd;
+}
+
+.course-info__tech-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem 1rem;
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+    .course-info__tech-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

@@ -1,0 +1,377 @@
+.test-cases-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.test-cases-header .create-card-heading {
+    flex: 1 1 280px;
+    margin-bottom: 0;
+}
+
+.test-cases-header-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(152px, 1fr));
+    align-items: stretch;
+    gap: 10px;
+    flex: 1 1 560px;
+    max-width: 680px;
+}
+
+.test-cases-import-button,
+.test-cases-action-button {
+    width: 100%;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    white-space: normal;
+    border: 1px solid #dbe3ef;
+}
+
+.test-cases-header-actions :is(.test-cases-import-button, .test-cases-action-button) {
+    margin: 0;
+    min-height: 48px;
+    padding: 10px 14px;
+    border-style: solid;
+    border-radius: 999px;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0;
+    white-space: normal;
+}
+
+.test-cases-import-button {
+    background: #eff6ff;
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+.test-cases-import-button .material-symbols-outlined,
+.test-cases-action-button .material-symbols-outlined {
+    flex: 0 0 auto;
+    font-size: 20px;
+}
+
+.test-cases-table-container {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.9) 0%, white 100%);
+    border: 1px solid #dbe3ef;
+    border-radius: 18px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0;
+}
+
+.test-cases-card .test-cases-table {
+    width: 100%;
+    min-width: 820px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.test-cases-card .test-cases-table th {
+    background: #f1f5f9;
+    padding: 14px 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0;
+    border-bottom: 1px solid #dbe3ef;
+}
+
+.test-cases-card .test-cases-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.test-cases-card .test-cases-table tbody tr:hover {
+    background: rgba(248, 250, 252, 0.85);
+}
+
+.test-cases-card .test-cases-table th:nth-child(1),
+.test-cases-card .test-cases-table td:nth-child(1),
+.test-cases-card .test-cases-table th:nth-child(2),
+.test-cases-card .test-cases-table td:nth-child(2) {
+    width: 30%;
+}
+
+.test-cases-card .test-cases-table th:nth-child(3),
+.test-cases-card .test-cases-table td:nth-child(3) {
+    width: 9%;
+}
+
+.test-cases-card .test-cases-table th:nth-child(4),
+.test-cases-card .test-cases-table td:nth-child(4) {
+    width: 10%;
+}
+
+.test-cases-card .test-cases-table th:nth-child(5),
+.test-cases-card .test-cases-table td:nth-child(5) {
+    width: 13%;
+}
+
+.test-cases-card .test-cases-table th:nth-child(6),
+.test-cases-card .test-cases-table td:nth-child(6) {
+    width: 8%;
+}
+
+.test-cases-card .type-select {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 50px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.test-cases-number-heading {
+    width: 92px;
+}
+
+.test-cases-actions-heading,
+.test-cases-actions-cell {
+    text-align: center;
+}
+
+.test-case-input {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 82px;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.45;
+    resize: vertical;
+}
+
+.test-case-number-input {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 42px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.test-cases-card .btn-delete-option {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    border: 1px solid #dbe3ef;
+    background: white;
+    color: #94a3b8;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.test-cases-card .btn-delete-option:hover {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+    transform: scale(1.04);
+}
+
+.test-cases-card .btn-delete-option .material-symbols-outlined {
+    font-size: 22px;
+}
+
+.test-cases-buttons {
+    display: flex;
+    gap: 14px;
+    margin: 20px 18px 18px;
+}
+
+.test-cases-action-button {
+    background: white;
+    color: #334155;
+}
+
+.test-cases-action-button:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+    background: #eff6ff;
+}
+
+.test-cases-card .ai-gen-btn {
+    border-color: #c4b5fd;
+    color: #7c3aed;
+    background: linear-gradient(180deg, rgba(245, 243, 255, 0.95) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.test-cases-card .ai-gen-btn:hover {
+    background: #f5f3ff;
+    box-shadow: 0 10px 24px rgba(139, 92, 246, 0.14);
+}
+
+.test-cases-card .ai-gen-btn:disabled {
+    background: #f5f3ff;
+}
+
+.test-cases-card .spin-anim {
+    animation: create-coding-spin 1s linear infinite;
+}
+
+@keyframes create-coding-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .test-cases-header,
+    .test-cases-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .test-cases-header-actions {
+        grid-template-columns: 1fr;
+        max-width: none;
+    }
+}
+
+html[data-theme="dark"] .test-cases-import-button {
+    background: rgba(88, 166, 255, 0.14) !important;
+    color: var(--primary) !important;
+    border-color: rgba(88, 166, 255, 0.34) !important;
+}
+
+html[data-theme="dark"] .test-cases-table-container {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .test-cases-table-container:hover {
+    background: var(--surface-muted);
+    background-color: var(--surface-muted);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table-container:hover .test-cases-table,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover thead,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover tbody,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover tr {
+    background: var(--surface-muted);
+    background-color: var(--surface-muted);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table-container:hover .test-cases-table th,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover th {
+    background: var(--surface);
+    background-color: var(--surface);
+    border-bottom-color: var(--border-color);
+    color: var(--text-label);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table-container:hover .test-cases-table td,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover td {
+    background: var(--surface-muted);
+    background-color: var(--surface-muted);
+    border-bottom-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table-container:hover :is(.option-input, .type-select),
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover :is(.option-input, .type-select) {
+    background: var(--surface);
+    background-color: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table-container:hover :is(.option-input, .type-select)::placeholder,
+html[data-theme="dark"] .test-cases-card .test-cases-table:hover :is(.option-input, .type-select)::placeholder {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table th {
+    background: var(--surface);
+    border-bottom-color: var(--border-color);
+    color: var(--text-label);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table td {
+    background: var(--surface-muted);
+    border-bottom-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table tbody tr:hover {
+    background: var(--surface);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table tbody tr:hover td {
+    background: var(--surface);
+    color: var(--text-body);
+    border-bottom-color: var(--border-color);
+}
+
+html[data-theme="dark"] .test-cases-card .test-cases-table tbody tr:hover :is(.option-input, .type-select) {
+    background: var(--surface-muted);
+    border-color: var(--border-color);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .test-cases-card .btn-delete-option {
+    background: var(--surface-elevated);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .test-cases-card .btn-delete-option:hover {
+    background: rgba(248, 113, 113, 0.14);
+    border-color: rgba(248, 113, 113, 0.38);
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .test-cases-action-button {
+    background: var(--surface-muted) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-label) !important;
+}
+
+html[data-theme="dark"] .test-cases-action-button:hover {
+    background: rgba(88, 166, 255, 0.14) !important;
+    border-color: rgba(88, 166, 255, 0.38) !important;
+    color: var(--primary) !important;
+}
+
+html[data-theme="dark"] .test-cases-card .ai-gen-btn {
+    background: rgba(139, 92, 246, 0.16) !important;
+    border-color: rgba(167, 139, 250, 0.42) !important;
+    color: #ddd6fe !important;
+}
+
+html[data-theme="dark"] .test-cases-card .ai-gen-btn:hover {
+    background: rgba(139, 92, 246, 0.24) !important;
+    border-color: rgba(196, 181, 253, 0.56) !important;
+    color: #ede9fe !important;
+    box-shadow: 0 10px 24px rgba(139, 92, 246, 0.18) !important;
+}
+
+html[data-theme="dark"] .test-cases-card .ai-gen-btn:disabled {
+    background: rgba(139, 92, 246, 0.1) !important;
+    border-color: rgba(167, 139, 250, 0.24) !important;
+    color: var(--text-muted) !important;
+}

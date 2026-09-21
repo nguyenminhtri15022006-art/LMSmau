@@ -1,0 +1,663 @@
+/* ===============================================
+   QUIZ OVERVIEW PAGE
+   Compact layout — all info visible without scrolling
+   =============================================== */
+
+.qo-card {
+    max-width: 800px;
+    margin: 0 auto 64px;
+    background: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+}
+
+/* ── Header: icon + info + actions in one row ─── */
+
+.qo-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 28px;
+}
+
+.qo-header-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}
+
+.qo-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #eff6ff;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.qo-icon-circle .material-symbols-outlined {
+    font-size: 26px;
+    color: #2563eb;
+}
+
+.qo-header-text {
+    min-width: 0;
+}
+
+.qo-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.qo-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.qo-meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 6px;
+    padding: 4px 10px;
+}
+
+.qo-meta-badge .material-symbols-outlined {
+    font-size: 14px;
+}
+
+/* ── Header actions (right side) ─────────────── */
+
+.qo-header-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.qo-start-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #10b981;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.qo-start-btn:hover:not(:disabled) {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.qo-start-btn:disabled {
+    background: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.qo-start-btn .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.qo-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.qo-back-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.qo-back-btn .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* ── Status badges ───────────────────────────── */
+
+.qo-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.qo-status .material-symbols-outlined {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.qo-status--warn {
+    background: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.qo-status--error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* ── Details section ─────────────────────────── */
+
+.qo-details {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.qo-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.qo-detail-icon {
+    color: #94a3b8;
+    flex-shrink: 0;
+    padding-top: 1px;
+}
+
+.qo-detail-icon .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.qo-detail-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 1px;
+}
+
+.qo-detail-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.qo-description-text {
+    font-weight: 400;
+    color: #475569;
+    white-space: pre-line;
+    margin: 0;
+}
+
+/* ── History Section ──────────────────────────── */
+
+.qo-history {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.qo-history-header {
+    margin-bottom: 16px;
+}
+
+.qo-history-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.qo-history-title .material-symbols-outlined {
+    font-size: 20px;
+    color: #64748b;
+}
+
+.qo-history-loading,
+.qo-history-empty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 0;
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.qo-history-empty {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 0;
+}
+
+.qo-history-empty .material-symbols-outlined {
+    font-size: 36px;
+    color: #cbd5e1;
+}
+
+.qo-history-empty p {
+    margin: 0;
+    color: #94a3b8;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.qo-history-table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+}
+
+.qo-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.qo-history-table thead {
+    background: #f8fafc;
+}
+
+.qo-history-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.qo-history-table td {
+    padding: 12px 14px;
+    border-top: 1px solid #f8fafc;
+    color: #334155;
+    white-space: nowrap;
+}
+
+.qo-history-table tbody tr {
+    transition: background 0.15s;
+}
+
+.qo-history-table tbody tr:hover {
+    background: #fafbff;
+}
+
+.qo-history-attempt-num {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.qo-history-score-num {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.qo-history-score-total {
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.qo-history-time {
+    font-variant-numeric: tabular-nums;
+    color: #64748b;
+}
+
+.qo-history-date {
+    color: #64748b;
+}
+
+.qo-history-action {
+    text-align: right;
+}
+
+/* ── Status Badges ──────────────────────────── */
+
+.qo-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
+}
+
+.qo-badge--pass {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.qo-badge--fail {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.qo-badge--progress {
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+.qo-badge--expired {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* ── Detail Button ──────────────────────────── */
+
+.qo-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: white;
+    color: #2563eb;
+    border: 1px solid #e2e8f0;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.qo-detail-btn:hover {
+    background: #eff6ff;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.qo-detail-btn .material-symbols-outlined {
+    font-size: 16px;
+}
+
+/* ── Load More Button ───────────────────────── */
+
+.qo-history-load-more {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+
+.qo-load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qo-load-more-btn:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.qo-load-more-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.qo-load-more-btn .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* ===============================================
+   DARK THEME
+   =============================================== */
+html[data-theme="dark"] .student-layout .exercise-page:has(.qo-card) .ch-breadcrumb {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .exercise-page:has(.qo-card) .ch-breadcrumb a {
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .student-layout .exercise-page:has(.qo-card) .ch-breadcrumb a:hover {
+    color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .exercise-page:has(.qo-card) .ch-breadcrumb-current,
+html[data-theme="dark"] .student-layout .exercise-page:has(.qo-card) .ch-breadcrumb-separator {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qo-card {
+    background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.13), transparent 34%),
+        linear-gradient(145deg, rgba(18, 27, 45, 0.96), rgba(15, 23, 42, 0.98));
+    border-color: rgba(96, 165, 250, 0.3);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.3);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .student-layout .qo-icon-circle {
+    background: rgba(59, 130, 246, 0.18);
+    border: 1px solid rgba(147, 197, 253, 0.28);
+}
+
+html[data-theme="dark"] .student-layout .qo-icon-circle .material-symbols-outlined {
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .student-layout .qo-title,
+html[data-theme="dark"] .student-layout .qo-history-title,
+html[data-theme="dark"] .student-layout .qo-detail-value,
+html[data-theme="dark"] .student-layout .qo-history-attempt-num,
+html[data-theme="dark"] .student-layout .qo-history-score-num {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .student-layout .qo-meta-badge {
+    background: rgba(15, 23, 42, 0.68);
+    border-color: rgba(96, 165, 250, 0.24);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .student-layout .qo-meta-badge .material-symbols-outlined,
+html[data-theme="dark"] .student-layout .qo-detail-icon,
+html[data-theme="dark"] .student-layout .qo-history-title .material-symbols-outlined {
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .student-layout .qo-back-btn,
+html[data-theme="dark"] .student-layout .qo-detail-btn,
+html[data-theme="dark"] .student-layout .qo-load-more-btn {
+    background: rgba(15, 23, 42, 0.74);
+    border-color: rgba(147, 197, 253, 0.28);
+    color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .qo-back-btn:hover,
+html[data-theme="dark"] .student-layout .qo-detail-btn:hover,
+html[data-theme="dark"] .student-layout .qo-load-more-btn:hover:not(:disabled) {
+    background: rgba(59, 130, 246, 0.14);
+    border-color: rgba(147, 197, 253, 0.44);
+    color: #dbeafe;
+}
+
+html[data-theme="dark"] .student-layout .qo-start-btn {
+    background: #059669;
+    box-shadow: 0 10px 24px rgba(16, 185, 129, 0.18);
+}
+
+html[data-theme="dark"] .student-layout .qo-start-btn:hover:not(:disabled) {
+    background: #047857;
+    box-shadow: 0 12px 28px rgba(16, 185, 129, 0.26);
+}
+
+html[data-theme="dark"] .student-layout .qo-start-btn:disabled {
+    background: rgba(71, 85, 105, 0.72);
+    color: #94a3b8;
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .student-layout .qo-status--warn {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(253, 230, 138, 0.38);
+    color: #fcd34d;
+}
+
+html[data-theme="dark"] .student-layout .qo-status--error {
+    background: rgba(239, 68, 68, 0.16);
+    border-color: rgba(252, 165, 165, 0.38);
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .student-layout .qo-details,
+html[data-theme="dark"] .student-layout .qo-history {
+    border-top-color: rgba(96, 165, 250, 0.2);
+}
+
+html[data-theme="dark"] .student-layout .qo-detail-label,
+html[data-theme="dark"] .student-layout .qo-description-text,
+html[data-theme="dark"] .student-layout .qo-history-loading,
+html[data-theme="dark"] .student-layout .qo-history-empty,
+html[data-theme="dark"] .student-layout .qo-history-empty p,
+html[data-theme="dark"] .student-layout .qo-history-score-total,
+html[data-theme="dark"] .student-layout .qo-history-time,
+html[data-theme="dark"] .student-layout .qo-history-date {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qo-history-empty .material-symbols-outlined {
+    color: rgba(147, 197, 253, 0.62);
+}
+
+html[data-theme="dark"] .student-layout .qo-history-table-wrap {
+    border-color: rgba(96, 165, 250, 0.24);
+    background: rgba(15, 23, 42, 0.5);
+}
+
+html[data-theme="dark"] .student-layout .qo-history-table thead {
+    background: rgba(15, 23, 42, 0.82);
+}
+
+html[data-theme="dark"] .student-layout .qo-history-table th {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qo-history-table td {
+    border-top-color: rgba(96, 165, 250, 0.16);
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .student-layout .qo-history-table tbody tr:hover {
+    background: rgba(96, 165, 250, 0.08);
+}
+
+html[data-theme="dark"] .student-layout .qo-badge--pass {
+    background: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .qo-badge--fail {
+    background: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .student-layout .qo-badge--progress {
+    background: rgba(59, 130, 246, 0.18);
+    color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .qo-badge--expired {
+    background: rgba(148, 163, 184, 0.18);
+    color: #cbd5e1;
+}
+
+html[data-theme="dark"] .student-layout .qo-detail-item:hover {
+    background-color: transparent !important;
+}
+
+/* ── Responsive ──────────────────────────────── */
+
+@media (max-width: 768px) {
+    .qo-card {
+        padding: 20px;
+    }
+
+    .qo-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .qo-header-actions {
+        width: 100%;
+        flex-direction: row-reverse;
+    }
+
+    .qo-start-btn {
+        flex: 1;
+    }
+
+    .qo-back-btn {
+        padding: 10px 16px;
+    }
+
+    .qo-title {
+        font-size: 18px;
+    }
+}

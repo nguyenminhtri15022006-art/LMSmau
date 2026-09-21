@@ -1,0 +1,19 @@
+package com.lms.identityservice.dto.response;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UserDashboardResponse {
+    long totalStudents;
+    long newStudentsThisWeek;
+    long totalInstructors;
+    long newInstructorsThisMonth;
+    long totalAdmins;
+}

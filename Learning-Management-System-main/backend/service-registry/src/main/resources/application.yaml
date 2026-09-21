@@ -1,0 +1,29 @@
+server:
+  port: ${SERVICE_REGISTRY_PORT:8761}
+
+spring:
+  application:
+    name: service-registry
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+
+logging:
+  level:
+    com.n23dccn161.serviceregistry: ${SERVICE_REGISTRY_LOG_LEVEL:INFO}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      group:
+        liveness:
+          include: ping
+  endpoints:
+    web:
+      exposure:
+        include: health, info

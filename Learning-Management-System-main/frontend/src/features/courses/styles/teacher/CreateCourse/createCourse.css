@@ -1,0 +1,269 @@
+/* CreateCourse.css */
+.create-course-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+}
+
+/* Header & Breadcrumbs */
+.create-course-header {
+  margin-bottom: 40px;
+}
+
+.breadcrumbs {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #1c74e9;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+  color: #1558b8;
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.create-course-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.create-course-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+/* Step Progress Indicator */
+.step-indicator-wrapper {
+  margin-bottom: 50px;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.progress-bar-group {
+  display: flex;
+  gap: 12px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-segment.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #3b82f6;
+}
+
+.progress-segment.partial::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: #3b82f6;
+}
+
+/* Footer Actions */
+.creation-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 20px 40px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    z-index: 100;
+    backdrop-filter: blur(14px) saturate(145%);
+    -webkit-backdrop-filter: blur(14px) saturate(145%);
+    box-shadow: 0 -18px 36px rgba(15, 23, 42, 0.08);
+}
+
+.creation-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0) 0%, #2563eb 28%, #06b6d4 72%, rgba(6, 182, 212, 0) 100%);
+    box-shadow: 0 0 18px rgba(37, 99, 235, 0.3);
+    pointer-events: none;
+}
+
+.btn-finish {
+    background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-finish:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #1d4ed8 0%, #0e7490 100%);
+    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.3);
+}
+
+.btn-finish:focus-visible,
+.btn-footer-cancel:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.btn-finish:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.btn-footer-cancel {
+    background: rgba(15, 23, 42, 0.06);
+    border: none;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 30px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-footer-cancel:hover:not(:disabled) {
+    transform: translateY(-1px);
+    color: #1d4ed8;
+    background: rgba(37, 99, 235, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.18);
+}
+
+.btn-footer-cancel:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.step-content-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 100px;
+}
+
+/* Modal Specific Styles */
+
+.form-field {
+  margin-bottom: 25px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.form-field input, .form-field select, .form-field textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.form-field input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+html[data-theme="dark"] .instructor-layout .creation-footer {
+    background:
+        radial-gradient(circle at 78% 0%, rgba(14, 165, 233, 0.12), transparent 32%),
+        rgba(11, 17, 32, 0.92);
+    border-top-color: rgba(96, 165, 250, 0.2);
+    box-shadow: 0 -20px 42px rgba(0, 0, 0, 0.38);
+}
+
+html[data-theme="dark"] .instructor-layout .creation-footer::before {
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0) 0%, #60a5fa 24%, #67e8f9 76%, rgba(103, 232, 249, 0) 100%);
+    box-shadow: 0 0 24px rgba(14, 165, 233, 0.46);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-footer-cancel {
+    color: #cbd5e1;
+    background: rgba(148, 163, 184, 0.12);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-footer-cancel:hover:not(:disabled) {
+    color: #e0f2fe;
+    background: rgba(59, 130, 246, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(125, 211, 252, 0.22), 0 10px 22px rgba(14, 165, 233, 0.12);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-footer-cancel:disabled,
+html[data-theme="dark"] .instructor-layout .btn-finish:disabled {
+    opacity: 0.48;
+}
+
+html[data-theme="dark"] .instructor-layout .btn-finish {
+    color: #ffffff;
+    background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+    box-shadow: 0 14px 30px rgba(14, 165, 233, 0.24);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-finish:hover:not(:disabled) {
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    box-shadow: 0 16px 34px rgba(14, 165, 233, 0.36), 0 0 0 1px rgba(125, 211, 252, 0.28);
+}
+
+html[data-theme="dark"] .instructor-layout .btn-finish:focus-visible,
+html[data-theme="dark"] .instructor-layout .btn-footer-cancel:focus-visible {
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.28);
+}
+

@@ -1,0 +1,651 @@
+/* ===============================================
+   QUIZ HISTORY DETAIL PAGE
+   Cohesive with QuizOverviewPage & ExerciseShared
+   =============================================== */
+
+.qhd-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+/* ── Score Hero ──────────────────────────────── */
+
+.qhd-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.qhd-hero-ring {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.qhd-hero-ring svg {
+  transform: rotate(-90deg);
+  width: 80px;
+  height: 80px;
+}
+
+.qhd-hero-ring-bg {
+  fill: none;
+  stroke: #f1f5f9;
+  stroke-width: 6;
+}
+
+.qhd-hero-ring-fg {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.qhd-hero-ring-fg--pass {
+  stroke: #10b981;
+}
+
+.qhd-hero-ring-fg--fail {
+  stroke: #ef4444;
+}
+
+.qhd-hero-ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.qhd-hero-info {
+  min-width: 0;
+}
+
+.qhd-hero-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.qhd-hero-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.qhd-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.qhd-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.qhd-hero-badge .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.qhd-hero-badge--pass {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.qhd-hero-badge--fail {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.qhd-hero-badge--neutral {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #f1f5f9;
+}
+
+/* ── Filter Tabs ─────────────────────────────── */
+
+.qhd-filters {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: #f8fafc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.qhd-filter-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.qhd-filter-btn:hover {
+  color: #334155;
+}
+
+.qhd-filter-btn--active {
+  background: white;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.qhd-filter-btn--active.qhd-filter-btn--correct {
+  color: #166534;
+}
+
+.qhd-filter-btn--active.qhd-filter-btn--incorrect {
+  color: #991b1b;
+}
+
+.qhd-filter-count {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.qhd-filter-btn--active .qhd-filter-count {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.qhd-filter-btn--active.qhd-filter-btn--correct .qhd-filter-count {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.qhd-filter-btn--active.qhd-filter-btn--incorrect .qhd-filter-count {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* ── Question Review List ────────────────────── */
+
+.qhd-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qhd-review-item {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.15s;
+}
+
+.qhd-review-item:hover {
+  border-color: #e2e8f0;
+}
+
+.qhd-review-item--correct {
+  border-left: 3px solid #10b981;
+}
+
+.qhd-review-item--incorrect {
+  border-left: 3px solid #ef4444;
+}
+
+.qhd-review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.qhd-review-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.qhd-review-status {
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.qhd-review-status--correct {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.qhd-review-status--incorrect {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.qhd-review-status .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.qhd-review-question {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.qhd-review-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qhd-review-opt {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  border: 1px solid transparent;
+}
+
+.qhd-review-opt--chosen-correct {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.qhd-review-opt--chosen-incorrect {
+  background: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.qhd-review-opt--correct {
+  background: #f0fdf4;
+  color: #166534;
+  border-color: #dcfce7;
+}
+
+.qhd-review-opt--normal {
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.qhd-review-opt-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.qhd-review-opt-tag--chosen {
+  background: rgba(0,0,0,0.06);
+}
+
+.qhd-review-opt-tag--correct {
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.qhd-review-explanation {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #fffbeb;
+  border-radius: 8px;
+  border: 1px solid #fde68a;
+}
+
+.qhd-review-explanation-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.qhd-review-explanation-text {
+  font-size: 13px;
+  color: #78350f;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.qhd-review-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f8fafc;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.qhd-review-score-val {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ── No Results ──────────────────────────────── */
+
+.qhd-filter-empty {
+  text-align: center;
+  padding: 32px 0;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.qhd-filter-empty .material-symbols-outlined {
+  font-size: 32px;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+/* ── Bottom Actions ──────────────────────────── */
+
+.qhd-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.qhd-actions .start-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qhd-btn-secondary {
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+}
+
+/* ===============================================
+   DARK THEME
+   =============================================== */
+
+/* ── Card ────────────────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-card {
+    background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.13), transparent 34%),
+        linear-gradient(145deg, rgba(18, 27, 45, 0.96), rgba(15, 23, 42, 0.98));
+    border-color: rgba(96, 165, 250, 0.3);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.3);
+    color: var(--text-body);
+}
+
+/* ── Hero ────────────────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-hero {
+    border-bottom-color: rgba(96, 165, 250, 0.2);
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-ring-bg {
+    stroke: var(--border-color);
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-ring-text {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-title {
+    color: var(--text-dark);
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-subtitle {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-badge--pass {
+    background: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-badge--fail {
+    background: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .student-layout .qhd-hero-badge--neutral {
+    background: rgba(15, 23, 42, 0.68);
+    border-color: rgba(96, 165, 250, 0.24);
+    color: var(--text-body);
+}
+
+/* ── Filters ─────────────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-filters {
+    background: rgba(15, 23, 42, 0.68);
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn:hover {
+    color: var(--text-body);
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn--active {
+    background: rgba(15, 23, 42, 0.82);
+    color: var(--text-dark);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn--active.qhd-filter-btn--correct {
+    color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn--active.qhd-filter-btn--incorrect {
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-count {
+    background: rgba(147, 197, 253, 0.18);
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn--active .qhd-filter-count {
+    background: rgba(59, 130, 246, 0.22);
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn--active.qhd-filter-btn--correct .qhd-filter-count {
+    background: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-btn--active.qhd-filter-btn--incorrect .qhd-filter-count {
+    background: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+}
+
+/* ── Review List & Items ─────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-review-list:hover {
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-item {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(96, 165, 250, 0.24);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-item:hover {
+    border-color: rgba(96, 165, 250, 0.44);
+    background-color: rgba(96, 165, 250, 0.08) !important;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-item--correct {
+    border-left: 3px solid #10b981;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-item--incorrect {
+    border-left: 3px solid #ef4444;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-num {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-status--correct {
+    background: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-status--incorrect {
+    background: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-question {
+    color: var(--text-dark);
+}
+
+/* ── Review Options ──────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-review-options {
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-opt--chosen-correct {
+    background: rgba(34, 197, 94, 0.15);
+    color: #86efac;
+    border-color: rgba(34, 197, 94, 0.35);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-opt--chosen-incorrect {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-opt--correct {
+    background: rgba(34, 197, 94, 0.08);
+    color: #86efac;
+    border-color: rgba(34, 197, 94, 0.25);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-opt--normal {
+    background: rgba(15, 23, 42, 0.5);
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-opt-tag--chosen {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-opt-tag--correct {
+    background: rgba(34, 197, 94, 0.2);
+}
+
+/* ── Explanation ─────────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-review-explanation {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(253, 230, 138, 0.28);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-explanation-label {
+    color: #fcd34d;
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-explanation-text {
+    color: #fde68a;
+}
+
+/* ── Score ───────────────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-review-score {
+    border-top-color: rgba(96, 165, 250, 0.16);
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-review-score-val {
+    color: var(--text-dark);
+}
+
+/* ── Empty State ─────────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-filter-empty {
+    color: var(--text-muted);
+}
+
+html[data-theme="dark"] .student-layout .qhd-filter-empty .material-symbols-outlined {
+    color: rgba(147, 197, 253, 0.62);
+}
+
+/* ── Action Buttons ──────────────────────────── */
+
+html[data-theme="dark"] .student-layout .qhd-btn-secondary {
+    background: rgba(15, 23, 42, 0.74);
+    border-color: rgba(147, 197, 253, 0.28);
+    color: #bfdbfe;
+}
+
+html[data-theme="dark"] .student-layout .qhd-btn-secondary:hover {
+    background: rgba(59, 130, 246, 0.14);
+    border-color: rgba(147, 197, 253, 0.44);
+    color: #dbeafe;
+}
+
+/* ── Responsive ──────────────────────────────── */
+
+@media (max-width: 768px) {
+  .qhd-card {
+    padding: 20px;
+  }
+
+  .qhd-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .qhd-hero-meta {
+    justify-content: center;
+  }
+
+  .qhd-filters {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
